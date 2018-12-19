@@ -1,0 +1,80 @@
+https://mariadb.com/kb/en/library/installing-and-using-mariadb-via-docker/
+
+
+
+
+Run the DB Container 
+=====================
+docker run --name sensor_db -e MYSQL_ROOT_PASSWORD=cisco123 -d mariadb/server:10.3
+
+
+
+
+Connect to the Container
+=========================
+docker exec -it sensor_db bash
+
+Find the container IP Address 
+============================
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sensor_db
+
+
+Connect to MariaDB 
+========================
+
+Check metadata lock (https://mariadb.com/resources/blog/every-select-from-your-python-program-may-acquire-a-metadata-lock/)
+-------
+select * from information_schema.metadata_lock_info;
+
+
+mysql -h 172.17.0.2 -P 3306 --protocol=TCP -u root -p
+
+select * from sensor_db.sensor_data;
+
+create database if not exists sensor_db;
+
+
+SHOW DATABASES;
+
+show create table sensor_db.sensor_data;
+
+
+SHOW TABLES IN sensor_db;
+
+
+drop database sensor_db;
+
+
+Check open connections -
+SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST WHERE DB = "sensor_db";
+
+
+
+create table if not exists sensor_db.sensor_data (Rec_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, Sensor_ID INT, Location varchar(255), Sensor_DateTime DATETIME, DB_DateTime DATETIME, Temperature DECIMAL(3,2), Humidity DECIMAL(3,2));
+
+
+PYTHON-
+
+
+		cursor.execute('create table if not exists ' + self.db_name + '.sensor_data (Rec_ID int NOT NULL AUTO_INCREMENT PRIMARY KEY, Sensor_ID INT, Location varchar(255), Sensor_DateTime datetime, DB_DateTime datetime, Temperature DECIMAL(3,2), Humidity DECIMAL(3,2))')
+
+
+pip install mysql-connector-python-rf
+
+
+
+
+#!/usr/bin/python
+import mysql.connector as mariadb
+
+mariadb_connection = mariadb.connect(host='172.17.0.2', port='3306', user='root', password='cisco123', database='sensor_db')
+cursor = mariadb_connection.cursor()
+
+cursor.execute('create database if not exists sensor_db;')
+
+
+
+try:
+    cursor.execute("some MariaDB query"))
+except mariadb.Error as error:
+    print("Error: {}".format(error))
