@@ -8,6 +8,6 @@
 * Jumper wires
 
 
-
+![Raspberry Pi - DHT22 Connection] (https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/Rapi_sensor_connection.png)
 
 
