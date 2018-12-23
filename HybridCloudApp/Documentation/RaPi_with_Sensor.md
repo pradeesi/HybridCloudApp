@@ -15,7 +15,7 @@ Following are the Hardware and Software prerequisites that you need before you b
 
 ### 1.2 Software Components:
 * [Official Raspbian Image](https://www.raspberrypi.org/downloads/raspbian/)
-* [Etcher] (https://www.balena.io/etcher/) for flashing Raspbian OS image into theSD card
+* [Etcher](https://www.balena.io/etcher/) for flashing Raspbian OS image into theSD card
 
 ## 2. DHT22 Sensor Connection with Raspberry Pi
 You can connect the DHT22 sensor with Raspberry Pi as shown in the following image. Pin 1 and Pin 4 on the sensor should be connected to the 3.3V Power Pin and Ground Pin respectively. Pin 2 on the sensor should be connected to GPIO Pin 4.
