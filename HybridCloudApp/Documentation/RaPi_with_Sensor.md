@@ -86,7 +86,7 @@ If you see the correct version, you are good to go.
 
 ## 6. Test the Container on Raspberry Pi:
 
-Try to run the sensor container on your Raspberry Pi in an interactive mode using the following command - 
+Login back into the Raspberry Pi and run the sensor container in an interactive mode using the following command -
 
 	sudo docker run --privileged -it -v /home/pi/settings:/usr/src/app/settings pradeesi/rapi_cl_hc_sensor
 
