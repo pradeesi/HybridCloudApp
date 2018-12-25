@@ -68,22 +68,40 @@ If you see the correct version, you are good to go.
 
 **5.4** Login to Raspberry Pi and create new settings folder under the 'pi' user's home directory, using the following command - 
 
-	mkdir settings
+	mkdir /home/pi/settings
 	
 **5.5** Upload the AWS Certificate Files and updated "settings.ini" file on Raspberry Pi using sftp -
 
 	sftp pi@<ip-address>
 
-	cd settings
+	cd /home/pi/settings
 
 	put <file-name>
-
-## 6. Configure Raspberry Pi to Trigger the IoT Container:
- 
-
-
-
 	
+**Note:** Make sure you copy the updated settings.ini, Amazon RootCA Certificate file, AWS IoT Core Things Certificate & Private Key files into the '/home/pi/settings' directory on your Raspberry Pi.
+
+## 6. Test the Container on Raspberry Pi:
+
+Try to run the sensor container on your Raspberry Pi in an interactive mode using the following command - 
+
+	sudo docker run --privileged -it -v /home/pi/settings:/usr/src/app/settings pradeesi/rapi_cl_hc_sensor
+
+
+## 7. Configure Raspberry Pi to Trigger the Sensor Container at Startup:
+**7.1:** open the 'rc.local' using the following command -
+
+	sudo vi /etc/rc.local
+	
+**7.2:** Add following command at the end of this file (if you see 'exit 0' at the end of the file, add this command before the 'exit 0' instruction) - 
+
+	sudo docker run --privileged -d -v /home/pi/settings:/usr/src/app/settings pradeesi/rapi_cl_hc_sensor
+	
+**7.3:** Save the file using 'Esc + :wq' command on vi editor.
+
+**7.4:** Reboot the Raspberry Pi using '**sudo reboot**'. 
+
+**7.5:** After the reboot process gets completed, login back to the Raspberry Pi and check if the sensor container is running using the command '**sudo docker ps**'.
+
 
 
 

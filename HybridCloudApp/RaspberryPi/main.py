@@ -7,7 +7,7 @@ import Adafruit_DHT
 import ConfigParser
 
 
-
+SETTINGS_DIRECTORY = 'settings/'
 SETTINGS_FILE_NAME = 'settings.ini'
 
 
@@ -15,7 +15,7 @@ def get_Settings(Section_Name):
 	try:
 		config = ConfigParser.ConfigParser()
 		config.optionxform=str   #By default config returns keys from Settings file in lower case. This line preserves the case for keys
-		config.read(SETTINGS_FILE_NAME)
+		config.read(SETTINGS_DIRECTORY + SETTINGS_FILE_NAME)
 		
 		return dict(config.items(Section_Name))	
 	except Exception as error_msg:
@@ -63,9 +63,9 @@ SLEEP_INTERVAL = int(settings['SLEEP_INTERVAL'])
 MQTT_KEEPALIVE_INTERVAL = int(settings['MQTT_KEEPALIVE_INTERVAL'])
 MQTT_TOPIC = settings['MQTT_TOPIC']
 MQTT_HOST = settings['MQTT_HOST']
-CA_ROOT_CERT_FILE = settings['CA_ROOT_CERT_FILE']
-THING_CERT_FILE = settings['THING_CERT_FILE']
-THING_PRIVATE_KEY = settings['THING_PRIVATE_KEY']
+CA_ROOT_CERT_FILE = SETTINGS_DIRECTORY + settings['CA_ROOT_CERT_FILE']
+THING_CERT_FILE = SETTINGS_DIRECTORY + settings['THING_CERT_FILE']
+THING_PRIVATE_KEY = SETTINGS_DIRECTORY + settings['THING_PRIVATE_KEY']
 
 
 

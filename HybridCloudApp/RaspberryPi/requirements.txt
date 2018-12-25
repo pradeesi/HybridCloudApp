@@ -1,0 +1,3 @@
+Adafruit_DHT
+paho-mqtt
+configparser
