@@ -1,10 +1,10 @@
-# Appendix - 1: Raspberry Pi with DHT22 Humidity and Temperature Sensor
+# Appendix - 2: Raspberry Pi with DHT22 Sensor and Docker Container
 
 
-## 1. Hardware and Software Components:
+## 1. Hardware and Software Requirements:
 Following are the Hardware and Software prerequisites that you need before you begin with this article - 
 
-### 1.1 Hardware Components:
+### 1.1 Hardware:
 * Raspberry Pi with Power Adapter
 * SD Card and SD Card Reader
 * Ethernet Cable
@@ -13,7 +13,7 @@ Following are the Hardware and Software prerequisites that you need before you b
 * Jumper wires and Breadboard
 * Keyboard and Monitor (Optional)
 
-### 1.2 Software Components:
+### 1.2 Software:
 * [Official Raspbian Image](https://www.raspberrypi.org/downloads/raspbian/)
 * [Etcher](https://www.balena.io/etcher/) for flashing Raspbian OS image into theSD card
 
@@ -60,7 +60,7 @@ If you see the correct version, you are good to go.
 
 ## 5. Download Required Files and Upload on Raspberry Pi:
 
-**5.1** Download the Certificate files from from AWS IoT core as described in Appendix 1
+**5.1** Download the Certificate files from from AWS IoT core as described in Appendix - 1
 
 **5.2** Download the "**settings.ini**" from github repo - [Link](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/RaspberryPi/settings.ini)
 
@@ -96,7 +96,7 @@ Login back into the Raspberry Pi and run the sensor container in an interactive 
 
 	sudo vi /etc/rc.local
 	
-**7.2** Add following command at the end of this file (if you see 'exit 0' at the end of the file, add this command before the 'exit 0' instruction) - 
+**7.2** Add following command at the top of this file (preferably in the first line) - 
 
 	sudo docker run --privileged -d -v /home/pi/settings:/usr/src/app/settings pradeesi/rapi_cl_hc_sensor
 	
@@ -110,8 +110,7 @@ Login back into the Raspberry Pi and run the sensor container in an interactive 
 
 **7.6** After the reboot process gets completed, login back to the Raspberry Pi and check if the sensor container is running using the command '**sudo docker ps**'.
 
-
-
+**Note:** If the docker container is not getting triggered on system startup, add 2 second delay by adding '**sleep 2**' before the docker command added in the 'rc.local' file (in Step# 7.2).
 
 
 
