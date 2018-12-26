@@ -20,7 +20,9 @@ Login to **AWS console** and open **AWS IoT Core** page.
 
 ### 4.1 Create New Policies:
 
-Click on "**Create**" button on "**Secure --> Policies**" page to create a new policy as shown in the following screenshot -
+Click on the "**Create**" button on "**Secure --> Policies**" page to create a new policy as shown in the following screenshot -
+
+**Note:** If you are creating a Policy for the first time, you may see a different screen with "**Create a policy**" button. Just click on that button and follow other steps.
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/new_policy.png)
 
@@ -48,10 +50,40 @@ Your **Policies** page should look similar to the following screenshot -
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/new_policies_final.png)
 
-## 5. Create new Certificate and Associate Policies With It:
+## 5. Create and Download new Certificate:
 
 ### 5.1 Create New Policies:
 
-Click on "**Create**" button on "**Secure --> Certificates**" page to create a new certificate as shown in the following screenshot -
+Click on the "**Create**" button on "**Secure --> Certificates**" page to create a new certificate as shown in the following screenshot -
 
-![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/new_policy.png)
+**Note:** If you are creating a Certificate for the first time, you may see a different screen with "**Create a certificate**" button. Just click on that button and follow other steps.
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/new_certificate.png)
+
+### 5.2 Create One-Click-Certificate:
+
+Click on the "**Create certificate**" button to create a new One-click-certificate as shown in the following screenshot -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/one-click-certificate.png)
+
+### 5.3 Download Certificates:
+
+Click on the "**Download**" buttons and download the Certificate file, Public key, Private key and Root CA certificate file as shown in the following screenshot -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/Download_cert.png)
+
+Save the "**RSA 2048 bit key: Amazon Root CA 1**" file from the following page as "**AmazonRootCA.crt**" - 
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/AWS_Root_CA.png)
+
+
+## 6. Associate the Policies with Certificate:
+
+## 7. Activate the Certificate:
+
+## 8. Locate Custom Endpoint:
+
+Custom endpoint allows you to connect to the AWS IoT platform. This is an important property to insert when using an MQTT client.
+
+
+
