@@ -14,5 +14,44 @@ As the direct MQTT access is not permitted by AWS, we would have to create certi
 
 You need to have a valid **AWS Account** with Administrative access to AWS IoT Core.
 
+## 4. Create new MQTT Policies:
 
+Login to **AWS console** and open **AWS IoT Core** page.
 
+### 4.1 Create New Policies:
+
+Click on "**Create**" button on "**Secure --> Policies**" page to create a new policy as shown in the following screenshot -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/new_policy.png)
+
+### 4.2 Create MQTT_Connect Policy:
+
+Create a new MQTT_Connect policity with "**iot:Connect**" action, "**\***" Resource ARN and "**Allow**" Effect as shown in the following screenshot - 
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/MQTT_Connect.png)
+
+### 4.3 Create MQTT_Publish Policy:
+
+Create a new MQTT_Publish policity with "**iot:Publish**" action, "**\***" Resource ARN and "**Allow**" Effect as shown in the following screenshot -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/MQTT_Publish.png)
+
+### 4.4 Create MQTT_Subscribe Policy:
+
+Create a new MQTT_Subscribe policity with "**iot:Subscribe**" action, "**\***" Resource ARN and "**Allow**" Effect as shown in the following screenshot -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/MQTT_Subscribe.png)
+
+### 4.4 Check the Policies Page:
+
+Your **Policies** page should look similar to the following screenshot -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/new_policies_final.png)
+
+## 5. Create new Certificate and Associate Policies With It:
+
+### 5.1 Create New Policies:
+
+Click on "**Create**" button on "**Secure --> Certificates**" page to create a new certificate as shown in the following screenshot -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/new_policy.png)
