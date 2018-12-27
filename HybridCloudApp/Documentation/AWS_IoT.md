@@ -68,22 +68,42 @@ Click on the "**Create certificate**" button to create a new One-click-certifica
 
 ### 5.3 Download Certificates:
 
-Click on the "**Download**" buttons and download the Certificate file, Public key, Private key and Root CA certificate file as shown in the following screenshot -
+Click on the "**Download**" buttons and download the Certificate file, Public key, and Private key file as shown in the following screenshot -
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/Download_cert.png)
 
-Save the "**RSA 2048 bit key: Amazon Root CA 1**" file from the following page as "**AmazonRootCA.crt**" - 
+### 5.4 Close the Create Certificate Page:
+
+Close the "Create Certificate" page by clicking on the "**Done**" button.
+
+### 5.4 Download Amazon Root CA Certificate:
+
+Save the "**RSA 2048 bit key: Amazon Root CA 1**" file from the following page as "**AmazonRootCA.crt**" -
+
+(Page URL - [https://docs.aws.amazon.com/iot/latest/developerguide/managing-device-certs.html#server-authentication](https://docs.aws.amazon.com/iot/latest/developerguide/managing-device-certs.html#server-authentication))
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/AWS_Root_CA.png)
 
+### 5.5 Check the Certificates Page:
+
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/certificate_page.png)
+
+
 
 ## 6. Associate the Policies with Certificate:
+
+
 
 ## 7. Activate the Certificate:
 
 ## 8. Locate Custom Endpoint:
 
-Custom endpoint allows you to connect to the AWS IoT platform. This is an important property to insert when using an MQTT client.
+You would need Custom endpoint to connect to the AWS IoT platform. It will be used by the MQTT clients as MQTT Broker host. You can locate your Customer Endpoint under "Settings" section as shown in the following screenshot -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/custom_endpoint.png)
+
+
 
 
 
