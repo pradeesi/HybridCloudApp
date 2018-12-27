@@ -86,16 +86,29 @@ Save the "**RSA 2048 bit key: Amazon Root CA 1**" file from the following page a
 
 ### 5.5 Check the Certificates Page:
 
+Now on the "**Secure --> Certificates**" page you should see a new certificate. Note that your certificate is still inactive.
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/certificate_page.png)
 
+## 6. Activate the Certificate:
 
+Navigate to "**Secure --> Certificates**"; click on the Certificate options and select "**Activate**" to activate the certificate as shown in following screenshot -
 
-## 6. Associate the Policies with Certificate:
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/activate_certificate.png)
 
+## 7. Associate the Policies with Certificate:
 
+Navigate to "**Secure --> Certificates**" and click on the certificate to modify the certificate properties. On this certificate properties page click on "**Policies**" and from the "**Actions**" menu select "**Attach Policy**" as shown in the following screenshot - 
 
-## 7. Activate the Certificate:
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/Attach_Policies.png)
+
+Select all the policies and click on "**Attach**" button as shown in the following screenshot -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_policies.png)
+
+Your certificate Policies section should look like this -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/certificate_policies.png)
 
 ## 8. Locate Custom Endpoint:
 
