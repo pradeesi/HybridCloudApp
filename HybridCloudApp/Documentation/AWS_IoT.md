@@ -84,6 +84,8 @@ Save the "**RSA 2048 bit key: Amazon Root CA 1**" file from the following page a
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/AWS_Root_CA.png)
 
+Note: Save all these Certificate and Key files on your machine as you would need to upload them on Raspberry Pi (Appendix-2) and on MQTT_to_DB Agent.
+
 ### 5.5 Check the Certificates Page:
 
 Now on the "**Secure --> Certificates**" page you should see a new certificate. Note that your certificate is still inactive.

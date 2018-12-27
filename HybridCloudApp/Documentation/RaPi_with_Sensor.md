@@ -110,7 +110,7 @@ Login back into the Raspberry Pi and run the sensor container in an interactive 
 
 **7.6** After the reboot process gets completed, login back to the Raspberry Pi and check if the sensor container is running using the command '**sudo docker ps**'.
 
-**Note:** If the docker container is not getting triggered on system startup, add 2 second delay by adding '**sleep 2**' before the docker command added in the 'rc.local' file (in Step# 7.2).
+**Note:** If the docker container is not getting triggered on system startup, add 5 second delay by adding '**sleep 5**' before the docker command added in the 'rc.local' file (in Step# 7.2).
 
 
 
