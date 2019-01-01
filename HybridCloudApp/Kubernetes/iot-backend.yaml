@@ -1,0 +1,57 @@
+---
+apiVersion: "v1"
+kind: "ConfigMap"
+metadata:
+  name: "iot-backend-config"
+  namespace: "default"
+  labels:
+    app: "iot-backend"
+data:
+  MYSQL_ROOT_PASSWORD: "cisco123"
+---
+apiVersion: "extensions/v1beta1"
+kind: "Deployment"
+metadata:
+  name: "iot-backend"
+  namespace: "default"
+  labels:
+    app: "iot-backend"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "iot-backend"
+  template:
+    metadata:
+      labels:
+        app: "iot-backend"
+    spec:
+      containers:
+      - name: "mariadb"
+        image: "eu.gcr.io/fwardz001-poc-ci1s/mariadb:10.3"
+        env:
+        - name: "MYSQL_ROOT_PASSWORD"
+          valueFrom:
+            configMapKeyRef:
+              key: "MYSQL_ROOT_PASSWORD"
+              name: "iot-backend-config"
+      - name: "mqtt-db-agent"
+        image: "eu.gcr.io/fwardz001-poc-ci1s/mqtt_db_agent:latest"
+      - name: "rest-api-service"
+        image: "eu.gcr.io/fwardz001-poc-ci1s/rest_api_service:latest"
+---
+apiVersion: "autoscaling/v1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "iot-backend-hpa"
+  namespace: "default"
+  labels:
+    app: "iot-backend"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "iot-backend"
+    apiVersion: "apps/v1beta1"
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
