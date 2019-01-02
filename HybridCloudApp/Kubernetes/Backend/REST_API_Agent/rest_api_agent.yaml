@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: iot-backend-rest-api-agent
+  labels:
+    app: iot-backend-rest-api-agent
+spec:
+  selector:
+    matchLabels:
+      app: iot-backend-rest-api-agent
+      tier: rest-api-agent
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: iot-backend-rest-api-agent
+        tier: rest-api-agent
+    spec:
+      containers:
+      - image: pradeesi/rest_api_agent:latest
+        name: rest_api_agent

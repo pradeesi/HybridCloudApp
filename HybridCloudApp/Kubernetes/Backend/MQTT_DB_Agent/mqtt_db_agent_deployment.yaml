@@ -5,6 +5,7 @@ metadata:
   name: iot-backend-mqtt-db-agent
   labels:
     app: iot-backend
+    tier: mqtt-db-agent
 spec:
   selector:
     matchLabels:
