@@ -13,7 +13,7 @@
 
 * **Create Persistent Volume:** 
 
-		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Frontend/Mariadb/mariadb_persistent_volume.yaml
+		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Mariadb/mariadb_persistent_volume.yaml
 
 * **Verfiy PersistentVolume:**
 
@@ -25,7 +25,7 @@
 
 * **Deploy MariaDB:**
 
-		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Frontend/Mariadb/mariadb_deployment.yaml
+		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Mariadb/mariadb_deployment.yaml
 		
 * **Check Deployment Status:**
 
@@ -35,10 +35,15 @@
 
 * **Expose MariaDB to other Pods:**
 
-		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Frontend/Mariadb/mariadb_service.yaml
-		
+		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Mariadb/mariadb_service.yaml
+				
 * **Verify Service Status:**
 
 		kubectl get service mariadb-service
+		
+
+## Deploy MQTT to DB Agent
+
+
 
 
