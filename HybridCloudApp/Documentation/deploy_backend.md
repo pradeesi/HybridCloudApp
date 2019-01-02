@@ -59,18 +59,23 @@
 ## 3. Deploy REST API Agent
 
 
-* **3.1: Deploy REST API Agent**
+### 3.1 Deploy REST API Agent:
+* **3.1.1: Deploy REST API Agent**
 
 		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent.yaml
 
-* **2.2: Check Deployment Status**
+* **3.1.2: Check Deployment Status**
 
 		kubectl get deployment iot-backend-rest-api-agent
 
 
+### 3.2 Expose REST API Agent to Google Cloud using Kubernetes Service:
 
-kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent_service.yaml
+* **3.2.1: Create REST API Agent Service**
 
+		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent_service_node_port.yaml
 
-kubectl get service rest-api-agent-service
+* **3.2.2: Check REST API Agent Service Status**
+
+		kubectl get service rest-api-agent-service
 
