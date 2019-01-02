@@ -45,5 +45,8 @@
 ## Deploy MQTT to DB Agent
 
 
+kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mqtt_db_agent_deployment.yaml
+
+
 
 
