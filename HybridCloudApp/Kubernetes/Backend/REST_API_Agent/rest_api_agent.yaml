@@ -6,6 +6,7 @@ metadata:
   labels:
     app: iot-backend-rest-api-agent
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: iot-backend-rest-api-agent
