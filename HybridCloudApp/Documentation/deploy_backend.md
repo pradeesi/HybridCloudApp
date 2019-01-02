@@ -3,7 +3,7 @@
 
 * **Create DB Password Secret:**
 
-		kubectl create secret generic mariadb_root_pass --from-literal=password=cisco123
+		kubectl create secret generic mariadb-root-pass --from-literal=password=cisco123
 
 * **Verify DB Password Secret:**
 
