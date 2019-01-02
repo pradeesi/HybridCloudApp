@@ -39,6 +39,6 @@
 		
 * **Verify Service Status:**
 
-		kubectl get service iot-backend-mariadb-svc
+		kubectl get service mariadb-service
 
 

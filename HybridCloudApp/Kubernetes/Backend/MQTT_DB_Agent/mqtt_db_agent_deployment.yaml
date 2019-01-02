@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: iot-backend-mqtt-db-agent
+  labels:
+    app: iot-backend
+spec:
+  selector:
+    matchLabels:
+      app: iot-backend-mqtt-db-agent
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: iot-backend-mqtt-db-agent
+    spec:
+      containers:
+      - image: pradeesi/mqtt_db_agent:latest
+        name: mqtt-db-agent
