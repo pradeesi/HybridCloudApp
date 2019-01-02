@@ -21,4 +21,4 @@ spec:
     spec:
       containers:
       - image: pradeesi/rest_api_agent:latest
-        name: rest_api_agent
+        name: rest-api-agent
