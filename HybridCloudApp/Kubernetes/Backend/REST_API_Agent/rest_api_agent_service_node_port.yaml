@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-api-agent-service
+  labels:
+    app: iot-backend
+spec:
+  ports:
+    - protocol: TCP
+      port: 5050
+      nodePort: 30500
+  selector:
+    app: iot-backend-rest-api-agent
+    tier: rest-api-agent
+  type: "NodePort"

@@ -59,5 +59,18 @@
 ## 3. Deploy REST API Agent
 
 
+* **3.1: Deploy REST API Agent**
 
+		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent.yaml
+
+* **2.2: Check Deployment Status**
+
+		kubectl get deployment iot-backend-rest-api-agent
+
+
+
+kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent_service.yaml
+
+
+kubectl get service rest-api-agent-service
 
