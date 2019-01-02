@@ -7,7 +7,7 @@
 
 * **Verify DB Password Secret:**
 
-		kubectl get secrets
+		kubectl get secret mariadb-root-pass
 
 ### Create PersistentVolume:
 
@@ -17,7 +17,7 @@
 
 * **Verfiy PersistentVolume:**
 
-		kubectl get pvc
+		kubectl get pvc mariadb-pv-claim
 	
 	**Note:** It can take up to a few minutes for the PVs to be provisioned.
 	
@@ -29,13 +29,13 @@
 		
 * **Check Deployment Status:**
 
-		kubectl get deployment
+		kubectl get deployment iot-backend-mariadb
 		
 ### Create DB Service:
 
 * **Expose MariaDB to other Pods:**
 
-		kubectl create -f
+		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Frontend/Mariadb/mariadb_service.yaml
 		
 * **Verify Service Status:**
 
