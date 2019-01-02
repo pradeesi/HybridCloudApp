@@ -31,6 +31,14 @@
 
 		kubectl get deployment
 		
+### Create DB Service:
 
+* **Expose MariaDB to other Pods:**
+
+		kubectl create -f
+		
+* **Verify Service Status:**
+
+		kubectl get service iot-backend-mariadb-svc
 
 
