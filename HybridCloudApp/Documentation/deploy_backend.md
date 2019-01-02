@@ -9,7 +9,7 @@
 
 		kubectl get secrets
 
-### Create PersistentVolume :
+### Create PersistentVolume:
 
 * **Create Persistent Volume:** 
 
@@ -21,8 +21,16 @@
 	
 	**Note:** It can take up to a few minutes for the PVs to be provisioned.
 	
+### Deploy Database:
 
-	
+* **Deploy MariaDB:**
+
+		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Frontend/Mariadb/mariadb_deployment.yaml
+		
+* **Check Deployment Status:**
+
+		kubectl get deployment
+		
 
 
 
