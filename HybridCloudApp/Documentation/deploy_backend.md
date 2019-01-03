@@ -1,3 +1,9 @@
+# Deploy Backend Application
+
+## Objective:
+
+
+backend_app_architecture
 
 ## 1. Deploy MariaDB
 
@@ -109,7 +115,7 @@
 
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/node_port_service.png)
 
->**Important:** Note down the Node IP Address and NodePort Service Port Number. These values would be used in next section for deploying the frontend app as the environment variables values ('BACKEND_HOST' and 'BACKEND_PORT').
+>**Important:** Note down the Node External IP Address and NodePort Service Port Number. These values would be used in next section for deploying the frontend app as the environment variables values ('**BACKEND\_HOST**' and '**BACKEND\_PORT**').
 
 ## 4 Test the REST API Agent Service:
 
