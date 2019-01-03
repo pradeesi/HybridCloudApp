@@ -79,7 +79,28 @@
 
 		kubectl get service rest-api-agent-service
 		
-### 3.3 Note down the Service Node Port IP and Port:
+### 3.3 Locate the IP and Port to Access Node-Port Service:
+
+* Use the following command to display the port exposed by 'rest-api-agent-service' -
+
+		kubectl get service rest-api-agent-service
+
+* Use the following command to display the 'External-IP' of you kubernetes nodes -
+
+		kubectl get nodes -o wide
+
+Following screenshot highlights the Port and Node IPs in the command outputs -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/node_port_service.png)
+
+>**Important:** Note down the Node IP Address and NodePort Service Port Number. These values would be used in next section for deploying the frontend app as the environment variables values ('BACKEND_HOST' and 'BACKEND_PORT').
+
+### 3.4 Test the REST API Agent Service:
+
+
+
+
+
 
 
 
