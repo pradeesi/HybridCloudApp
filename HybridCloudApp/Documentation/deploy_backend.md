@@ -24,7 +24,9 @@
 
 		kubectl get pvc mariadb-pv-claim
 	
-	**Note:** It can take up to a few minutes for the PVs to be provisioned.
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/pv_claim.png)
+	
+	>**Note:** It can take up to a few minutes for the PVs to be provisioned.
 	
 ### 1.3 Deploy Database:
 
@@ -35,6 +37,8 @@
 * **1.3.1: Check Deployment Status**
 
 		kubectl get deployment iot-backend-mariadb
+	
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/iot_backend_mariadb.png)
 		
 ### 1.4 Create DB Service:
 
@@ -45,6 +49,8 @@
 * **1.4.2: Verify Service Status**
 
 		kubectl get service mariadb-service
+		
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_service.png)
 
 
 ## 2. Deploy MQTT to DB Agent
@@ -58,6 +64,9 @@
 
 		kubectl get deployment iot-backend-mqtt-db-agent
 		
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt_db_agent.png)
+	
+		
 
 ## 3. Deploy REST API Agent
 
@@ -70,6 +79,8 @@
 * **3.1.2: Check Deployment Status**
 
 		kubectl get deployment iot-backend-rest-api-agent
+	
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent.png)
 
 
 ### 3.2 Expose REST API Agent to Google Cloud using Kubernetes Service:
@@ -82,6 +93,8 @@
 
 		kubectl get service rest-api-agent-service
 		
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_service.png)
+	
 ### 3.3 Locate the IP and Port to Access Node-Port Service:
 
 * Use the following command to display the port exposed by 'rest-api-agent-service' -
