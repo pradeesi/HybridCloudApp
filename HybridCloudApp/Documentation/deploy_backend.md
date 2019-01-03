@@ -2,8 +2,10 @@
 
 ## Objective:
 
+In this section we would deploy the 
 
-backend_app_architecture
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/backend_app_architecture.png)
+
 
 ## 1. Deploy MariaDB
 
