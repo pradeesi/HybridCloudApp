@@ -19,3 +19,8 @@ If you have multiple projects, you can select a specific one using the following
 
 	gcloud config set project <Project_ID>
 	
+
+
+## Kubernetes Cheat Sheet:
+
+[https://kubernetes.io/docs/reference/kubectl/cheatsheet/](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
