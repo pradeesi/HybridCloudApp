@@ -10,8 +10,9 @@
 * **1.1.2: Verify DB Password Secret**
 
 		kubectl get secret mariadb-root-pass
-		
-	mariadb_root_pass
+	
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_root_pass.png)
+	
 
 ### 1.2 Create PersistentVolume:
 
