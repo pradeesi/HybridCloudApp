@@ -78,4 +78,10 @@
 * **3.2.2: Check REST API Agent Service Status**
 
 		kubectl get service rest-api-agent-service
+		
+### 3.3 Note down the Service Node Port IP and Port:
+
+
+
+
 
