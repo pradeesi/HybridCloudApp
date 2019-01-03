@@ -10,6 +10,8 @@
 * **1.1.2: Verify DB Password Secret**
 
 		kubectl get secret mariadb-root-pass
+		
+	mariadb_root_pass
 
 ### 1.2 Create PersistentVolume:
 
@@ -89,18 +91,35 @@
 
 		kubectl get nodes -o wide
 
-Following screenshot highlights the Port and Node IPs in the command outputs -
+	Following screenshot highlights the Port and Node IPs in the command outputs -
 
-![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/node_port_service.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/node_port_service.png)
 
 >**Important:** Note down the Node IP Address and NodePort Service Port Number. These values would be used in next section for deploying the frontend app as the environment variables values ('BACKEND_HOST' and 'BACKEND_PORT').
 
-### 3.4 Test the REST API Agent Service:
+## 4 Test the REST API Agent Service:
 
+To test the REST API service try to access following url from your web browser -
 
+	http://<node's external ip>:30500/
+	
+If your REST API Agent is working properly, you should see 'Welcome to the API Service...!' message on your browser as shown in the following screenshot -
 
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_url_test.png)
 
+Following are the other urls that you could test -
 
+	http://<node's external ip>:30500/cities
+	
+	http://<node's external ip>:30500/temperature
+	
+	http://<node's external ip>:30500/humidity
+	
+	http://<node's external ip>:30500/sensor_data/city
+	
+## Conclusion:
+
+You have successfully deployed all the backend components of the iot-app on the CCP kubernetes cluster. Now you may proceed futher and deploy the frontend components on Google Cloud.
 
 
 
