@@ -8,4 +8,10 @@ In this section we would deploy the
 
 
 
-## Login to Google Cloud Console and Open 
+## Login to Google Cloud Console and Open Kubernetes Engine:
+
+
+
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/frontend_app_architecture.png)
+deploy_gke_workload_1
