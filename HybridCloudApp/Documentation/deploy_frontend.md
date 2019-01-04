@@ -8,4 +8,4 @@ In this section we would deploy the
 
 
 
-
+## Login to Google Cloud Console and Open 
