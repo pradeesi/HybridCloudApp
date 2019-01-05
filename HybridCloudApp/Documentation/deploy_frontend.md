@@ -1,4 +1,4 @@
-# Deploy Frontend Application
+# Deploy the Frontend Application Components on Google Kubernetes Engine (GKE)
 
 In this section you would deploy the frontend components of the IoT Application on the Google Kubernetes Engine. Following diagram shows the high-level architure of these frontend application containers -
 
