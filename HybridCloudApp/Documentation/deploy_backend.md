@@ -174,7 +174,7 @@ Following are the other urls that you could test -
 	
 	http://<node's external ip>:30500/sensor_data/city
 	
-## Conclusion:
+## Next Steps:
 
 You have successfully deployed all the backend components of the iot-app on the CCP kubernetes cluster. Now you may proceed futher and deploy the frontend components on Google Cloud.
 
