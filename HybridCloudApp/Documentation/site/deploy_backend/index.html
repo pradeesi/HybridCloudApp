@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Deploy the Backend Application Components on CCP Kuberneted Cluster (Tenant Cluster) - Hybrid Cloud IoT App</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">Hybrid Cloud IoT App</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../AWS_IoT/">AWS IoT Core Configuration</a>
+                            </li>
+                            <li >
+                                <a href="../RaPi_with_Sensor/">Raspberry Pi with Humidity and Temperature Sensor Configuration</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li>
+                                <a href="https://github.com/pradeesi/HybridCloudApp/tree/master/HybridCloudApp/Documentation/edit/master/docs/deploy_backend.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#deploy-the-backend-application-components-on-ccp-kuberneted-cluster-tenant-cluster">Deploy the Backend Application Components on CCP Kuberneted Cluster (Tenant Cluster)</a></li>
+            <li><a href="#1-deploy-mariadb-databse">1. Deploy MariaDB Databse:</a></li>
+            <li><a href="#2-deploy-mqtt-to-db-agent">2. Deploy MQTT to DB Agent:</a></li>
+            <li><a href="#3-deploy-rest-api-agent">3. Deploy REST API Agent:</a></li>
+            <li><a href="#4-test-the-rest-api-agent-service">4 Test the REST API Agent Service:</a></li>
+            <li><a href="#next-steps">Next Steps:</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="deploy-the-backend-application-components-on-ccp-kuberneted-cluster-tenant-cluster">Deploy the Backend Application Components on CCP Kuberneted Cluster (Tenant Cluster)</h1>
+<p>In this section you would deploy the backend components of the IoT Application on the Kubernetes cluster deployed on your CCP instance. Following diagram shows the high-level architure of these backend application containers -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/backend_app_architecture.png" /></p>
+<p>SSH into your kubernetes master node and start deploying the components by following the instruction given below -</p>
+<h2 id="1-deploy-mariadb-databse">1. Deploy MariaDB Databse:</h2>
+<p>MariaDB will be used in the backend to save the sensor data recieved from AWS IoT platform over MQTT protocol.</p>
+<h3 id="11-create-kubernetes-secret">1.1 Create Kubernetes Secret:</h3>
+<p>A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.</p>
+<p>The MariaDB container image uses an environment varinable named as 'MYSQL_ROOT_PASSWORD', it hold the root password required to access the database. So you would create a new secret with 'password' key (value as 'cisco123') which would later be used in mariaDB deployment yaml file.</p>
+<ul>
+<li>
+<p><strong>1.1.1: Create DB Password Secret -</strong> Use the following command to create a new secret on your kubernetes cluster -</p>
+<pre><code>kubectl create secret generic mariadb-root-pass --from-literal=password=cisco123
+</code></pre>
+</li>
+<li>
+<p><strong>1.1.2: Verify DB Password Secret -</strong> Check if the secret was created successfully or not -</p>
+<pre><code>kubectl get secret mariadb-root-pass
+</code></pre>
+<p>You should have the output similar to the following screenshot -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_root_pass.png" /></p>
+</li>
+</ul>
+<h3 id="12-create-persistent-volume-claim">1.2 Create Persistent Volume Claim:</h3>
+<p>A Persistent Volume Claim (PVC) is a request for storage by a user. It is similar to a pod. Pods consume node resources and PVCs consume Persistent Volume (PV) resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., can be mounted once read/write or many times read-only).</p>
+<p>To keep the sensor data safe during Pod restarts, you would create a new Persistent Volume Claim.</p>
+<ul>
+<li>
+<p><strong>1.2.1: Create Persistent Volume Claim -</strong> Use the following command to create a new Persistent Volume Claim for MariaDB Pod -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Mariadb/mariadb_persistent_volume.yaml
+</code></pre>
+</li>
+<li>
+<p><strong>1.2.2: Verfiy Persistent Volume Claim -</strong> Check if the PVC was created successfully or not -</p>
+<pre><code>kubectl get pvc mariadb-pv-claim
+</code></pre>
+<p>You should have the output similar to the following screenshot -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/pv_claim.png" /></p>
+<blockquote>
+<p><strong>Note:</strong> It can take up to a few minutes for the PVs to be provisioned.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="13-deploy-mariadb">1.3 Deploy MariaDB:</h3>
+<p>MariaDB is a community-developed fork of the MySQL relational database management system intended to remain free under the GNU GPL. Development is led by some of the original developers of MySQL, who forked it due to concerns over its acquisition by Oracle Corporation. MariaDB intends to maintain high compatibility with MySQL, ensuring a drop-in replacement capability with library binary parity and exact matching with MySQL APIs and commands.</p>
+<ul>
+<li>
+<p><strong>1.3.1: Deploy MariaDB -</strong> Use the following command to create a MariaDB kubernetes deployment -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Mariadb/mariadb_deployment.yaml
+</code></pre>
+</li>
+<li>
+<p><strong>1.3.1: Check Deployment Status -</strong> Use the following command to check if the kubernetes deployment was successfully created or not -</p>
+<pre><code>kubectl get deployment iot-backend-mariadb
+</code></pre>
+<p>You should have the output similar to the following screenshot -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/iot_backend_mariadb.png" /></p>
+</li>
+</ul>
+<h3 id="14-create-db-service">1.4 Create DB Service:</h3>
+<p>Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and 'REST API Agent'; you need to expose it internally withing the kubernetes cluster using a Service. </p>
+<ul>
+<li>
+<p><strong>1.4.1: Expose MariaDB to other Pods -</strong> Create a new kubernetes service using the following command -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Mariadb/mariadb_service.yaml
+</code></pre>
+</li>
+<li>
+<p><strong>1.4.2: Verify Service Status -</strong> Use the following command to check if the kubernetes service was deployed successfully or not -</p>
+<pre><code>kubectl get service mariadb-service
+</code></pre>
+<p>You should have the output similar to the following screenshot -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_service.png" /></p>
+</li>
+</ul>
+<h2 id="2-deploy-mqtt-to-db-agent">2. Deploy MQTT to DB Agent:</h2>
+<p>'MQTT to DB Agent' will subscribe to the MQTT Topic and listen to the incomming sensor data from AWS IoT platform. It will then parse the sensor data and insert it into the MariaDB.</p>
+<ul>
+<li>
+<p><strong>2.1: Deploy MQTT to DB Agent -</strong> Use the following command to create mqtt-to-db-agent kubernetes deployment -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mqtt_db_agent_deployment.yaml
+</code></pre>
+</li>
+<li>
+<p><strong>2.2: Check Deployment Status -</strong> Use the following command to check if the kubernetes deployment was created successfully or not -</p>
+<pre><code>kubectl get deployment iot-backend-mqtt-db-agent
+</code></pre>
+<p>You should have the output similar to the following screenshot -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt_db_agent.png" /></p>
+</li>
+</ul>
+<h2 id="3-deploy-rest-api-agent">3. Deploy REST API Agent:</h2>
+<p>The 'REST API Agent' would act as the gateway to the backend application. It will listen to the incomming HTTP requests from the frontend application that you will deploy on Google Cloud.</p>
+<h3 id="31-deploy-rest-api-agent">3.1 Deploy REST API Agent:</h3>
+<ul>
+<li>
+<p><strong>3.1.1: Deploy REST API Agent -</strong> Use the following command to create the rest-api-agent kubernetes deployment -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent.yaml
+</code></pre>
+</li>
+<li>
+<p><strong>3.1.2: Check Deployment Status -</strong> Use the following command to check if the kubernetes deployment was created successfully or not -</p>
+<pre><code>kubectl get deployment iot-backend-rest-api-agent
+</code></pre>
+<p>You should have the output similar to the following screenshot -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent.png" /></p>
+</li>
+</ul>
+<h3 id="32-expose-rest-api-agent-to-google-cloud-using-kubernetes-service">3.2 Expose REST API Agent to Google Cloud using Kubernetes Service:</h3>
+<p>Since the frontend app from Google Cloud would access the REST APIs exposed by the 'REST API Agent', you need to create a new kubernetes service for it.</p>
+<ul>
+<li>
+<p><strong>3.2.1: Create REST API Agent NodePort Service -</strong> You can create a new kubernetes service using the following command -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent_service_node_port.yaml
+</code></pre>
+</li>
+<li>
+<p><strong>3.2.2: Check REST API Agent Service Status -</strong> You can use the following command to check if the kubernetes service was creted successfully or not -</p>
+<pre><code>kubectl get service rest-api-agent-service
+</code></pre>
+<p>You should have the output similar to the following screenshot -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_service.png" /></p>
+</li>
+</ul>
+<h3 id="33-locate-the-ip-and-port-to-access-node-port-service">3.3 Locate the IP and Port to Access Node-Port Service:</h3>
+<p>You need to find the NodePort and Kubernetes Node external IP to access the 'rest-api-agent.</p>
+<ul>
+<li>
+<p>Use the following command to display the port exposed by 'rest-api-agent-service' -</p>
+<pre><code>kubectl get service rest-api-agent-service
+</code></pre>
+</li>
+<li>
+<p>Use the following command to display the 'External-IP' of you kubernetes nodes -</p>
+<pre><code>kubectl get nodes -o wide
+</code></pre>
+<p>Following screenshot highlights the Port and Node IPs in the command outputs -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/node_port_service.png" /></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Important:</strong> Note down the Node External IP Address and NodePort Service Port Number. These values would be used in next section for deploying the frontend app as the environment variables values ('<strong>BACKEND_HOST</strong>' and '<strong>BACKEND_PORT</strong>').</p>
+</blockquote>
+<h2 id="4-test-the-rest-api-agent-service">4 Test the REST API Agent Service:</h2>
+<p>To test the REST API service try to access following url from your web browser (use the node's external ip and service port from the previous section # 3.3)-</p>
+<pre><code>http://&lt;node's external ip&gt;:30500/
+</code></pre>
+<p>If your REST API Agent is working properly, you should see 'Welcome to the API Service...!' message on your browser as shown in the following screenshot -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_url_test.png" /></p>
+<p>Following are the other urls that you could test -</p>
+<pre><code>http://&lt;node's external ip&gt;:30500/cities
+
+http://&lt;node's external ip&gt;:30500/temperature
+
+http://&lt;node's external ip&gt;:30500/humidity
+
+http://&lt;node's external ip&gt;:30500/sensor_data/city
+</code></pre>
+<h2 id="next-steps">Next Steps:</h2>
+<p>You have successfully deployed all the backend components of the iot-app on the CCP kubernetes cluster. Now you may proceed futher and deploy the frontend components on Google Cloud.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
