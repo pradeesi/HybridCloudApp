@@ -35,6 +35,7 @@ In this section you would deploy the frontend components of the IoT Application 
 * **4.2:** Add '**BACKEND\_HOST**' and '**BACKEND\_PORT**' variables as shown in the following screenshot -
  
  > **Important:** Use the values for 'BACKEND\_HOST' and 'BACKEND\_PORT' from the REST API Agent **NodePort Service**.
+ 
 
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_5.png)
 
