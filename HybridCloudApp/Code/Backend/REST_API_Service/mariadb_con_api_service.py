@@ -2,6 +2,7 @@ import mysql.connector as mariadb
 import json
 import datetime
 
+
 class Sensor_DB_Class:
 
 	# Constructor

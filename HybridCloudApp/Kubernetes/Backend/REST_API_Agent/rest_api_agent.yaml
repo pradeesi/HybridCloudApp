@@ -22,3 +22,9 @@ spec:
       containers:
       - image: pradeesi/rest_api_agent:latest
         name: rest-api-agent
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-root-pass
+              key: password
