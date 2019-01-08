@@ -54,7 +54,7 @@ DB_USER = db_settings['DB_USER']
 # Open DB Connection
 try:
 	print "Trying to open DB Connection (DB HOST: " + str(DB_HOST) + ")..."
-	time.sleep(45)
+	time.sleep(15)
 	db_connection = Sensor_DB_Class(DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME)
 except:
 	print ("Failed to connect to the DB. Please check the DB IP, Port and Password.")
