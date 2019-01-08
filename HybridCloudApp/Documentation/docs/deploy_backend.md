@@ -48,7 +48,7 @@ To keep the sensor data safe during Pod restarts, you would create a new Persist
 	
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/pv_claim.png)
 	
-	>**Note:** It can take up to a few minutes for the PVs to be provisioned.
+	>**Important:** It can take up to a few minutes for the PVs to be provisioned. DO NOT procced futher till the PVC deployment gets completed.
 	
 ### 1.3 Deploy MariaDB:
 
@@ -65,6 +65,12 @@ MariaDB is a community-developed fork of the MySQL relational database managemen
 	You should have the output similar to the following screenshot -
 	
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/iot_backend_mariadb.png)
+	
+* **1.3.2: Check Pod Status -** Use the following command to check if the 'iot-backend-mariadb' pod is in '**Running**' state -
+
+		kubectl get pods
+
+	> **Note:** You may check the Pod **Logs** using the command '**kubectl logs \<pod_name\>**'	
 		
 ### 1.4 Create DB Service:
 
@@ -100,7 +106,11 @@ Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and
 		
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt_db_agent.png)
 	
-		
+* **2.3: Check Pod Status -** Use the following command to check if the 'iot-backend-mqtt-db-agent' pod is in '**Running**' state -
+
+		kubectl get pods
+
+	> **Note:** You may check the Pod **Logs** using the command '**kubectl logs \<pod_name\>**'		
 
 ## 3. Deploy REST API Agent:
 
@@ -118,6 +128,12 @@ The 'REST API Agent' would act as the gateway to the backend application. It wil
 	You should have the output similar to the following screenshot -
 	
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent.png)
+	
+* **3.1.3: Check Pod Status -** Use the following command to check if the 'iot-backend-rest-api-agent' pod is in '**Running**' state -
+
+		kubectl get pods
+
+	> **Note:** You may check the Pod **Logs** using the command '**kubectl logs \<pod_name\>**'	
 
 
 ### 3.2 Expose REST API Agent to Google Cloud using Kubernetes Service:
