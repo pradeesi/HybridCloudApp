@@ -20,7 +20,7 @@ spec:
         tier: rest-api-agent
     spec:
       containers:
-      - image: pradeesi/rest_api_agent:latest
+      - image: pradeesi/rest_api_agent:v1
         name: rest-api-agent
         env:
         - name: DB_PASSWORD
