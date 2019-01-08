@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mariadb-service
+  name: mariadb-service-np
   labels:
     app: iot-backend
 spec:
