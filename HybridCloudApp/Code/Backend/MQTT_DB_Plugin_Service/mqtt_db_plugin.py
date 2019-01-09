@@ -6,12 +6,14 @@ import datetime
 import ConfigParser
 import atexit
 from mariadb_con_mqtt_db_plugin import Sensor_DB_Class
-
+import os
 
 #=============================================================
 #===== READ SETTINGS ======
 #=============================================================
 SETTINGS_FILE_NAME = 'settings.ini'
+
+DB_PASSWORD = str(os.environ['DB_PASSWORD'])
 
 def get_Settings(Section_Name):
 	try:
@@ -41,7 +43,7 @@ DB_HOST = db_settings['DB_HOST']
 DB_PORT = db_settings['DB_PORT']
 DB_NAME = db_settings['DB_NAME']
 DB_USER = db_settings['DB_USER']
-DB_PASSWORD = db_settings['DB_PASSWORD']
+#DB_PASSWORD = db_settings['DB_PASSWORD']
 #=============================================================
 
 
@@ -52,7 +54,7 @@ DB_PASSWORD = db_settings['DB_PASSWORD']
 # Open DB Connection
 try:
 	print "Trying to open DB Connection (DB HOST: " + str(DB_HOST) + ")..."
-	time.sleep(45)
+	time.sleep(15)
 	db_connection = Sensor_DB_Class(DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME)
 except:
 	print ("Failed to connect to the DB. Please check the DB IP, Port and Password.")

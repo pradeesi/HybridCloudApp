@@ -3,12 +3,14 @@ import json
 from flask import Flask
 from mariadb_con_api_service import Sensor_DB_Class
 import time
-
+import os
 
 #=============================================================
 #===== READ SETTINGS ======
 #=============================================================
 SETTINGS_FILE_NAME = 'settings.ini'
+
+DB_PASSWORD = str(os.environ['DB_PASSWORD'])
 
 def get_Settings(Section_Name):
 	try:
@@ -27,7 +29,7 @@ DB_HOST = db_settings['DB_HOST']
 DB_PORT = db_settings['DB_PORT']
 DB_NAME = db_settings['DB_NAME']
 DB_USER = db_settings['DB_USER']
-DB_PASSWORD = db_settings['DB_PASSWORD']
+#DB_PASSWORD = db_settings['DB_PASSWORD']
 
 
 # Read App Settings
@@ -43,7 +45,7 @@ APP_PORT = app_settings['HTTP_PORT']
 #=============================================================
 # Open DB Connection
 print ("Trying to connect to DB...")
-time.sleep(60)
+time.sleep(10)
 db_connection = Sensor_DB_Class(DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME)
 
 
