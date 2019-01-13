@@ -24,7 +24,7 @@ In this lab, Kubernetes clusters are build on to of virtual machines for demonst
 
 Below table collects each user lab systems:
 
-*Table 1:*
+*Table 1: User to POD assignment*
 
 VPN/AD User | POD name | vCenter URL | CCP Control Plane URL
 --- | --- | --- | ---
