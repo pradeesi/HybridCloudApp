@@ -25,6 +25,7 @@ In this lab, Kubernetes clusters are build on to of virtual machines for demonst
 Below table collects each user lab systems:
 
 *Table 1:*
+
 VPN/AD User | POD name | vCenter URL | CCP Control Plane URL
 --- | --- | --- | ---
 DMZ_User_01 | POD 01-A | https://vc-pod01.hybridlab.local | https://172.18.1.165
