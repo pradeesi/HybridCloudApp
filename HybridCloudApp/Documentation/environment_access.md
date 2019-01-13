@@ -76,7 +76,7 @@ Next you’ll see the main AnyConnect window go through several connection state
 
 ![Picture of connected VPN icon only](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_icon_connected.png)
 
-Congratulations! Your are connected to infrastructure on-prem. You can interact with resources in your lab by either using jumphost or accessing devices directly. 
+**Congratulations!** Your are connected to infrastructure on-prem. You can interact with resources in your lab by either using jumphost or accessing devices directly. 
 
 <!--- does PUTTY is a standard desktop software ? --->
 
@@ -96,14 +96,14 @@ Cisco Container Platform manages Kuberenetes clusters in the private infrasturct
 
 Please refer to the table 1 to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login, on the login screen you don't have to specify domain, just type AD username:
 
-**![screenshot of CCP Login page with AD account](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png)**
+**![screenshot of CCP Login page with AD account](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png)**
 
 ## 4. Google Cloud access
 
 Open Chrome web browser from your desktop (you can use either jumphost or local PC)
 Go to [http://cloud.google.com](https://cloud.google.com), sign-in using username which you can find in credentials.txt document.
 
-**![screenshot of google login](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png)**
+**![screenshot of google login]
 
 This account has access to the Google Kubernetes Engine in Google Cloud. For more information how to navigate in Google Cloud, you can jump to the section:
 ***[Lab-8 Create Kubernetes Cluster (GKE) on Google Cloud](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/create_gke_engine.md)***
