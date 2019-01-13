@@ -83,12 +83,17 @@ Next you’ll see the main AnyConnect window go through several connection state
 
 ### 2.2 Remote desktop connection
 
-Open Remote Desktop Client (icon available on the desktop) and login to the jumphost which is available under address:
+Open Remote Desktop Client (icon available on the desktop). If there is no icon for Remote Desktop Connection on the Desktop, click start, and start typing `mstsc`
 
-[172.18.0.10](rdp://172.18.0.10)
-User your user with a domain HYBRIDLAB\ <user_name>
+Click `show options` and type IP address of the jumphost and username. Don't forget to specify domain name which is `HYBRIDLAB`.
 
-**![screenshot of remote desktop](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_ip.png)**
+    Computer: 172.18.0.10
+    User name: HYBRIDLAB\DMZ_USER_<ID>
+
+Populated fields should be similar to the picture.  
+**Each user login to the same jumphost, regardless of the POD or server they should use**
+
+**![screenshot of remote desktop](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png)**
 
 
 ## 3. Accessing Cisco Container Platrofm
