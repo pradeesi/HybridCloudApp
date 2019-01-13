@@ -50,7 +50,7 @@ DMZ_User_20 | POD 07-D | https://vc-pod07.hybridlab.local | https://172.18.1.241
 
 ### 2.1 Cisco Anyconnect Mobility Client
 
-Run Cisco Anyconnect VPN client available on your desktop:
+Run Cisco Anyconnect VPN client available on your desktop.
 
 You’ll need to review and configure the AnyConnect options. After Anyconnect launches, you’ll need to click on the “Configuration” button on the main panel. See image below.
 
@@ -64,19 +64,19 @@ Close the Configuration window.
 
 In the main entry field, enter your Private Infrastructure VPN IP Address as provided in the credentials.txt. Then choose “Connect”.
 
-![anyconnect picture with IP address here](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_with_IP.png)
+![anyconnect picture with IP address here](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_without_IP.png)
 
 After a few seconds, you’ll see a new window notifying you of an “Untrusted Server Certificate”. This is expected and not a real issue. Choose “Connect Anyway”.
 
-**![anyconnect picture accept untrusted certificate here](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_accept_cert.png)**
+![anyconnect picture accept untrusted certificate here](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_accept_cert.png)
 
 You’ll see a new window prompting you to provide your Lab’s network credentials. Enter the Username and Password as provided in the credentials.txt file. Choose “OK”.
 
-**![anyconnect picture provide username and password](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_login.png)**
+![anyconnect picture provide username and password](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_login.png)
 
 Next you’ll see the main AnyConnect window go through several connection states. When it has completed establishing the connection, AnyConnect will iconify in the Notification Area of the Windows Taskbar. When you have an established VPN connection, the AnyConnect icon will display a symbol of a padlock, as shown here.
 
-> **![Picture of connected VPN icon only](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_icon_connected.png)**
+![Picture of connected VPN icon only](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_icon_connected.png)
 
 Congratulations! Your are connected to infrastructure on-prem. You can interact with resources in your lab by either using jumphost or accessing devices directly. 
 
@@ -89,7 +89,7 @@ Open Remote Desktop Client (icon available on the desktop) and login to the jump
 [172.18.0.10](rdp://172.18.0.10)
 User your user with a domain HYBRIDLAB\ <user_name>
 
-> **![screenshot of remote desktop](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_ip.png)**
+**![screenshot of remote desktop](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_ip.png)**
 
 
 ## 3. Accessing Cisco Container Platrofm
