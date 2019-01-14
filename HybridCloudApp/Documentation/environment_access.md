@@ -109,23 +109,23 @@ Please refer to the table 1 to access your own Cisco Container Platform dashboad
 Open Chrome web browser from your desktop (you can use either jumphost or local PC)
 Go to [http://cloud.google.com](https://cloud.google.com), click on sign-in in the top right corner
 
-![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/gcp_sing_in.png)
+![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp_sing_in.png)
 
 Enter username for your lab pod which you can find in *credentials.txt* file. You can change language to your preferred.
 
-![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/gcp_login.png)
+![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp_login.png)
 
 Once logged in, click on the `Console` button in the top right corner to open Google Cloud Platform Console.
 
-![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/gcp-console-button.png)
+![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-console-button.png)
 
 Next, check access to the Google Kubernetes Engine:
 
-![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/gcp-go-gke.png)
+![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-go-gke.png)
 
 You should see screen with warning about no sufficient rights to see the GKE Cluster object, however, you can still navigate to "Workloads" where you can deploy applications on the GKE Cluster.
 
-![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/gcp-gke-no-permission-to-cluster.png)
+![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-gke-no-permission-to-cluster.png)
 
 This account has access to the Google Kubernetes Engine in Google Cloud. For more information how to navigate in Google Cloud, you can jump to the section:
 ***[Lab-8 Create Kubernetes Cluster (GKE) on Google Cloud](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/create_gke_engine.md)***
