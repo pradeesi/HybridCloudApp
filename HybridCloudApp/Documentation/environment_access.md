@@ -17,10 +17,10 @@ Specific user credentials for multiple systems are available in the text file cr
 
 In order to get access to private network, please first find credentials for your POD in the file you previously downloaded.
 
-Each server in the private on-premise infrastructure handles multiple Users environment. Single server can have two to four instances of Cisco Container Platform, each dedicated to different User.
+Each server in the private on-premise infrastructure handles multiple Users environment.
 For a lab purpose each server is managed by its own vCenter.
 Two to four users will share the same hardware server and same vCenter, however each User will have own instance of Cisco Container Platform, which provides Platform as a Service for Kubernetes clusters.
-In this lab, Kubernetes clusters are build on to of virtual machines for demonstration purposes.
+In this lab, Kubernetes clusters are build on top of virtual machine for demonstration purposes.
 
 Below table collects each user lab systems:
 
@@ -91,7 +91,7 @@ Click `show options` and type IP address of the jumphost and username. Don't for
     User name: HYBRIDLAB\DMZ_USER_<ID>
 
 Populated fields should be similar to the picture.  
-**Each user login to the same jumphost, regardless of the POD or server they should use**
+**Each user will login to the same jumphost: `172.18.0.10`, regardless of the POD or server they should use**
 
 **![screenshot of remote desktop](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png)**
 
@@ -107,9 +107,25 @@ Please refer to the table 1 to access your own Cisco Container Platform dashboad
 ## 4. Google Cloud access
 
 Open Chrome web browser from your desktop (you can use either jumphost or local PC)
-Go to [http://cloud.google.com](https://cloud.google.com), sign-in using username which you can find in credentials.txt document.
+Go to [http://cloud.google.com](https://cloud.google.com), click on sign-in in the top right corner
 
-**![screenshot of google login]
+![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/gcp_sing_in.png)
+
+Enter username for your lab pod which you can find in *credentials.txt* file. You can change language to your preferred.
+
+![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/gcp_login.png)
+
+Once logged in, click on the `Console` button in the top right corner to open Google Cloud Platform Console.
+
+![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/gcp-console-button.png)
+
+Next, check access to the Google Kubernetes Engine:
+
+![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/gcp-go-gke.png)
+
+You should see screen with warning about no sufficient rights to see the GKE Cluster object, however, you can still navigate to "Workloads" where you can deploy applications on the GKE Cluster.
+
+![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/gcp-gke-no-permission-to-cluster.png)
 
 This account has access to the Google Kubernetes Engine in Google Cloud. For more information how to navigate in Google Cloud, you can jump to the section:
 ***[Lab-8 Create Kubernetes Cluster (GKE) on Google Cloud](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/create_gke_engine.md)***
