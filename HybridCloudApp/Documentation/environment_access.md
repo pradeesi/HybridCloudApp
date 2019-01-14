@@ -71,7 +71,7 @@ After a few seconds, you’ll see a new window notifying you of an “Untrusted 
 
 You’ll see a new window prompting you to provide your Lab’s network credentials. Enter the Username and Password as provided in the credentials.txt file. Choose “OK”.
 
-![anyconnect picture provide username and password](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_login.png)
+![anyconnect picture provide username and password](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_login2.png)
 
 Next you’ll see the main AnyConnect window go through several connection states. When it has completed establishing the connection, AnyConnect will iconify in the Notification Area of the Windows Taskbar. When you have an established VPN connection, the AnyConnect icon will display a symbol of a padlock, as shown here.
 
