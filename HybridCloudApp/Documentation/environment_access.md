@@ -126,6 +126,3 @@ Next, check access to the Google Kubernetes Engine:
 You should see screen with warning about no sufficient rights to see the GKE Cluster object, however, you can still navigate to "Workloads" where you can deploy applications on the GKE Cluster.
 
 ![](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-gke-no-permission-to-clusters.png)
-
-This account has access to the Google Kubernetes Engine in Google Cloud. For more information how to navigate in Google Cloud, you can jump to the section:
-***[Lab-8 Create Kubernetes Cluster (GKE) on Google Cloud](https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/docs/create_gke_engine.md)***
