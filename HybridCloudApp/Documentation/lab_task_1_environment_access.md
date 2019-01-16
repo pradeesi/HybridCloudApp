@@ -55,7 +55,7 @@ Run Cisco Anyconnect VPN client available on your desktop.
 
 You’ll need to review and configure the AnyConnect options. After Anyconnect launches, you’ll need to click on the “Configuration” button on the main panel. See image below.
 
-![anyconnect_without_IP](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_without_IP.png)
+![anyconnect_without_IP](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_without_IP.png){:relwidth="0.5"}
 
 You will need to uncheck the option that says “Block connections to untrusted servers”. Your selection is immediately saved.
 
