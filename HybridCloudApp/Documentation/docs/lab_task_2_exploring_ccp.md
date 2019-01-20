@@ -13,11 +13,18 @@ As described in the Lab task 1, check Table 1 with the URL to access your CCP Co
 
 ## 1. Explore CCP dashboard
 
-Login to CCP Dashboard - find URL in [Table 1](../lab_task_1_environment_access.md), user your Active Directory credentials that you can find in *credentials.txt* file. 
+Login to CCP Dashboard - find URL in [Table 1](../lab_task_1_environment_access.md), use your Active Directory credentials that you can find in *credentials.txt* file. 
 
 Once logged in, you will be taken to the "cluster" page.
-In this page you can manage your kubernetes clusters, edit their configuration, adding nodes, restricting them to only dedicated applications.
-
+In this page you can manage your kubernetes clusters, edit their configuration, adding nodes or create node policies.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-empty.png">
+
+In the left pane you will see other options such as `User management`, where users or group of users are managed locally or authentication could be integrated with Active Directory services. In our lab, Cisco Container Platform has been integrated with Active Directory.
+
+In the next menu position, you will see `Infrastructure Providers`. This is place where you select your cloud infrastructure, either it could be on-prem vmware vSphere or public cloud - Amazon Web Services.  Cisco Container Platform requests resources such as virtual machines that later on will act as master and worker nodes of your Kubernetes cluster.
+
+`Networks` provides IP addressing subnets and pools configuration for the tenant clusters. When tenant cluster is deployed, the IP addresses for nodes are allocated from DHCP, however, Cisco Container Platform provides built-in mechanism to allocate IP addresses for Service under which applications will be exposed externally. This mechanism is explaining later in the lab 3 **add reference to lab with VIP pools**
+
+The last tab contains `Licensing`, where you can register your Cisco Container Platform with Smart Licensing server.
 
