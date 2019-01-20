@@ -11,7 +11,13 @@ Cisco Container Platform has two main architecture components:
 Each user in this lab will have his own Cisco Container Platform Control Plane.  
 As described in the Lab task 1, check Table 1 with the URL to access your CCP Control Plane cluster dashboard.
 
-## 1. Create tenant cluster in CCP
+## 1. Explore CCP dashboard
 
 Login to CCP Dashboard - find URL in [Table 1](../lab_task_1_environment_access.md), user your Active Directory credentials that you can find in *credentials.txt* file. 
+
+Once logged in, you will be taken to the "cluster" page.
+In this page you can manage your kubernetes clusters, edit their configuration, adding nodes, restricting them to only dedicated applications.
+
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-empty.png">
 
