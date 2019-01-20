@@ -74,7 +74,7 @@ MariaDB is a community-developed fork of the MySQL relational database managemen
 		
 ### 1.4 Create DB Service:
 
-Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and 'REST API Agent'; you need to expose it internally withing the kubernetes cluster using a Service. 
+Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and 'REST API Agent'; you need to expose it internally within the kubernetes cluster using a Service. 
 
 * **1.4.1: Expose MariaDB to other Pods -** Create a new kubernetes service using the following command -
 
