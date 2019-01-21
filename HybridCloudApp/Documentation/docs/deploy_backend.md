@@ -141,6 +141,8 @@ Following yaml definition would be used to create the ClusterIP Service for Mari
 
 'MQTT to DB Agent' will subscribe to the MQTT Topic and listen to the incomming sensor data from AWS IoT platform. It will then parse the sensor data and insert it into the MariaDB.
 
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt_db_agent_deployment.png)
+
 * **2.1: Deploy MQTT to DB Agent -** Use the following command to create mqtt-to-db-agent kubernetes deployment -
 
 		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mqtt_db_agent_deployment.yaml
