@@ -10,7 +10,11 @@ In this section you would deploy the frontend components of the IoT Application 
 * Login to Google Cloud Console using the credentials provided by the lab instructor.
 
 
-### 2. Start Creating Deployment Definition:
+### 2. Creating Deployment Definition using GKE UI on Google Cloud Console:
+
+You will create kubernetes deployment for frontend app and expose it to the internet using Kubernetes Load Balancer Service as shown in the following diagram -
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_frontend_srvr.png)
 
 * **2.1:** Select the '**Workloads**' option on "**Google Cloud Console --> Kubernetes Engine**" page, and click on the '**Deploy**' button as shown in the following screenshot -
 
