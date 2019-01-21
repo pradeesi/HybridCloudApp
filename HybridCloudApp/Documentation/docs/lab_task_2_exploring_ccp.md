@@ -47,18 +47,18 @@ After login to Cisco Container Platform, click `New Cluster` button, you will be
 
 - Step 1 - Basic Information - select infrastructure provider, Kubernetes cluster name and Container Network Interface:
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step1.png>
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step1.png">
 
 _In this step you have selected "Calico" as a Container Networking Interface, however there are other two supported - Cisco ACI® and Contiv-VPP. Cisco ACI integration is done automatically with new Kubernetes clusted, scripts configure tenant in ACI with required network policies and Policy Based Routing that is used as a Load-Balancing services in hardware._
 
 - Step 2 - Provider Settings - infrastructure provider details such as storage, vSwitch port-group and base image with approriate Kubernetes version:
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step2.png>
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step2.png">
 
 _This lab is based on regular UCS servers, however, combination of Hyperflex and CCP result in best in class performance. CCP can automatically provision dynamic persistent volumes directly on Hyperflex, rather on vmware, bypassing extra layer of virtualisation._
 
 - Step 3 - Node configuration - here you can configure node sizing, pass access information such as public SSH key, Load-Balancer VIP, subnet for PODs, enable service-mesh based on Istio 1.0 project and finally provide rigths for managing kubernetes clusters in AWS public cloud.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step3.png>
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step3.png">
 
 _Cisco Container Platform currently supports nodes created in VMware vSphere environment as Virtual Machines, however  Baremetal servers as a worker nodes will be supported in the next releases._
