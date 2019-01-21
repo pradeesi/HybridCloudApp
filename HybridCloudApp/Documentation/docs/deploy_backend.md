@@ -20,7 +20,7 @@ Following diagram shows the relationship between these objects -
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_kubernetes_deployment.png)
 
-### 1.1 Create Kubernetes Secret:
+### 1.1 Create Kubernetes Secret for MariaDB:
 
 A **Kubernetes Secret** is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
 
@@ -39,7 +39,7 @@ The MariaDB container image uses an environment varinable named as 'MYSQL\_ROOT\
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_root_pass.png)
 	
 
-### 1.2 Create Kubernetes Persistent Volume Claim:
+### 1.2 Create Kubernetes Persistent Volume Claim for MariaDB:
 
 A **Kubernetes Persistent Volume Claim (PVC)** is a request for storage by a user. It is similar to a pod. Pods consume node resources and PVCs consume Persistent Volume (PV) resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., can be mounted once read/write or many times read-only).
 
@@ -97,7 +97,7 @@ To keep the sensor data safe during Pod restarts, you would create a new Persist
 
 > **Note:** Kubernetes may take some time to deploy the MariaDB. Do Not proceed further till the time DB Pod is up.	
 		
-### 1.4 Create Kubernetes ClusterIP Service:
+### 1.4 Create Kubernetes ClusterIP Service for MariaDB:
 
 Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and 'REST API Agent'; you need to expose it internally withing the kubernetes cluster using a Service using a Kubernetes 'ClusterIP' Service.
 
@@ -137,7 +137,7 @@ Following yaml definition would be used to create the ClusterIP Service for Mari
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_service.png)
 
 
-## 2. Deploy MQTT to DB Agent:
+## 2. Deploy MQTT to DB Agent on Kubernetes:
 
 'MQTT to DB Agent' will subscribe to the MQTT Topic and listen to the incomming sensor data from AWS IoT platform. It will then parse the sensor data and insert it into the MariaDB.
 
@@ -162,7 +162,7 @@ Following yaml definition would be used to create the ClusterIP Service for Mari
 
 	> **Note:** You may check the Pod **Logs** using the command '**kubectl logs \<pod_name\>**'		
 
-## 3. Deploy REST API Agent:
+## 3. Deploy REST API Agent on Kubernetes:
 
 The 'REST API Agent' would act as the gateway to the backend application. It will listen to the incomming HTTP requests from the frontend application that you will deploy on Google Cloud.
 
@@ -188,7 +188,7 @@ The 'REST API Agent' would act as the gateway to the backend application. It wil
 	> **Note:** You may check the Pod **Logs** using the command '**kubectl logs \<pod_name\>**'	
 
 
-### 3.2 Expose REST API Agent to Google Cloud using Kubernetes Service:
+### 3.2 Create Kubernetes NodePort Service for REST API Agent:
 
 Since the frontend app from Google Cloud would access the REST APIs exposed by the 'REST API Agent', you need to create a new kubernetes service for it.
 
@@ -204,7 +204,7 @@ Since the frontend app from Google Cloud would access the REST APIs exposed by t
 		
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_service.png)
 	
-### 3.3 Locate the IP and Port to Access Node-Port Service:
+### 3.3 Locate the IP and Port to Access Node-Port Service for REST API Agent:
 
 You need to find the NodePort and Kubernetes Node external IP to access the 'rest-api-agent.
 
@@ -222,7 +222,7 @@ You need to find the NodePort and Kubernetes Node external IP to access the 'res
 
 >**Important:** Note down the Node External IP Address and NodePort Service Port Number. These values would be used in next section for deploying the frontend app as the environment variables values ('**BACKEND\_HOST**' and '**BACKEND\_PORT**').
 
-## 4 Test the REST API Agent Service:
+## 4 Test the REST APIs Exposed by REST API Agent Service:
 
 To test the REST API service try to access following url from your web browser (use the node's external ip and service port from the previous section # 3.3)-
 
