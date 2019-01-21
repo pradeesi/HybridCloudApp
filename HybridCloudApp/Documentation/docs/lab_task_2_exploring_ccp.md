@@ -94,6 +94,70 @@ Once logged-in, you can observe cloning process:
 
 _Please note that multiple users may perform similar operation at the same time, therefore you may see multiple cloning processes._
 
-## 4. Kubernetes Data Cluster administration
+## 4. Kubernetes Data Cluster access and administration
 
-Once cluster installation has finished, you will see the status 
+Once cluster installation has finished, you will see the status `READY`
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-ready.png">
+
+Accessing new Kubernetes cluster requires to obtain the kubeconfig file. Click on the arrow on the right side of the cluster name to see additional options. Select `Download kuberconfig`. File will be downloaded on your desktop.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-access-dashboard.png>
+
+From the same context menu you can enter to detailed more of the cluster, access Kubernetes dashboard or monitoring based on Prometheus and Kibana or even a delete cluster.
+
+Next task is to enter into the detailed view of the cluster, here you can also download kubeconfig file.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-edit-details-2.png>
+
+Next, click on the `Kubernetes Dashboard` button:
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-access-dashboards.png>
+
+You will be redirected to Kubernetes standard dashboard. Cisco did not changed the Kubernetes User Interface intentionaly, since it is well known by developers. 
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-cluster-access-dashboard.png>
+
+Please select `Kubeconfig` option (which is the default) and select previously stored kubeconfig.yaml file which should be in the `Downloads` folder.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-select-kubeconfig.png>
+
+Once selected, click Sing-In:
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-kubeconfig-selected.png>
+
+After successful login you will be redirected to the default namespace view:
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-default-view.png>
+
+
+## 5. Accessing Grafana dashboard
+
+Once you are logged in to Kubernetes cluster, you can obtain password to grafana dashboard that is used to monitor Kubernetes cluster itself, but also to monitor your applications.
+
+Passwords are stored in Kubernetes Secrets object. Grafana admin password is stored as plain-text which can be copy-pasted to grafana login page.
+
+Next steps will show you how to find grafana password:
+
+First, change namespace to `CCP`:
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-cluster-access-dashboard.png>
+
+Next, go to `Secrets` object in the menu, and look and the main pane on the right, you will be looking for secret called `ccp-monitor-grafana`
+
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-ccp-secrets-1_2.png>
+
+Got to second page and there you will find desired Secret.  
+In the `Data` field you will see admin-password and small eye icon. Please click on that icon to uncover the password. Once uncovered please copy it to clipboard.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-ccp-secrets-2_2.png>
+
+Next, please go back to the CCP dashboard, select your cluster, go into the detail mode and select `Grafana` button.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-grafana-button.png>
+
+
+You will be redirected to the Grafana page, where you can login with username `admin` and copied password from Secret.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/grafana-login.png>
