@@ -9,7 +9,14 @@ SSH into your kubernetes master node and start deploying the components by follo
 
 ## 1. Deploy MariaDB Databse:
 
-MariaDB will be used in the backend to save the sensor data recieved from AWS IoT platform over MQTT protocol.
+MariaDB will be used in the backend to save the sensor data recieved from AWS IoT platform over MQTT protocol. For this we would create following objects -
+
+1. Kubernetes Secret
+2. Kubernetes Persistent Volume Claim (PVC)
+3. Kubernetes MariaDB Deployment
+4. Kubernetes ClusterIP Service (Headless Service)
+
+Following diagram shows the relationship between these objects -
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_kubernetes_deployment.png)
 
@@ -32,7 +39,7 @@ The MariaDB container image uses an environment varinable named as 'MYSQL\_ROOT\
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_root_pass.png)
 	
 
-### 1.2 Create Persistent Volume Claim:
+### 1.2 Create Kubernetes Persistent Volume Claim:
 
 A **Kubernetes Persistent Volume Claim (PVC)** is a request for storage by a user. It is similar to a pod. Pods consume node resources and PVCs consume Persistent Volume (PV) resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., can be mounted once read/write or many times read-only).
 
@@ -68,7 +75,7 @@ To keep the sensor data safe during Pod restarts, you would create a new Persist
 	
 >**Important:** It can take up to a few minutes for the PVs to be provisioned. DO NOT procced futher till the PVC deployment gets completed.
 	
-### 1.3 Deploy MariaDB:
+### 1.3 Deploy MariaDB on Kubernetes:
 
 **MariaDB** is a community-developed fork of the MySQL relational database management system intended to remain free under the GNU GPL. Development is led by some of the original developers of MySQL, who forked it due to concerns over its acquisition by Oracle Corporation. MariaDB intends to maintain high compatibility with MySQL, ensuring a drop-in replacement capability with library binary parity and exact matching with MySQL APIs and commands.
 
@@ -90,7 +97,7 @@ To keep the sensor data safe during Pod restarts, you would create a new Persist
 
 > **Note:** Kubernetes may take some time to deploy the MariaDB. Do Not proceed further till the time DB Pod is up.	
 		
-### 1.4 Create DB Service:
+### 1.4 Create Kubernetes ClusterIP Service:
 
 Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and 'REST API Agent'; you need to expose it internally withing the kubernetes cluster using a Service using a Kubernetes 'ClusterIP' Service.
 
