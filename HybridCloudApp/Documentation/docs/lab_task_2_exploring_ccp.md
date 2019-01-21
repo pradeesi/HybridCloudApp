@@ -70,3 +70,4 @@ On the next screen you will see option to enable `Harbor Registry`, please **do 
 Click Next to enter the summary page, and there just confirm that all data are valid according to google sheet. Once confirmed please click `Finish`.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-summary.png">
+
