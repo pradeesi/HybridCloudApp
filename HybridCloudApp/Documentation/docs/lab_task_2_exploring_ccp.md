@@ -3,17 +3,22 @@
 
 
 Cisco Container Platform is a production grade platform to manage, monitor and deploy Kubernetes Clusters in your Enterprise. 
-CCP uses 100% upstream Kuberenetes without vendor specific modification creating seamless experience for developer to deploy application in any kubernetes platform in the cloud or on-premise in private cloud.  
+CCP uses 100% upstream Kuberenetes without vendor specific modification, creating seamless experience for developer to deploy application on any kubernetes platform in the public or private cloud.  
+
+CCP provides authentication and authorization, security, high availability, networking, load balancing, and operational capabilities to effectively operate and manage Kubernetes clusters. CCP also provides a validated configuration of Kubernetes and can integrate with underlying infrastructure components such as Cisco HyperFlex and Cisco ACI. The infrastructure provider for CCP is Hyperflex.
+
 Cisco Container Platform has two main architecture components:
 - Control Plane Cluster - to provide management platform for your Kubernetes Clusters where you can deploy new, scale worker nodes, manage policy and networking. The Control Plane is also build based on Kubernetes.
-- Tenant Cluster - the Kubernetes cluster used to host applications across production, development, staging and many other environments
+- Tenant Data Cluster - the Kubernetes cluster used to host applications across production, development, staging and many other environments
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_features.png">
 
 Each user in this lab will have his own Cisco Container Platform Control Plane.  
 As described in the Lab task 1, check Table 1 with the URL to access your CCP Control Plane cluster dashboard.
 
 ## 1. Explore CCP dashboard
 
-Login to CCP Dashboard - find URL in [Table 1](../lab_task_1_environment_access.md), use your Active Directory credentials that you can find in *credentials.txt* file. 
+Login to CCP Dashboard - find URL in [Table 1](../lab_task_1_environment_access.md), use your Active Directory credentials that you can find in `LTRCLD-2948_CCP_LAB` file in Google Sheet. 
 
 Once logged in, you will be taken to the "cluster" page.
 In this page you can manage your kubernetes clusters, edit their configuration, adding nodes or create node policies.
@@ -34,3 +39,26 @@ In the next menu position, you will see `Infrastructure Providers`. This is plac
 
 The last tab contains `Licensing`, where you can register your Cisco Container Platform with Smart Licensing server.
 
+## 2. Create Cluster
+
+After login to Cisco Container Platform, click `New Cluster` button, you will be redirected to the new page where you would have to provide details of your new Kubernetes cluster.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-clusters-empty.png">
+
+- Step 1 - Basic Information - select infrastructure provider, Kubernetes cluster name and Container Network Interface:
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step1.png>
+
+_In this step you have selected "Calico" as a Container Networking Interface, however there are other two supported - Cisco ACI® and Contiv-VPP. Cisco ACI integration is done automatically with new Kubernetes clusted, scripts configure tenant in ACI with required network policies and Policy Based Routing that is used as a Load-Balancing services in hardware._
+
+- Step 2 - Provider Settings - infrastructure provider details such as storage, vSwitch port-group and base image with approriate Kubernetes version:
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step2.png>
+
+_This lab is based on regular UCS servers, however, combination of Hyperflex and CCP result in best in class performance. CCP can automatically provision dynamic persistent volumes directly on Hyperflex, rather on vmware, bypassing extra layer of virtualisation._
+
+- Step 3 - Node configuration - here you can configure node sizing, pass access information such as public SSH key, Load-Balancer VIP, subnet for PODs, enable service-mesh based on Istio 1.0 project and finally provide rigths for managing kubernetes clusters in AWS public cloud.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step3.png>
+
+_Cisco Container Platform currently supports nodes created in VMware vSphere environment as Virtual Machines, however  Baremetal servers as a worker nodes will be supported in the next releases._
