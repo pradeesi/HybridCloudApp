@@ -11,6 +11,8 @@ SSH into your kubernetes master node and start deploying the components by follo
 
 MariaDB will be used in the backend to save the sensor data recieved from AWS IoT platform over MQTT protocol.
 
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_kubernetes_deployment.png)
+
 ### 1.1 Create Kubernetes Secret:
 
 A **Kubernetes Secret** is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
