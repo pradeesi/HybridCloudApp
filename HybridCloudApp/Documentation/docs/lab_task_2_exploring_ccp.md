@@ -93,3 +93,7 @@ Once logged-in, you can observe cloning process:
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-html-cloning.png">
 
 _Please note that multiple users may perform similar operation at the same time, therefore you may see multiple cloning processes._
+
+## 4. Kubernetes Data Cluster administration
+
+Once cluster installation has finished, you will see the status 
