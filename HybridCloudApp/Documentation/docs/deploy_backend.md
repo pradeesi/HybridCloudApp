@@ -13,7 +13,7 @@ MariaDB will be used in the backend to save the sensor data recieved from AWS Io
 
 ### 1.1 Create Kubernetes Secret:
 
-A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
+A **Kubernetes Secret** is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
 
 The MariaDB container image uses an environment varinable named as 'MYSQL\_ROOT\_PASSWORD', it hold the root password required to access the database. So you would create a new secret with 'password' key (value as 'cisco123') which would later be used in mariaDB deployment yaml file.
 
@@ -32,9 +32,25 @@ The MariaDB container image uses an environment varinable named as 'MYSQL\_ROOT\
 
 ### 1.2 Create Persistent Volume Claim:
 
-A Persistent Volume Claim (PVC) is a request for storage by a user. It is similar to a pod. Pods consume node resources and PVCs consume Persistent Volume (PV) resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., can be mounted once read/write or many times read-only).
+A **Kubernetes Persistent Volume Claim (PVC)** is a request for storage by a user. It is similar to a pod. Pods consume node resources and PVCs consume Persistent Volume (PV) resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., can be mounted once read/write or many times read-only).
 
-To keep the sensor data safe during Pod restarts, you would create a new Persistent Volume Claim.
+To keep the sensor data safe during Pod restarts, you would create a new Persistent Volume Claim. Following yaml definition would be used to create the 'PersistentVolumeClaim' - 
+
+**(Question: How much storage 'mariadb-pv-claim' would use?)**
+
+	---
+	apiVersion: v1
+	kind: PersistentVolumeClaim
+	metadata:
+	  name: mariadb-pv-claim
+	  labels:
+	    app: iot-backend
+	spec:
+	  accessModes:
+	    - ReadWriteOnce
+	  resources:
+	    requests:
+	      storage: 2Gi
 
 * **1.2.1: Create Persistent Volume Claim -** Use the following command to create a new Persistent Volume Claim for MariaDB Pod -
 
@@ -48,11 +64,11 @@ To keep the sensor data safe during Pod restarts, you would create a new Persist
 	
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/pv_claim.png)
 	
-	>**Important:** It can take up to a few minutes for the PVs to be provisioned. DO NOT procced futher till the PVC deployment gets completed.
+>**Important:** It can take up to a few minutes for the PVs to be provisioned. DO NOT procced futher till the PVC deployment gets completed.
 	
 ### 1.3 Deploy MariaDB:
 
-MariaDB is a community-developed fork of the MySQL relational database management system intended to remain free under the GNU GPL. Development is led by some of the original developers of MySQL, who forked it due to concerns over its acquisition by Oracle Corporation. MariaDB intends to maintain high compatibility with MySQL, ensuring a drop-in replacement capability with library binary parity and exact matching with MySQL APIs and commands.
+**MariaDB** is a community-developed fork of the MySQL relational database management system intended to remain free under the GNU GPL. Development is led by some of the original developers of MySQL, who forked it due to concerns over its acquisition by Oracle Corporation. MariaDB intends to maintain high compatibility with MySQL, ensuring a drop-in replacement capability with library binary parity and exact matching with MySQL APIs and commands.
 
 * **1.3.1: Deploy MariaDB -** Use the following command to create a MariaDB kubernetes deployment -
 
@@ -70,11 +86,34 @@ MariaDB is a community-developed fork of the MySQL relational database managemen
 
 		kubectl get pods
 
-	> **Note:** You may check the Pod **Logs** using the command '**kubectl logs \<pod_name\>**'	
+> **Note:** Kubernetes may take some time to deploy the MariaDB. Do Not proceed further till the time DB Pod is up.	
 		
 ### 1.4 Create DB Service:
 
-Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and 'REST API Agent'; you need to expose it internally within the kubernetes cluster using a Service. 
+Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and 'REST API Agent'; you need to expose it internally withing the kubernetes cluster using a Service using a Kubernetes 'ClusterIP' Service.
+
+A **Kubernetes ClusterIP Service** is the default Kubernetes service. It gives you a service inside your cluster that other apps inside your cluster can access. There is no external access (For testing you could access ClusterIP service via Kubernetes Proxy Service, though it is not recommended).
+
+Following yaml definition would be used to create the ClusterIP Service for MariaDB -
+
+	---
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: mariadb-service
+	  labels:
+	    app: iot-backend
+	spec:
+	  ports:
+	    - protocol: TCP
+	      port: 3306
+	      targetPort: 3306
+	  selector:
+	    app: iot-backend
+	    tier: mariadb
+	  clusterIP: None
+
+
 
 * **1.4.1: Expose MariaDB to other Pods -** Create a new kubernetes service using the following command -
 
