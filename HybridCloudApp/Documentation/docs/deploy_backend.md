@@ -166,6 +166,8 @@ Following yaml definition would be used to create the ClusterIP Service for Mari
 
 The 'REST API Agent' would act as the gateway to the backend application. It will listen to the incomming HTTP requests from the frontend application that you will deploy on Google Cloud.
 
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_deployment.png)
+
 ### 3.1 Deploy REST API Agent:
 * **3.1.1: Deploy REST API Agent -** Use the following command to create the rest-api-agent kubernetes deployment -
 
