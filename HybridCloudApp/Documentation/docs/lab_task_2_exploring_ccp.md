@@ -71,3 +71,25 @@ Click Next to enter the summary page, and there just confirm that all data are v
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step5.png">
 
+Once finished, you will see progress bar to check status of the cluster creation.
+
+## 3. Monitor cluster creation
+
+You can observe tenant cluster creation from CCP Dashboard, however, if you are interested to see more details, you can login to vCenter and monitor VM cloning process.
+Users are grouped by PODs, each POD is managed by single VMWare vCenter instance. Please use respective vCenter for your POD:  
+
+Open chrome browser, and enter URL of vCenter `https://vc-pod0X`. **Perform all operations from jumphost:**
+
+To avoid issues with Flash Player, please select HTML5 mode for vCenter User Interface:
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-select-html-flash.png">
+
+Login to vCenter using Single Sign-On plugin, just click on `Use Windows session authentication` and allow plugin to run. You can also disable this prompt for future by unchecking option `Ask always before allowing this site`.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-login-page-SSO.png">
+
+Once logged-in, you can observe cloning process:
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-html-cloning.png">
+
+_Please note that multiple users may perform similar operation at the same time, therefore you may see multiple cloning processes._
