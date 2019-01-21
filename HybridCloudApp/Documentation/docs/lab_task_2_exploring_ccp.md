@@ -39,7 +39,7 @@ In the next menu position, you will see `Infrastructure Providers`. This is plac
 
 The last tab contains `Licensing`, where you can register your Cisco Container Platform with Smart Licensing server.
 
-## 2. Create Cluster
+## 2. Create Tenant Data Cluster
 
 After login to Cisco Container Platform, click `New Cluster` button, you will be redirected to the new page where you would have to provide details of your new Kubernetes cluster.
 
@@ -49,7 +49,7 @@ After login to Cisco Container Platform, click `New Cluster` button, you will be
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step1.png">
 
-_In this step you have selected "Calico" as a Container Networking Interface, however there are other two supported - Cisco ACI® and Contiv-VPP. Cisco ACI integration is done automatically with new Kubernetes clusted, scripts configure tenant in ACI with required network policies and Policy Based Routing that is used as a Load-Balancing services in hardware._
+_In this step you have selected "Calico" as a Container Networking Interface, however there are other two supported - Cisco ACI® and Contiv-VPP. Cisco ACI integration is done automatically during new Kubernetes cluster creation, CCP configures tenant in ACI with required network policies and Policy Based Routing that is used as a Load-Balancing services in hardware._
 
 - Step 2 - Provider Settings - infrastructure provider details such as storage, vSwitch port-group and base image with approriate Kubernetes version:
 
@@ -62,3 +62,11 @@ _This lab is based on regular UCS servers, however, combination of Hyperflex and
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step3.png">
 
 _Cisco Container Platform currently supports nodes created in VMware vSphere environment as Virtual Machines, however  Baremetal servers as a worker nodes will be supported in the next releases._
+
+On the next screen you will see option to enable `Harbor Registry`, please **do not** select this option at this point.  
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step4.png">
+
+Click Next to enter the summary page, and there just confirm that all data are valid according to google sheet. Once confirmed please click `Finish`.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-summary.png">
