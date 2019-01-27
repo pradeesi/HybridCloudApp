@@ -177,7 +177,7 @@ In the `Data` field you will see admin-password and small eye icon. Please click
 
 Alternatively, you can use following one-line `kubectl` command to obtain grafana admin-password. Please use this command from the master node, rather local PC as it may not have base64 installed.
 
-    kubectl get secret -n ccp grafana-monitor | base64 --decode
+    kubectl -n ccp get secret ccp-monitor-grafana -o=jsonpath='{.data.admin-password}' | base64 --decode
 
 Next, please go back to the CCP dashboard, select your cluster, go into the detail mode and select `Grafana` button.
 
@@ -188,11 +188,17 @@ You will be redirected to the Grafana page, where you can login with username `a
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/grafana-login.png">
 
-Once logged to grafana, please select in the top left corner `Home` drop down menu, and select `Prometheus`. The dashboard where you can monitor resource utilisation of all PODs across all namespaces.
+Once logged to grafana, please select in the top left corner `Home` drop down menu - 
 
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-grafana-home.png"> 
 
-< paste screenshot >
+select `Prometheus`. The dashboard where you can monitor resource utilisation of all PODs across all namespaces.
 
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-grafana-select-source.png">
+
+You should see graphs like this - 
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-grafana-dashboard.png">
 
 ## 7. Accessing logs on Cisco Container Platform
 
