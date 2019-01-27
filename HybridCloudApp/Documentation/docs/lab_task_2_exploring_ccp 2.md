@@ -260,7 +260,7 @@ Next, you will be asked to add additional pattern to the presented logs
 
 After this, you will be able to see logs from all PODs and applications working on this cluster. To do this, go to Discovery panel, and type in the filter at the top of the page:
 
-    kubernetes.namespaces = default
+    kubernetes.namespace.name = default
 
 Since our application is deployed in default namespace, filter will show only logs from pods deployed in that namespace.
 

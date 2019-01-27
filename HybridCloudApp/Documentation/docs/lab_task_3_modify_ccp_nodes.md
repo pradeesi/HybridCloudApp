@@ -21,25 +21,20 @@ Use kubectl command to check pods discritbution across worker nodes:
     
     < paste output >
     
-you should see that the number of pods for REST API service is still two, however they are all deployed on single node. 
+you should see that the number of pods for `iot-backend-rest-api-agent` PODs  is still two, however they are all deployed on single node. 
 
-Let's add back second node, this time using new pool:
+__it may take several minutes until node will be removed, since Kubernetes must move PODs running on the removed node to the node that will stay within cluster. Sometimes the other node must download image, since that kind of POD was never deployed before__ 
 
-Edit your Kubernetes cluster, click `New Node Pool` button
+Once node will be removed, please execute `kubectl get pods -o wide` and note how PODs are distributed.
 
-Enter name of the new pool - for example POOL-DB-ONLY
+Let's add back second node - again edit to default-pool and increase number of nodes to `2`
 
-In the creator, you will see additional fields to provide Labels and Taints,
+Execute `kubectl get nodes -o wide` to check status of the node deployment. Once status will be `READY`, verify how PODs are distributed.
 
-Taint is a special label that prevents particular POD with label to be deployed on this node. 
+Note that adding node to the cluster does not change distribution of PODs automatically. In order to force Kubernetes to deploy POD on the second node, please delete one of the POD `iot-backend-rest-api-agent`
 
-For example, we would like to dedicate this new node only for database type PODs, due to hardware configuration is using SSD disks for high performance cache.
-Add Taint label as following:
+    kubectl delete pod iot-backend-rest-api-agent-XXXXXX 
 
-    Type : web, app
-    Select Action: NoSchedule
-    
-<img >
+once this is completed verify what happend with `kubectl get pods -o wide` command.
 
-From now, any POD with the label `web` or `app` could not be deployed
-
+During delete operation, Kubernetes realized that POD should have 2 replicas, therefore, it deployed one more replica on the next worker node in the pool.
