@@ -59,7 +59,7 @@ _This lab is based on regular UCS servers, however, CCP in combination with Cisc
 
 - Step 3 - Node configuration - here you can configure node sizing, pass access information such as public SSH key, Load-Balancer VIP, subnet for PODs, enable service-mesh based on Istio 1.0 and finally provide rigths for managing kubernetes clusters in AWS public cloud.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step3.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step3-1.png">
 
 _Cisco Container Platform currently supports nodes created in VMware vSphere environment as Virtual Machines, however Baremetal servers as a worker nodes will be supported in the next releases._
 
