@@ -16,16 +16,16 @@ def get_Settings(Section_Name):
 		config = ConfigParser.ConfigParser()
 		config.optionxform=str   #By default config returns keys from Settings file in lower case. This line preserves the case for keys
 		config.read(SETTINGS_DIRECTORY + SETTINGS_FILE_NAME)
-		
-		return dict(config.items(Section_Name))	
+
+		return dict(config.items(Section_Name))
 	except Exception as error_msg:
 		return {"Error" : str(error_msg)}
-		
 
-def read_DHT22_data(gpio_pin):
+
+def read_DHT11_data(gpio_pin):
 
     # Read Humidity and Tempeature
-    humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, gpio_pin)
+    humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, gpio_pin)
 
     # Return humidity and temperature data
     return humidity, temperature
@@ -34,9 +34,9 @@ def read_DHT22_data(gpio_pin):
 def prepare_sensor_data():
 	try:
 		# Read sensor data
-		humidity, temperature = read_DHT22_data(SENSOR_GPIO_PIN) 
-		
-		# Prepare json paylod 
+		humidity, temperature = read_DHT11_data(SENSOR_GPIO_PIN) 
+
+		# Prepare json paylod
 		sensor_data = {}
 		sensor_data['SensorID'] = SENSOR_ID
 		sensor_data['Location'] = CITY
@@ -84,7 +84,7 @@ mqttc.on_connect = on_connect
 mqttc.tls_set(CA_ROOT_CERT_FILE, certfile=THING_CERT_FILE, keyfile=THING_PRIVATE_KEY, cert_reqs=ssl.CERT_REQUIRED, tls_version=ssl.PROTOCOL_TLSv1_2, ciphers=None)
 
 # Connect with MQTT Broker
-mqttc.connect(MQTT_HOST, MQTT_PORT, MQTT_KEEPALIVE_INTERVAL)		
+mqttc.connect(MQTT_HOST, MQTT_PORT, MQTT_KEEPALIVE_INTERVAL)
 mqttc.loop_start()
 
 
@@ -95,11 +95,9 @@ while True:
 	# If Sensor data is not None
 	if sensor_data_json:
 		mqttc.publish(MQTT_TOPIC, sensor_data_json, qos=1)
-	
+
 	time.sleep(SLEEP_INTERVAL)
 
 
 # Disconnect from MQTT_Broker
 # mqttc.disconnect()
-
-
