@@ -1,4 +1,4 @@
-# LAB Task 3 Cisco Container Platform - modify node configuration
+## Excercises: Cisco Container Platform - modify node configuration
 
 By default, when new cluster is created, it puts Master node and Worker nodes to separate pools of nodes. 
 The reason behind it is to not deploy applications on the master node.
@@ -6,7 +6,7 @@ The reason behind it is to not deploy applications on the master node.
 This lab should be executed once your application has been deployed, on your Kubernetes cluster. One of the application components - REST APi agent is running on two worker nodes, since the replica has been set to 2.
 Let's try to remove one node from the cluster, and check how Kubernetes will maintain two copies of the POD.
 
-Execute first command to verify original POD distribution across nodes:
+**TASK 1** Using `kubectl` get information about all nodes in the cluster, including theis IP address.
 
     kubectl get pods -o wide
 
@@ -17,7 +17,7 @@ Execute first command to verify original POD distribution across nodes:
     iot-backend-rest-api-agent-75bfb74dc4-bd52b   1/1       Running   0          22m       10.161.2.19   pod06-a-ccp-data-workerf49047e761   <none>
     iot-backend-rest-api-agent-75bfb74dc4-dgvbk   1/1       Running   0          34s       10.161.3.4    pod06-a-ccp-data-workerf55c089976   <none>
 
-Next, login to Cisco Container Platform dashboard, and select your Kubernetes cluster (click on its name)
+**TASK 2** Decrease number of worker nodes in your cluster to `1`
 
 Click on the small square next to `default-pool` to edit it's settings.  
 
@@ -26,6 +26,10 @@ Click on the small square next to `default-pool` to edit it's settings.
 Decrease number of nodes to one and save
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-modify-cluster- decrease-number.png" width=500>
+
+_it may take several minutes until node will be removed, since Kubernetes must move PODs running on the removed node to the node that will stay within cluster. Sometimes the other node must download image, since that kind of POD was never deployed before_
+
+**TASK 3** Verify how PODs are distributed. Note how many replicas of `iot-backend-rest-api-agent` are running.
 
 Use kubectl command to check pods discritbution across worker nodes:
 
@@ -38,15 +42,11 @@ Use kubectl command to check pods discritbution across worker nodes:
     iot-backend-rest-api-agent-75bfb74dc4-bd52b   1/1       Running   0          22m       10.161.2.19   pod06-a-ccp-data-workerf49047e761   <none>
     iot-backend-rest-api-agent-75bfb74dc4-dgvbk   1/1       Running   0          34s       10.161.3.4    pod06-a-ccp-data-workerf49047e761   <none>
     
-you should see that the number of pods for `iot-backend-rest-api-agent` PODs  is still two, however they are all deployed on single node. 
+**TASK 4** Increase number of nodes back to `2`. 
 
-_it may take several minutes until node will be removed, since Kubernetes must move PODs running on the removed node to the node that will stay within cluster. Sometimes the other node must download image, since that kind of POD was never deployed before_
+**TASK 5** Verify how many replicas of `iot-backend-rest-api-agent` are running and on which worker nodes.
 
-Once node will be removed, please execute `kubectl get pods -o wide` and note how PODs are distributed.
-
-Let's add back second node - again edit to default-pool and increase number of nodes to `2`
-
-Execute `kubectl get nodes -o wide` to check status of the node deployment. Once status will be `READY`, verify how PODs are distributed.
+**TASK 6** Force Kuberenetes to reschedule and distribute `iot-backend-rest-api-agent` across nodes.
 
 Note that adding node to the cluster does not change distribution of PODs automatically. In order to force Kubernetes to deploy POD on the second node, please delete one of the POD `iot-backend-rest-api-agent`
 
