@@ -6,20 +6,34 @@ The reason behind it is to not deploy applications on the master node.
 This lab should be executed once your application has been deployed, on your Kubernetes cluster. One of the application components - REST APi agent is running on two worker nodes, since the replica has been set to 2.
 Let's try to remove one node from the cluster, and check how Kubernetes will maintain two copies of the POD.
 
-Login to Cisco Container Platform dashboard, and select your Kubernetes cluster (click on its name)
+Execute first command to verify original POD distribution across nodes:
 
-<img >
+kubectl get pods -o wide
 
-Select `default-pool` and click on the small square to edit it's settings.  
+    ccpuser@pod06-a-ccp-data-master40bae43bca:~$ kubectl get pods -o wide
+    NAME                                          READY     STATUS    RESTARTS   AGE       IP            NODE                                NOMINATED NODE
+    iot-backend-mariadb-6bbf6f4764-qxw6g          1/1       Running   0          1h        10.161.2.15   pod06-a-ccp-data-workerf49047e761   <none>
+    iot-backend-mqtt-db-agent-57c88c58dd-wcbvs    1/1       Running   0          22m       10.161.2.21   pod06-a-ccp-data-workerf55c089976   <none>
+    iot-backend-rest-api-agent-75bfb74dc4-bd52b   1/1       Running   0          22m       10.161.2.19   pod06-a-ccp-data-workerf49047e761   <none>
+    iot-backend-rest-api-agent-75bfb74dc4-dgvbk   1/1       Running   0          34s       10.161.3.4    pod06-a-ccp-data-workerf55c089976   <none>
+
+Next, login to Cisco Container Platform dashboard, and select your Kubernetes cluster (click on its name)
+
+Click on the small square next to `default-pool` to edit it's settings.  
 Decrease number of nodes to one and save
 
-<img >
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-modify-worker-pool-edit.png">
 
 Use kubectl command to check pods discritbution across worker nodes:
 
-    Kubectl get pods -o wide
+    kubectl get pods -o wide
     
-    < paste output >
+    ccpuser@pod06-a-ccp-data-master40bae43bca:~$ kubectl get pods -o wide
+    NAME                                          READY     STATUS    RESTARTS   AGE       IP            NODE                                NOMINATED NODE
+    iot-backend-mariadb-6bbf6f4764-qxw6g          1/1       Running   0          1h        10.161.2.15   pod06-a-ccp-data-workerf49047e761   <none>
+    iot-backend-mqtt-db-agent-57c88c58dd-wcbvs    1/1       Running   0          22m       10.161.2.21   pod06-a-ccp-data-workerf49047e761   <none>
+    iot-backend-rest-api-agent-75bfb74dc4-bd52b   1/1       Running   0          22m       10.161.2.19   pod06-a-ccp-data-workerf49047e761   <none>
+    iot-backend-rest-api-agent-75bfb74dc4-dgvbk   1/1       Running   0          34s       10.161.3.4    pod06-a-ccp-data-workerf49047e761   <none>
     
 you should see that the number of pods for `iot-backend-rest-api-agent` PODs  is still two, however they are all deployed on single node. 
 
