@@ -62,7 +62,7 @@ You will need to uncheck the option that says “Block connections to untrusted 
 
 Close the Configuration window.
 
-In the main entry field, enter your Private Infrastructure VPN IP Address as provided in the credentials.txt. Then choose “Connect”.
+In the main entry field, enter your Private Infrastructure VPN IP Address as provided in the paper sheet on your desk. Then choose “Connect”.
 
 After a few seconds, you’ll see a new window notifying you of an “Untrusted Server Certificate”. This is expected and not a real issue. Choose “Connect Anyway”.
 
@@ -77,7 +77,6 @@ Next you’ll see the main AnyConnect window go through several connection state
 ![Picture of connected VPN icon only](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_icon_connected.png)
 
 Your are connected to infrastructure on-prem. You can interact with resources in your lab by **either using jumphost or accessing devices directly**. 
-
 
 
 ### 2.2 Remote desktop connection
@@ -102,6 +101,7 @@ Cisco Container Platform manages Kuberenetes clusters in the private infrasturct
 Please refer to the table 1 to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login, on the login screen you don't have to specify domain, just type AD username:
 
 **![screenshot of CCP Login page with AD account](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png)**
+
 
 ## 4. Google Cloud access
 
