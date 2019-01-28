@@ -25,7 +25,7 @@ Click on the small square next to `default-pool` to edit it's settings.
 
 Decrease number of nodes to one and save
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-modify-cluster- decrease-number.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-modify-cluster- decrease-number.png" width=500>
 
 Use kubectl command to check pods discritbution across worker nodes:
 
