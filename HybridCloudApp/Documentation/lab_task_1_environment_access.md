@@ -118,7 +118,19 @@ Once logged in, click on the `Console` button in the top right corner to open Go
 
 <img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-console-button.png">
 
-Next, check access to the Google Kubernetes Engine:
+When you sign-in to Google Cloud admin panel for the first time, you will be asked to accept Terms of Service, provide country of residence and email updates. Please select following options, and click `AGREE AND CONTINUE`
+
+<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-accept-terms.png">
+
+Next, you will have to select project - click on the `Select a project`
+
+<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-select-project.png">
+
+In the new window, select project `fwardz-001`
+
+<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-select-project-2.png">
+
+Now you can access Google Kubernetes Engine - a Kubernetes Cluster in the Google Cloud
 
 <img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-go-gke.png">
 

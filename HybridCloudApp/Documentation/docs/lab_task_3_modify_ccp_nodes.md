@@ -8,7 +8,7 @@ Let's try to remove one node from the cluster, and check how Kubernetes will mai
 
 Execute first command to verify original POD distribution across nodes:
 
-kubectl get pods -o wide
+    kubectl get pods -o wide
 
     ccpuser@pod06-a-ccp-data-master40bae43bca:~$ kubectl get pods -o wide
     NAME                                          READY     STATUS    RESTARTS   AGE       IP            NODE                                NOMINATED NODE
