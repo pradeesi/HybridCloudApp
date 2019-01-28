@@ -40,7 +40,7 @@ Use kubectl command to check pods discritbution across worker nodes:
     
 you should see that the number of pods for `iot-backend-rest-api-agent` PODs  is still two, however they are all deployed on single node. 
 
-__it may take several minutes until node will be removed, since Kubernetes must move PODs running on the removed node to the node that will stay within cluster. Sometimes the other node must download image, since that kind of POD was never deployed before__ 
+_it may take several minutes until node will be removed, since Kubernetes must move PODs running on the removed node to the node that will stay within cluster. Sometimes the other node must download image, since that kind of POD was never deployed before_
 
 Once node will be removed, please execute `kubectl get pods -o wide` and note how PODs are distributed.
 
