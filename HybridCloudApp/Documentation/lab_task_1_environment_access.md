@@ -86,11 +86,11 @@ Open Remote Desktop Client (icon available on the desktop). If there is no icon 
 
 Click `show options` and type IP address of the jumphost and username. Don't forget to specify domain name which is `HYBRIDLAB`.
 
-    Computer: 172.18.0.10
+    Computer: 172.18.1.10
     User name: HYBRIDLAB\DMZ_USER_<ID>
 
 Populated fields should be similar to the picture.  
-**Each user will login to the same jumphost: `172.18.0.10`, regardless of the POD or server they should use**
+**Each user will login to the same jumphost: `172.18.1.10`, regardless of the POD or server they should use**
 
 **![screenshot of remote desktop](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png)**
 
