@@ -23,7 +23,7 @@ Login to your dedicated CCP Dashboard - find URL in [Table 1](../lab_task_1_envi
 Once logged in, you will be taken to the "cluster" page.
 In this page you can manage your kubernetes clusters, edit their configuration, adding nodes or create node policies.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-clusters-empty.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-clusters-empty-no_marks.png">
 
 In the left pane you will see other options such as `User management`, where users or group of users are managed locally or authentication could be integrated with Active Directory services. In our lab, Cisco Container Platform has been integrated with Active Directory.
 
