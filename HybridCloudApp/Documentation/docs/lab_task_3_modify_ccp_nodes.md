@@ -20,9 +20,12 @@ kubectl get pods -o wide
 Next, login to Cisco Container Platform dashboard, and select your Kubernetes cluster (click on its name)
 
 Click on the small square next to `default-pool` to edit it's settings.  
-Decrease number of nodes to one and save
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-modify-worker-pool-edit.png">
+
+Decrease number of nodes to one and save
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-modify-cluster- decrease-number.png">
 
 Use kubectl command to check pods discritbution across worker nodes:
 
