@@ -8,20 +8,20 @@ The lab has been built leveraging multiple cloud environments as following:
 - Google Cloud
 - Private intrastructure on-prem
 
-During this lab, you will get access to Google Cloud and Private Infrastructure, as these are providing container environment. Amazon Web Services is used in this setup as a message broker only to aggregate data from sensors and make it avaialbe to get by application component that you will deploy on-prem in this lab.
+During this lab, you will get access to Google Cloud and Private Infrastructure, as these are providing container environment. Amazon Web Services is used in this setup as a message broker only which is a function already provided by Amazon. 
 
 You can find credentials on the paper sheet at your desk.
 
 ## 2. On-prem private infrastructure access
 
-In order to get access to private network, please first find credentials for your POD in the paper sheet.
+In order to get access to private network, please first find credentials for your POD in the paper sheet on in the DMZ_USER_XX.txt file on the desktop. 
 
-Each LAB User will have his own instance on Cisco Container Platform, where you can manage Kubernetes Cluster. On that cluster you will deploy your containerized application.
+Each LAB User will have dedicate instance on Cisco Container Platform, where you can manage Kubernetes Cluster. Once you will create Kubernetes cluster, you will deploy your containerized application.
 
-Multiple are using same server, hence the naming POD0X-Y where X is a server number and Y is a environment ID within that server. Servers running ESXi, which are managed by vCenter. For lab purposes, each ESXi is managed by own vCenter.
-Two to five users will share the same hardware server and same vCenter, however each User will have own instance of Cisco Container Platform.
+_Multiple are using same server, hence the naming POD0X-Y where X is a server number and Y is a environment ID within that server. Servers are running ESXi, and each ESXi is managed by own vCenter.
+Two to five users will share the same hardware server and same vCenter, however each User will have own instance of Cisco Container Platform._
 
-Below table collects each user lab systems:
+Below table provides URLs to User's on-prem environment
 
 *Table 1: User to POD assignment*
 
@@ -56,7 +56,7 @@ You’ll need to review and configure the AnyConnect options. After Anyconnect l
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_without_IP.png" width = 500>
 
-You will need to uncheck the option that says “Block connections to untrusted servers”. Your selection is immediately saved.
+In case of the issues with certificate, you will need to uncheck the option that says “Block connections to untrusted servers”. Your selection is immediately saved.
 
 ![anyconnect settings picture here](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_settings.png)
 
@@ -81,6 +81,8 @@ Your are connected to infrastructure on-prem. You can interact with resources in
 
 ### 2.2 Remote desktop connection
 
+_This step is optional, you can perform all operations from the desktop as well._
+
 Open Remote Desktop Client (icon available on the desktop). If there is no icon for Remote Desktop Connection on the Desktop, click start, and type `mstsc`
 
 Click `show options` and type IP address of the jumphost and username. Don't forget to specify domain name which is `HYBRIDLAB`.
@@ -89,6 +91,9 @@ Click `show options` and type IP address of the jumphost and username. Don't for
     User name: HYBRIDLAB\DMZ_USER_<ID>
 
 Populated fields should be similar to the picture.  
+
+You can find password in the paper sheet or in the `DMZ_USER_XX.txt` file.
+
 **Each user will login to the same jumphost: `172.18.1.10`, regardless of the POD or server they should use**
 
 **![screenshot of remote desktop](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png)**
@@ -106,11 +111,11 @@ Please refer to the [table 1](LAB_access.md) to access your own Cisco Container 
 ## 4. Google Cloud access
 
 Open Chrome web browser from your desktop (you can use either jumphost or local PC)
-Go to [http://cloud.google.com](https://cloud.google.com), click on sign-in in the top right corner
+Go to [http://cloud.google.com](https://cloud.google.com), click on sign-in in the top right corner  
 
 <img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp_sign_in.png">
 
-Enter username for your lab pod which you can find in the paper sheet. Please change language to your preferred.
+Enter username for your lab pod which you can find in the paper sheet or `DMZ_USER_XX.txt` file on your desktop. Please change language to your preferred.
 
 <img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp_login.png" width = 500>
 
@@ -136,4 +141,4 @@ Now you can access Google Kubernetes Engine - a Kubernetes Cluster in the Google
 
 You should see screen with warning about no sufficient rights to see the GKE Cluster object, however, you can still navigate to "Workloads" where you can deploy applications on the GKE Cluster.
 
-<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-gke-no-permission-to-clusters.png">
+<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-gke-workloads.png">

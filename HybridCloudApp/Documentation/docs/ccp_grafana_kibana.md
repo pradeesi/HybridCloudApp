@@ -25,6 +25,8 @@ In the `Data` field you will see admin-password and small eye icon. Please click
 
 Alternatively, you can use following one-line `kubectl` command to obtain grafana admin-password. Please use this command from the master node, rather local PC as it may not have base64 installed.
 
+** This command works only in linux environment, you can use it on the Kubernetes master node to which you can SSH **
+
     kubectl -n ccp get secret ccp-monitor-grafana -o=jsonpath='{.data.admin-password}' | base64 --decode
 
 Next, please go back to the CCP dashboard, select your cluster, go into the detail mode and select `Grafana` button.

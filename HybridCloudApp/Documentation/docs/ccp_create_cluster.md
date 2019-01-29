@@ -2,6 +2,10 @@
 
 After login to Cisco Container Platform, click `New Cluster` button, you will be redirected to the new page where you would have to provide details of your new Kubernetes cluster.
 
+During creation, you will be asked to specify some parameters. Please open google sheet and find your POD ID in the tab.
+
+[_**Google Sheet**_](https://docs.google.com/spreadsheets/d/1r81v_Mb-GKGV-d3GNoMygn4JIsF2UeRC3JTDz-sN48s/edit?usp=sharing)
+
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-clusters-empty.png">
 
 - Step 1 - Basic Information - select infrastructure provider, Kubernetes cluster name and Container Network Interface:
@@ -41,7 +45,7 @@ To avoid issues with Flash Player, please select HTML5 mode for vCenter User Int
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-select-html-flash.png">
 
-Login to vCenter using Single Sign-On plugin, just click on `Use Windows session authentication` and allow plugin to run. You can also disable this prompt for future by unchecking option `Ask always before allowing this site`.
+**If you are using jumphost**, you can use login leveraging Single Sign-On plugin, just click on `Use Windows session authentication` and allow plugin to run. You can also disable this prompt for future by unchecking option `Ask always before allowing this site`.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-login-page-SSO.png">
 
@@ -49,4 +53,4 @@ Once logged-in, you can observe cloning process:
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-html-cloning.png">
 
-_Please note that multiple users may perform similar operation at the same time, therefore you may see multiple cloning processes._
+_Please note, that multiple users may perform similar operation at the same time, therefore you may see multiple cloning processes._

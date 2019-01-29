@@ -37,9 +37,9 @@ After successful login you will be redirected to the default namespace view:
 ## Kubectl - Kubernetes Command Line Interface
 
 While most of the options in Kubernetes are available through the dashboard, CLI commands are also available, and convenient to use. Kubectl is a software leveraging Kubernetes API and translate commands to specific API calls.  
-You can install `kubectl` directly on your PC or jumphost, or login to master node of your Kubernetes Cluster. 
+You can download `kubectl` directly on your PC or jumphost, or login to master node of your Kubernetes Cluster. 
 
-To install `kubectl` application, go to this [LINK](https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/windows/amd64/kubectl.exe) and follow instruction.
+`kubectl` can be donwloaded fro this [LINK](https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/windows/amd64/kubectl.exe) and follow instruction.
 
 Kubectl requires credentials to operate on your Kubernete Cluster. By default `.kube` folder is created in your User folder in Windows (similarily on Linux and MAC). Please move  downloaded `kubeconfig.yaml` file as described in previous section to this folder and change name to `config` without file extension.
 
