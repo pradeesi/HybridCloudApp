@@ -1,4 +1,4 @@
-# Lab Task 1: Connectivity Check
+# Connectivity Check
 
 ## 1. Lab access general description
 
@@ -14,12 +14,12 @@ You can find credentials on the paper sheet at your desk.
 
 ## 2. On-prem private infrastructure access
 
-In order to get access to private network, please first find credentials for your POD in the file you previously downloaded.
+In order to get access to private network, please first find credentials for your POD in the paper sheet.
 
-Each server POD in the private on-premise infrastructure handles multiple Users environment.
-For the lab purpose each server is managed by its own vCenter.
-Two to five users will share the same hardware server and same vCenter, however each User will have own instance of Cisco Container Platform, which provides Platform as a Service for Kubernetes clusters.
-In this lab, Kubernetes clusters are build on top of virtual machine for demonstration purposes.
+Each LAB User will have his own instance on Cisco Container Platform, where you can manage Kubernetes Cluster. On that cluster you will deploy your containerized application.
+
+Multiple are using same server, hence the naming POD0X-Y where X is a server number and Y is a environment ID within that server. Servers running ESXi, which are managed by vCenter. For lab purposes, each ESXi is managed by own vCenter.
+Two to five users will share the same hardware server and same vCenter, however each User will have own instance of Cisco Container Platform.
 
 Below table collects each user lab systems:
 
@@ -68,7 +68,7 @@ After a few seconds, you’ll see a new window notifying you of an “Untrusted 
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_accept_cert.png" width = 500>
 
-You’ll see a new window prompting you to provide your Lab’s network credentials. Enter the Username and Password as provided in the credentials.txt file. Choose “OK”.
+You’ll see a new window prompting you to provide your Lab’s network credentials. Enter the Username and Password as provided in the paper sheet. Choose “OK”.
 
 ![anyconnect picture provide username and password](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_login2.png)
 
@@ -81,7 +81,7 @@ Your are connected to infrastructure on-prem. You can interact with resources in
 
 ### 2.2 Remote desktop connection
 
-Open Remote Desktop Client (icon available on the desktop). If there is no icon for Remote Desktop Connection on the Desktop, click start, and start typing `mstsc`
+Open Remote Desktop Client (icon available on the desktop). If there is no icon for Remote Desktop Connection on the Desktop, click start, and type `mstsc`
 
 Click `show options` and type IP address of the jumphost and username. Don't forget to specify domain name which is `HYBRIDLAB`.
 
@@ -98,7 +98,7 @@ Populated fields should be similar to the picture.
 
 Cisco Container Platform manages Kuberenetes clusters in the private infrasturcture. You will have access to dedicated instance of Cisco Container Platform, from which you will manage you own Kuberenetes Clusters used later on to deploy application.
 
-Please refer to the table 1 to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login, on the login screen you don't have to specify domain, just type AD username:
+Please refer to the [table 1](LAB_access.md) to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login without specifying domain name - see following picture:
 
 **![screenshot of CCP Login page with AD account](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png)**
 
