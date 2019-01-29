@@ -70,7 +70,7 @@ After a few seconds, you’ll see a new window notifying you of an “Untrusted 
 
 You’ll see a new window prompting you to provide your Lab’s network credentials. Enter the Username and Password as provided in the paper sheet. Choose “OK”.
 
-![anyconnect picture provide username and password](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_login2.png)
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_login2.png" width = 500>
 
 Next you’ll see the main AnyConnect window go through several connection states. When it has completed establishing the connection, AnyConnect will iconify in the Notification Area of the Windows Taskbar. When you have an established VPN connection, the AnyConnect icon will display a symbol of a padlock, as shown here.
 
@@ -96,7 +96,7 @@ You can find password in the paper sheet or in the `DMZ_USER_XX.txt` file.
 
 **Each user will login to the same jumphost: `172.18.1.10`, regardless of the POD or server they should use**
 
-**![screenshot of remote desktop](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png)**
+<img src=https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png width = 500>
 
 
 ## 3. Accessing Cisco Container Platform
@@ -105,7 +105,7 @@ Cisco Container Platform manages Kuberenetes clusters in the private infrasturct
 
 Please refer to the [table 1](LAB_access.md) to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login without specifying domain name - see following picture:
 
-**![screenshot of CCP Login page with AD account](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png)**
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png" width = 500>
 
 
 ## 4. Google Cloud access
