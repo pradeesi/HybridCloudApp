@@ -20,7 +20,9 @@ _In this step you have selected "Calico" as a Container Networking Interface, ho
 
 _This lab is based on regular UCS servers, however, CCP in combination with Cisco hyperconverged infrastructure - Hyperflex results in best in class performance. CCP can automatically provision dynamic persistent volumes directly on Hyperflex, rather on vmware, bypassing extra layer of virtualisation._
 
-- Step 3 - Node configuration - here you can configure node sizing, pass access information such as public SSH key, Load-Balancer VIP, subnet for PODs, enable service-mesh based on Istio 1.0 and finally provide rigths for managing kubernetes clusters in AWS public cloud.
+- Step 3 - Node configuration - here you can configure node sizing, provide access information such as public SSH key, Load-Balancer VIP, subnet for PODs.  
+
+**Do not** enable service-mesh based on Istio 1.0 and finally provide rigths for managing kubernetes clusters in AWS public cloud.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step3-1.png">
 
@@ -45,12 +47,6 @@ To avoid issues with Flash Player, please select HTML5 mode for vCenter User Int
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-select-html-flash.png">
 
-**If you are using jumphost**, you can use login leveraging Single Sign-On plugin, just click on `Use Windows session authentication` and allow plugin to run. You can also disable this prompt for future by unchecking option `Ask always before allowing this site`.
+Please enter your Active Directory credentials from the DMZ_USER_XX.txt file on your desktop, or paper sheet. You don't have to specify domain name.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-login-page-SSO.png">
-
-Once logged-in, you can observe cloning process:
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-html-cloning.png">
-
-_Please note, that multiple users may perform similar operation at the same time, therefore you may see multiple cloning processes._
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vsphere-login.png">

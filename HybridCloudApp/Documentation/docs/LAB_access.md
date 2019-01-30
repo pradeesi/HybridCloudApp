@@ -10,7 +10,6 @@ The lab has been built leveraging multiple cloud environments as following:
 
 During this lab, you will get access to Google Cloud and Private Infrastructure, as these are providing container environment. Amazon Web Services is used in this setup as a message broker only which is a function already provided by Amazon. 
 
-You can find credentials on the paper sheet at your desk.
 
 ## 2. On-prem private infrastructure access
 
@@ -79,7 +78,7 @@ Next you’ll see the main AnyConnect window go through several connection state
 Your are connected to infrastructure on-prem. You can interact with resources in your lab by **either using jumphost or accessing devices directly**. 
 
 
-### 2.2 Remote desktop connection
+### 2.2 (Optional) Remote desktop connection
 
 _This step is optional, you can perform all operations from the desktop as well._
 
@@ -103,7 +102,7 @@ You can find password in the paper sheet or in the `DMZ_USER_XX.txt` file.
 
 Cisco Container Platform manages Kuberenetes clusters in the private infrasturcture. You will have access to dedicated instance of Cisco Container Platform, from which you will manage you own Kuberenetes Clusters used later on to deploy application.
 
-Please refer to the [table 1](LAB_access.md) to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login without specifying domain name - see following picture:
+Please refer to the [Table 1](LAB_access.md) to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login without specifying domain name - see following picture:
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png" width = 500>
 
@@ -114,7 +113,7 @@ Go to [http://cloud.google.com](https://cloud.google.com), click on sign-in in t
 
 <img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-sign-in.png">
 
-Enter username for your lab pod which you can find in the paper sheet or `DMZ_USER_XX.txt` file on your desktop. Please change language to your preferred.
+Enter username for your lab pod which you can find in the paper sheet or `DMZ_USER_XX.txt` file on your desktop. You can change language to your preferred.
 
 <img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-login1.png" width = 500>
 

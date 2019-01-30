@@ -7,12 +7,12 @@ CCP uses 100% upstream Kuberenetes without vendor specific modification, creatin
 CCP provides authentication and authorization, security, high availability, networking, load balancing, and operational capabilities to effectively operate and manage Kubernetes clusters. CCP also provides a validated configuration of Kubernetes and can integrate with underlying infrastructure components such as Cisco HyperFlex and Cisco ACI. The infrastructure provider for CCP is Hyperflex.
 
 Cisco Container Platform has two main architecture components:
-- Control Plane Cluster - to provide management platform for your Kubernetes Clusters where you can deploy new, scale worker nodes, manage policy and networking. The Control Plane is also build based on Kubernetes.
-- Tenant Data Cluster - the Kubernetes cluster used to host applications across production, development, staging and many other environments
+* Control Plane Cluster - to provide management platform for your Kubernetes Clusters where you can deploy new, scale worker nodes, manage policy and networking. The Control Plane is also build based on Kubernetes.
+* Tenant Data Cluster - the Kubernetes cluster used to host applications across production, development, staging and many other environments
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_features.png">
 
-Each user in this lab will have his own Cisco Container Platform Control Plane.  
+Each user in this lab will have own Cisco Container Platform Control Plane.  
 As described in the Lab task 1, check Table 1 with the URL to access your CCP Control Plane cluster dashboard.
 
 ## Explore CCP dashboard
@@ -32,7 +32,7 @@ In the next menu position, you will see `Infrastructure Providers`. This is plac
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-infra-providers-vmware.png">
 
-`Networks` provides IP addressing subnets and pools configuration for the tenant clusters. When tenant cluster is deployed, the IP addresses for nodes are allocated from DHCP, however, Cisco Container Platform provides built-in mechanism to allocate IP addresses for Service Expousure under which applications will be exposed externally. This mechanism is explaining later in the lab 3 **add reference to lab with VIP pools**
+`Networks` provides IP addressing subnets and pools configuration for the tenant clusters. When tenant cluster is deployed, the IP addresses for nodes are allocated from DHCP, however, Cisco Container Platform provides built-in mechanism to allocate IP addresses for Service Expousure under which applications will be exposed externally. 
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-networks-main.png">
 
