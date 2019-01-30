@@ -23,7 +23,7 @@ You can connect the DHT22 sensor with Raspberry Pi as shown in the following ima
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/Rapi_sensor_connection.png)
 
 ## 3. Burn Raspbian OS on the SD Card and enable SSH
-Download the [Rasbian](https://www.raspberrypi.org/downloads/raspbian/) OS and use [Etcher] (https://www.balena.io/etcher/) to install it on the SD card. For headless setup, open the SD Card on your computer, after the installation process gets completed to enable SSH.
+Download the [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) OS and use [Etcher] (https://www.balena.io/etcher/) to install it on the SD card. For headless setup, open the SD Card on your computer, after the installation process gets completed to enable SSH.
 
 SSH can be enabled by placing a file named ssh, without any extension, onto the boot partition of the SD card from another computer. When the Pi boots, it looks for the ssh file. If it is found, SSH is enabled and the file is deleted. The content of the file does not matter; it could contain text, or nothing at all.
 

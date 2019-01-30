@@ -1,15 +1,21 @@
-# Deploy the Backend Application Components on CCP Kuberneted Cluster (Tenant Cluster)
+# Deploy the Backend Application Components on CCP Kubernetes Cluster (CCP Tenant Cluster)
 
 
-In this section you would deploy the backend components of the IoT Application on the Kubernetes cluster deployed on your CCP instance. Following diagram shows the high-level architure of these backend application containers -
+In this section you would deploy the backend components of the IoT Application on the Kubernetes cluster deployed on your CCP instance. Following diagram shows the high-level architecture of these backend application containers -
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/backend_app_architecture.png)
 
-SSH into your kubernetes master node and start deploying the components by following the instruction given below -
+## Login to Kubernetes Master CLI Shell:
+
+SSH into the master node of the Kubernetes Cluster you deployed on top of CCP (Tenant Cluster) and start deploying the App's backend components by following the instruction on this page.
+
+The steps for logging into the Kubernetes Cluster (Tenant Cluster) CLI Shell are available at this link -  [Kubectl - Kubernetes Command Line Interface
+](/ccp_accessing_kubernetes_cluster/#kubectl-kubernetes-command-line-interface)
+
 
 ## 1. Deploy MariaDB Databse:
 
-MariaDB will be used in the backend to save the sensor data recieved from AWS IoT platform over MQTT protocol. For this we would create following objects -
+MariaDB will be used in the backend to save the sensor data received from AWS IoT platform over MQTT protocol. For this we would create following objects -
 
 1. Kubernetes Secret
 2. Kubernetes Persistent Volume Claim (PVC)
@@ -24,7 +30,7 @@ Following diagram shows the relationship between these objects -
 
 A **Kubernetes Secret** is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
 
-The MariaDB container image uses an environment varinable named as 'MYSQL\_ROOT\_PASSWORD', it hold the root password required to access the database. So you would create a new secret with 'password' key (value as 'cisco123') which would later be used in mariaDB deployment yaml file.
+The MariaDB container image uses an environment variable named as 'MYSQL\_ROOT\_PASSWORD', it hold the root password required to access the database. So you would create a new secret with 'password' key (value as 'cisco123') which would later be used in mariaDB deployment yaml file.
 
 * **1.1.1: Create DB Password Secret -** Use the following command to create a new secret on your kubernetes cluster -
 
@@ -65,7 +71,7 @@ The following yaml definition would be used to create the 'PersistentVolumeClaim
 
 		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Mariadb/mariadb_persistent_volume.yaml
 
-* **1.2.2: Verfiy Persistent Volume Claim -** Check if the PVC was created successfully or not -
+* **1.2.2: Verify Persistent Volume Claim -** Check if the PVC was created successfully or not -
 
 		kubectl get pvc mariadb-pv-claim
 	
@@ -181,7 +187,7 @@ Following yaml definition would be used to create the ClusterIP Service for Mari
 
 ## 2. Deploy MQTT to DB Agent on Kubernetes:
 
-'MQTT to DB Agent' will subscribe to the MQTT Topic and listen to the incomming sensor data from AWS IoT platform. It will then parse the sensor data and insert it into the MariaDB.
+'MQTT to DB Agent' will subscribe to the MQTT Topic and listen to the incoming sensor data from AWS IoT platform. It will then parse the sensor data and insert it into the MariaDB.
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt_db_agent_deployment.png)
 
@@ -238,7 +244,7 @@ The following yaml definition will be used to create the MQTT to DB Agent pods -
 
 ## 3. Deploy REST API Agent on Kubernetes:
 
-The 'REST API Agent' would act as the gateway to the backend application. It will listen to the incomming HTTP requests from the frontend application that you will deploy on Google Cloud.
+The 'REST API Agent' would act as the gateway to the backend application. It will listen to the incoming HTTP requests from the frontend application that you will deploy on Google Cloud.
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_deployment.png)
 
@@ -325,7 +331,7 @@ The following yaml definition would be used for to create a NodePort Service for
 
 		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent_service_node_port.yaml
 
-* **3.2.2: Check REST API Agent Service Status -** You can use the following command to check if the kubernetes service was creted successfully or not -
+* **3.2.2: Check REST API Agent Service Status -** You can use the following command to check if the kubernetes service was created successfully or not -
 
 		kubectl get service rest-api-agent-service
 		
@@ -355,7 +361,7 @@ You need to find the NodePort and Kubernetes Node external IP to access the 'res
 
 To test the REST API service try to access following url from your web browser (use the node's external ip and service port from the previous section # 3.3)-
 
-	http://<node's external ip>:30500/
+	http://<kubernetes node's external ip>:30500/
 	
 If your REST API Agent is working properly, you should see 'Welcome to the API Service...!' message on your browser as shown in the following screenshot -
 
@@ -363,17 +369,14 @@ If your REST API Agent is working properly, you should see 'Welcome to the API S
 
 Following are the other urls that you could test -
 
-	http://<node's external ip>:30500/cities
+	http://<kubernetes node's external ip>:30500/cities
 	
-	http://<node's external ip>:30500/temperature
+	http://<kubernetes node's external ip>:30500/temperature
 	
-	http://<node's external ip>:30500/humidity
+	http://<kubernetes node's external ip>:30500/humidity
 	
-	http://<node's external ip>:30500/sensor_data/city
+	http://<kubernetes node's external ip>:30500/sensor_data/city
 	
-## Next Steps:
-
-You have successfully deployed all the backend components of the iot-app on the CCP kubernetes cluster. Now you may proceed futher and deploy the frontend components on Google Cloud.
 
 
 

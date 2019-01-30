@@ -1,6 +1,6 @@
 # Deploy the Frontend Application Components on Google Kubernetes Engine (GKE)
 
-In this section you would deploy the frontend components of the IoT Application on the Google Kubernetes Engine. Following diagram shows the high-level architure of these frontend application containers -
+In this section you would deploy the frontend components of the IoT Application on the Google Kubernetes Engine. Following diagram shows the high-level architecture of these frontend application containers -
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/frontend_app_architecture.png)
 
@@ -26,7 +26,7 @@ You will create kubernetes deployment for frontend app and expose it to the inte
 
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_2.png)
 
-* **3.2:** Select the '**frontend_server**' container image from the pop-up window and clikc on the '**SELECT**' button as shown in the following screenshot -
+* **3.2:** Select the '**frontend_server**' container image from the pop-up window and click on the '**SELECT**' button as shown in the following screenshot -
 
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_3.png)
 
@@ -80,7 +80,7 @@ You will create kubernetes deployment for frontend app and expose it to the inte
 
 ### 8. Open the Application Dashboard:
 
-* **8.1:** Go to '**Kubernetes Engine --> Services**' and cick on the '**Endpoints**' respective to your kubernetes service as shown in the following screenshot -
+* **8.1:** Go to '**Kubernetes Engine --> Services**' and click on the '**Endpoints**' respective to your kubernetes service as shown in the following screenshot -
 
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_11.png)
 
