@@ -1,7 +1,20 @@
 site_name: Hybrid Cloud IoT App
 
 nav:
-  - AWS IoT Core Configuration: 'AWS_IoT.md'
-  - Raspberry Pi with Humidity and Temperature Sensor Configuration: 'RaPi_with_Sensor.md'
+  - Lab Access:
+    - Accessing the Lab Environment: 'LAB_access.md'
+  - Cisco Container Platform (CCP):
+    - Explore Cisco Container Platform (CCP): 'ccp_exploring.md'
+    - Create Kubernetes Cluster on CCP (Tenant Cluster): 'ccp_create_cluster.md'
+    - Access Kubernetes Cluster (Tenant Cluster): 'ccp_accessing_kubernetes_cluster.md'
+  - Hybrid Cloud IoT Application:
+    - Deploy Backend App on Kubernetes Cluster (Tenant Cluster): 'deploy_backend.md'
+    - Explore Backend Application: 'backend_exercise.md'
+    - Deploy Frontend App on Google Kubernetes Engine (GKE): 'deploy_frontend.md'
+    - Explore Grafana and Kibana Modules on CCP: ccp_grafana_kibana.md
+    - Kubernetes Exercise: 'ccp_modify_numer_of_nodes.md'
+  - Appendices (Optional - Read Only):
+      Appendix-1 AWS IoT Core Configuration: 'AWS_IoT.md'
+      Appendix-2 Sensor Setup on Raspberry Pi: 'RaPi_with_Sensor.md'
 
 theme: readthedocs
