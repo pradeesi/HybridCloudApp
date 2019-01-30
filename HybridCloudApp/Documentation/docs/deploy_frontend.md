@@ -9,7 +9,7 @@ In this section you would deploy the frontend components of the IoT Application 
 
 Login to Google Cloud Console using the credentials provided by the lab instructor.
 
-You can find the details of login method at this link - [Google Cloud Access](/LAB_access/#4-google-cloud-access)
+You can find the details of login method at this link - [Google Cloud Access](/LAB_access/#5-google-cloud-access)
 
 ### 2. Creating Deployment Definition using GKE UI on Google Cloud Console:
 
