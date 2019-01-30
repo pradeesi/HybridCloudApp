@@ -54,7 +54,7 @@ Open PuTTY, go to `Connection -> SSH -> Auth` and select private key -
 
 next go to `Connection -> Data` and provide username `ccpuser` -  
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/images/putty-username.png" width=500>
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/putty-username.png" width=500>
 
 Once logged in to Kubernetes master node, you can use `kubectl` command. You can try example command to obtain nodes information.
 
