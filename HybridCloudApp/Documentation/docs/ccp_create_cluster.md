@@ -39,14 +39,3 @@ Once finished, you will see progress bar to check status of the cluster creation
 ## Monitor cluster creation
 
 You can observe tenant cluster creation from CCP Dashboard, however, if you are interested to see more details, you can login to vCenter and monitor VM cloning process.
-Users are grouped by PODs, each POD is managed by single VMWare vCenter instance. Please use respective vCenter for your POD:  
-
-Open Chrome browser, and enter URL of vCenter `https://vc-pod0X.hybridlab.local`. You can do it from RDP host or from local PC.
-
-To avoid issues with Flash Player, please select HTML5 mode for vCenter User Interface:
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-select-html-flash.png">
-
-Please enter your Active Directory credentials from the DMZ_USER_XX.txt file on your desktop, or paper sheet. You don't have to specify domain name.
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vsphere-login.png">

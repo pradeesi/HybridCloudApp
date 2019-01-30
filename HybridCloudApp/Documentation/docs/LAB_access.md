@@ -76,28 +76,25 @@ Users are grouped by PODs, each POD is managed by single VMWare vCenter instance
 
 *Table 1: User to vCenter anc CCP assignment*
 
-VPN/AD User | POD name | vCenter URL | CCP Control Plane URL
---- | --- | --- | ---
-DMZ_User_01 | POD 01-A | [](https://vc-pod01.hybridlab.local) | [](https://172.18.1.165)
-DMZ_User_02 | POD 01-B | [](https://vc-pod01.hybridlab.local) | [](https://172.18.1.169)
-DMZ_User_03 | POD 01-C | [](https://vc-pod01.hybridlab.local) | [](https://172.18.1.173)
-DMZ_User_04 | POD 02-A | [](https://vc-pod02.hybridlab.local) | [](https://172.18.1.177)
-DMZ_User_05 | POD 02-B | [](https://vc-pod02.hybridlab.local) | [](https://172.18.1.181)
-DMZ_User_06 | POD 02-C | [](https://vc-pod02.hybridlab.local) | [](https://172.18.1.185)
-DMZ_User_07 | POD 03-A | [](https://vc-pod03.hybridlab.local) | [](https://172.18.1.189)
-DMZ_User_08 | POD 03-B | [](https://vc-pod03.hybridlab.local) | [](https://172.18.1.193)
-DMZ_User_09 | POD 04-A | [](https://vc-pod04.hybridlab.local) | [](https://172.18.1.197)
-DMZ_User_10 | POD 04-B | [](https://vc-pod04.hybridlab.local) | [](https://172.18.1.201)
-DMZ_User_11 | POD 04-C | [](https://vc-pod04.hybridlab.local) | [](https://172.18.1.205)
-DMZ_User_12 | POD 04-D | [](https://vc-pod04.hybridlab.local) | [](https://172.18.1.209)
-DMZ_User_13 | POD 06-A | [](https://vc-pod06.hybridlab.local) | [](https://172.18.1.213)
-DMZ_User_14 | POD 06-B | [](https://vc-pod06.hybridlab.local) | [](https://172.18.1.217)
-DMZ_User_15 | POD 06-C | [](https://vc-pod06.hybridlab.local) | [](https://172.18.1.221)
-DMZ_User_16 | POD 06-D | [](https://vc-pod06.hybridlab.local) | [](https://172.18.1.225)
-DMZ_User_17 | POD 07-A | [](https://vc-pod07.hybridlab.local) | [](https://172.18.1.229)
-DMZ_User_18 | POD 07-B | [](https://vc-pod07.hybridlab.local) | [](https://172.18.1.233)
-DMZ_User_19 | POD 07-C | [](https://vc-pod07.hybridlab.local) | [](https://172.18.1.237)
-DMZ_User_20 | POD 07-D | [](https://vc-pod07.hybridlab.local) | [](https://172.18.1.241)
+DMZ_User_02 | POD 01-B | [https://vc-pod01.hybridlab.local](https://vc-pod01.hybridlab.local) | [https://172.18.1.169](https://172.18.1.169)
+DMZ_User_03 | POD 01-C | [https://vc-pod01.hybridlab.local](https://vc-pod01.hybridlab.local) | [https://172.18.1.173](https://172.18.1.173)
+DMZ_User_04 | POD 02-A | [https://vc-pod02.hybridlab.local](https://vc-pod02.hybridlab.local) | [https://172.18.1.177](https://172.18.1.177)
+DMZ_User_05 | POD 02-B | [https://vc-pod02.hybridlab.local](https://vc-pod02.hybridlab.local) | [https://172.18.1.181](https://172.18.1.181)
+DMZ_User_06 | POD 02-C | [https://vc-pod02.hybridlab.local](https://vc-pod02.hybridlab.local) | [https://172.18.1.185](https://172.18.1.185)
+DMZ_User_07 | POD 03-A | [https://vc-pod03.hybridlab.local](https://vc-pod03.hybridlab.local) | [https://172.18.1.189](https://172.18.1.189)
+DMZ_User_08 | POD 03-B | [https://vc-pod03.hybridlab.local](https://vc-pod03.hybridlab.local) | [https://172.18.1.193](https://172.18.1.193)
+DMZ_User_09 | POD 04-A | [https://vc-pod04.hybridlab.local](https://vc-pod04.hybridlab.local) | [https://172.18.1.197](https://172.18.1.197)
+DMZ_User_10 | POD 04-B | [https://vc-pod04.hybridlab.local](https://vc-pod04.hybridlab.local) | [https://172.18.1.201](https://172.18.1.201)
+DMZ_User_11 | POD 04-C | [https://vc-pod04.hybridlab.local](https://vc-pod04.hybridlab.local) | [https://172.18.1.205](https://172.18.1.205)
+DMZ_User_12 | POD 04-D | [https://vc-pod04.hybridlab.local](https://vc-pod04.hybridlab.local) | [https://172.18.1.209](https://172.18.1.209)
+DMZ_User_13 | POD 06-A | [https://vc-pod06.hybridlab.local](https://vc-pod06.hybridlab.local) | [https://172.18.1.213](https://172.18.1.213)
+DMZ_User_14 | POD 06-B | [https://vc-pod06.hybridlab.local](https://vc-pod06.hybridlab.local) | [https://172.18.1.217](https://172.18.1.217)
+DMZ_User_15 | POD 06-C | [https://vc-pod06.hybridlab.local](https://vc-pod06.hybridlab.local) | [https://172.18.1.221](https://172.18.1.221)
+DMZ_User_16 | POD 06-D | [https://vc-pod06.hybridlab.local](https://vc-pod06.hybridlab.local) | [https://172.18.1.225](https://172.18.1.225)
+DMZ_User_17 | POD 07-A | [https://vc-pod07.hybridlab.local](https://vc-pod07.hybridlab.local) | [https://172.18.1.229](https://172.18.1.229)
+DMZ_User_18 | POD 07-B | [https://vc-pod07.hybridlab.local](https://vc-pod07.hybridlab.local) | [https://172.18.1.233](https://172.18.1.233)
+DMZ_User_19 | POD 07-C | [https://vc-pod07.hybridlab.local](https://vc-pod07.hybridlab.local) | [https://172.18.1.237](https://172.18.1.237)
+DMZ_User_20 | POD 07-D | [https://vc-pod07.hybridlab.local](https://vc-pod07.hybridlab.local) | [https://172.18.1.241](https://172.18.1.241)
 
 
 To avoid issues with Flash Player, please select HTML5 mode for vCenter User Interface:
