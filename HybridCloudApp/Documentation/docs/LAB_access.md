@@ -1,6 +1,6 @@
 # Connectivity Check
 
-## 1. Lab access general description
+## Lab access general description
 
 The lab has been built leveraging multiple cloud environments as following:
 
@@ -11,7 +11,7 @@ The lab has been built leveraging multiple cloud environments as following:
 During this lab, you will get access to Google Cloud and Private Infrastructure, as these are providing container environment. Amazon Web Services is used in this setup as a message broker only which is a function already provided by Amazon. 
 
 
-## 2. On-prem private infrastructure access
+## 1. On-prem private infrastructure access (VPN)
 
 In order to get access to private network, please first find credentials for your POD in the paper sheet on in the DMZ_USER_XX.txt file on the desktop. 
 
@@ -20,7 +20,7 @@ Each LAB User will have dedicate instance on Cisco Container Platform, where you
 _Multiple Users are using same server, hence the naming POD0X-Y where X is a server number and Y is a environment ID within that server. Servers are running ESXi, and each ESXi is managed by own vCenter.
 Two to five users will share the same hardware server and same vCenter, however each User will have own instance of Cisco Container Platform._
 
-### 2.1 Cisco Anyconnect Mobility Client
+### 1.1 Cisco Anyconnect Mobility Client
 
 Run Cisco Anyconnect VPN client available on your desktop.
 
@@ -51,7 +51,7 @@ Next you’ll see the main AnyConnect window go through several connection state
 Your are connected to infrastructure on-prem. You can interact with resources in your lab by **either using jumphost or accessing devices directly**. 
 
 
-### 2.2 (Optional) Remote desktop connection
+## 2 (Optional) Remote desktop connection
 
 _This step is optional, you can perform all operations from the desktop as well._
 
