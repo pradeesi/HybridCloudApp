@@ -34,7 +34,7 @@ In case of the issues with certificate, you will need to uncheck the option that
 
 Close the Configuration window.
 
-**Enter VPN IP Address as provided in the paper sheet on your desk. Then choose “Connect”.**
+**Enter VPN IP Address as provided in the paper sheet on your desk or on below screenshot. Then choose “Connect”.**
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_with_IP.png" width = 500>
 
