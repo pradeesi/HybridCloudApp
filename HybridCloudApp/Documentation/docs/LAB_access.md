@@ -113,7 +113,7 @@ Please enter your Active Directory credentials from the DMZ_USER_XX.txt file on 
 
 Cisco Container Platform manages Kuberenetes clusters in the private infrasturcture. You will have access to dedicated instance of Cisco Container Platform, from which you will manage you own Kuberenetes Clusters used later on to deploy application.
 
-Please refer to the [Table 1](/LAB_access.md/#3-accessing-vcenter) to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login without specifying domain name - see following picture:
+Please refer to the [Table 1](#3-accessing-vcenter) to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login without specifying domain name - see following picture:
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png" width = 500>
 
