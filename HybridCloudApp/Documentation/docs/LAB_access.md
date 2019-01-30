@@ -17,35 +17,8 @@ In order to get access to private network, please first find credentials for you
 
 Each LAB User will have dedicate instance on Cisco Container Platform, where you can manage Kubernetes Cluster. Once you will create Kubernetes cluster, you will deploy your containerized application.
 
-_Multiple are using same server, hence the naming POD0X-Y where X is a server number and Y is a environment ID within that server. Servers are running ESXi, and each ESXi is managed by own vCenter.
+_Multiple Users are using same server, hence the naming POD0X-Y where X is a server number and Y is a environment ID within that server. Servers are running ESXi, and each ESXi is managed by own vCenter.
 Two to five users will share the same hardware server and same vCenter, however each User will have own instance of Cisco Container Platform._
-
-Below table provides URLs to User's on-prem environment
-
-*Table 1: User to POD assignment*
-
-VPN/AD User | POD name | vCenter URL | CCP Control Plane URL
---- | --- | --- | ---
-DMZ_User_01 | POD 01-A | https://vc-pod01.hybridlab.local | https://172.18.1.165
-DMZ_User_02 | POD 01-B | https://vc-pod01.hybridlab.local | https://172.18.1.169
-DMZ_User_03 | POD 01-C | https://vc-pod01.hybridlab.local | https://172.18.1.173
-DMZ_User_04 | POD 02-A | https://vc-pod02.hybridlab.local | https://172.18.1.177
-DMZ_User_05 | POD 02-B | https://vc-pod02.hybridlab.local | https://172.18.1.181
-DMZ_User_06 | POD 02-C | https://vc-pod02.hybridlab.local | https://172.18.1.185
-DMZ_User_07 | POD 03-A | https://vc-pod03.hybridlab.local | https://172.18.1.189
-DMZ_User_08 | POD 03-B | https://vc-pod03.hybridlab.local | https://172.18.1.193
-DMZ_User_09 | POD 04-A | https://vc-pod04.hybridlab.local | https://172.18.1.197
-DMZ_User_10 | POD 04-B | https://vc-pod04.hybridlab.local | https://172.18.1.201
-DMZ_User_11 | POD 04-C | https://vc-pod04.hybridlab.local | https://172.18.1.205
-DMZ_User_12 | POD 04-D | https://vc-pod04.hybridlab.local | https://172.18.1.209
-DMZ_User_13 | POD 06-A | https://vc-pod06.hybridlab.local | https://172.18.1.213
-DMZ_User_14 | POD 06-B | https://vc-pod06.hybridlab.local | https://172.18.1.217
-DMZ_User_15 | POD 06-C | https://vc-pod06.hybridlab.local | https://172.18.1.221
-DMZ_User_16 | POD 06-D | https://vc-pod06.hybridlab.local | https://172.18.1.225
-DMZ_User_17 | POD 07-A | https://vc-pod07.hybridlab.local | https://172.18.1.229
-DMZ_User_18 | POD 07-B | https://vc-pod07.hybridlab.local | https://172.18.1.233
-DMZ_User_19 | POD 07-C | https://vc-pod07.hybridlab.local | https://172.18.1.237
-DMZ_User_20 | POD 07-D | https://vc-pod07.hybridlab.local | https://172.18.1.241
 
 ### 2.1 Cisco Anyconnect Mobility Client
 
@@ -61,7 +34,9 @@ In case of the issues with certificate, you will need to uncheck the option that
 
 Close the Configuration window.
 
-In the main entry field, enter your Private Infrastructure VPN IP Address as provided in the paper sheet on your desk. Then choose “Connect”.
+**Enter VPN IP Address as provided in the paper sheet on your desk. Then choose “Connect”.**
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_with_IP.png" width = 500>
 
 After a few seconds, you’ll see a new window notifying you of an “Untrusted Server Certificate”. This is expected and not a real issue. Choose “Connect Anyway”.
 
@@ -95,16 +70,54 @@ You can find password in the paper sheet or in the `DMZ_USER_XX.txt` file.
 
 <img src=https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png width = 500>
 
+## 3. Accessing vCenter
 
-## 3. Accessing Cisco Container Platform
+Users are grouped by PODs, each POD is managed by single VMWare vCenter instance. Please use respective vCenter for your POD according to below table:
+
+*Table 1: User to vCenter anc CCP assignment*
+
+VPN/AD User | POD name | vCenter URL | CCP Control Plane URL
+--- | --- | --- | ---
+DMZ_User_01 | POD 01-A | [](https://vc-pod01.hybridlab.local) | [](https://172.18.1.165)
+DMZ_User_02 | POD 01-B | [](https://vc-pod01.hybridlab.local) | [](https://172.18.1.169)
+DMZ_User_03 | POD 01-C | [](https://vc-pod01.hybridlab.local) | [](https://172.18.1.173)
+DMZ_User_04 | POD 02-A | [](https://vc-pod02.hybridlab.local) | [](https://172.18.1.177)
+DMZ_User_05 | POD 02-B | [](https://vc-pod02.hybridlab.local) | [](https://172.18.1.181)
+DMZ_User_06 | POD 02-C | [](https://vc-pod02.hybridlab.local) | [](https://172.18.1.185)
+DMZ_User_07 | POD 03-A | [](https://vc-pod03.hybridlab.local) | [](https://172.18.1.189)
+DMZ_User_08 | POD 03-B | [](https://vc-pod03.hybridlab.local) | [](https://172.18.1.193)
+DMZ_User_09 | POD 04-A | [](https://vc-pod04.hybridlab.local) | [](https://172.18.1.197)
+DMZ_User_10 | POD 04-B | [](https://vc-pod04.hybridlab.local) | [](https://172.18.1.201)
+DMZ_User_11 | POD 04-C | [](https://vc-pod04.hybridlab.local) | [](https://172.18.1.205)
+DMZ_User_12 | POD 04-D | [](https://vc-pod04.hybridlab.local) | [](https://172.18.1.209)
+DMZ_User_13 | POD 06-A | [](https://vc-pod06.hybridlab.local) | [](https://172.18.1.213)
+DMZ_User_14 | POD 06-B | [](https://vc-pod06.hybridlab.local) | [](https://172.18.1.217)
+DMZ_User_15 | POD 06-C | [](https://vc-pod06.hybridlab.local) | [](https://172.18.1.221)
+DMZ_User_16 | POD 06-D | [](https://vc-pod06.hybridlab.local) | [](https://172.18.1.225)
+DMZ_User_17 | POD 07-A | [](https://vc-pod07.hybridlab.local) | [](https://172.18.1.229)
+DMZ_User_18 | POD 07-B | [](https://vc-pod07.hybridlab.local) | [](https://172.18.1.233)
+DMZ_User_19 | POD 07-C | [](https://vc-pod07.hybridlab.local) | [](https://172.18.1.237)
+DMZ_User_20 | POD 07-D | [](https://vc-pod07.hybridlab.local) | [](https://172.18.1.241)
+
+
+To avoid issues with Flash Player, please select HTML5 mode for vCenter User Interface:
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-select-html-flash.png">
+
+Please enter your Active Directory credentials from the DMZ_USER_XX.txt file on your desktop, or paper sheet. You don't have to specify domain name.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vsphere-login.png">
+
+
+## 4. Accessing Cisco Container Platform
 
 Cisco Container Platform manages Kuberenetes clusters in the private infrasturcture. You will have access to dedicated instance of Cisco Container Platform, from which you will manage you own Kuberenetes Clusters used later on to deploy application.
 
-Please refer to the [Table 1](LAB_access.md) to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login without specifying domain name - see following picture:
+Please refer to the [Table 1](LAB_access.md/#Accessing-vCenter) to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login without specifying domain name - see following picture:
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png" width = 500>
 
-## 4. Google Cloud access
+## 5. Google Cloud access
 
 Open Chrome web browser from your desktop (you can use either jumphost or local PC)
 Go to [http://cloud.google.com](https://cloud.google.com), click on sign-in in the top right corner
