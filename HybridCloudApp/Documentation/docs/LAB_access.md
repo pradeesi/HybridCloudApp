@@ -71,9 +71,7 @@ You’ll see a new window prompting you to provide your Lab’s network credenti
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_login2.png" width = 500>
 
-Next you’ll see the main AnyConnect window go through several connection states. When it has completed establishing the connection, AnyConnect will iconify in the Notification Area of the Windows Taskbar. When you have an established VPN connection, the AnyConnect icon will display a symbol of a padlock, as shown here.
-
-![Picture of connected VPN icon only](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_icon_connected.png)
+Next you’ll see the main AnyConnect window go through several connection states. When it has completed establishing the connection, AnyConnect will iconify in the Notification Area of the Windows Taskbar. When you have an established VPN connection, the AnyConnect icon will display a symbol of a padlock.  
 
 Your are connected to infrastructure on-prem. You can interact with resources in your lab by **either using jumphost or accessing devices directly**. 
 
@@ -109,34 +107,34 @@ Please refer to the [Table 1](LAB_access.md) to access your own Cisco Container 
 ## 4. Google Cloud access
 
 Open Chrome web browser from your desktop (you can use either jumphost or local PC)
-Go to [http://cloud.google.com](https://cloud.google.com), click on sign-in in the top right corner  
+Go to [http://cloud.google.com](https://cloud.google.com), click on sign-in in the top right corner
 
-<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-sign-in.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-sign-in.png">
 
 Enter username for your lab pod which you can find in the paper sheet or `DMZ_USER_XX.txt` file on your desktop. You can change language to your preferred.
 
-<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-login1.png" width = 500>
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-login1.png" width = 500>
 
 Once logged in, click on the `Console` button in the top right corner to open Google Cloud Platform Console.
 
-<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-console-button1.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-console-button1.png">
 
 When you sign-in to Google Cloud admin panel for the first time, you will be asked to accept Terms of Service, provide country of residence and email updates. Please select following options, and click `AGREE AND CONTINUE`
 
-<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-accept-terms1png.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-accept-terms1png.png" width=500>
 
 Next, you will have to select project - click on the `Select a project`
 
-<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-select-project1.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-select-project1.png">
 
 In the new window, select project `fwardz-001
 
-<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-select-project1-2.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-select-project1-2.png" width=500>
 
 Now you can access Google Kubernetes Engine - a Kubernetes Cluster in the Google Cloud
 
-<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-go-gke1.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-go-gke1.png">
 
 You should see screen with warning about no sufficient rights to see the GKE Cluster object, however, you can still navigate to "Workloads" where you can deploy applications on the GKE Cluster.
 
-<img src="https://github.com/pradeesi/HybridCloudApp/blob/master/HybridCloudApp/Documentation/images/gcp-gke-workloads1.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-gke-workloads1.png">
