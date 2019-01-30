@@ -78,7 +78,7 @@ Users are grouped by PODs, each POD is managed by single VMWare vCenter instance
 
 VPN/AD User | POD name | vCenter URL | CCP Control Plane URL
 --- | --- | --- | ---
-DMZ_User_01 | POD 01-B | [https://vc-pod01.hybridlab.local](https://vc-pod01.hybridlab.local) | [https://172.18.1.165](https://172.18.1.165)
+DMZ_User_01 | POD 01-A | [https://vc-pod01.hybridlab.local](https://vc-pod01.hybridlab.local) | [https://172.18.1.165](https://172.18.1.165)
 DMZ_User_02 | POD 01-B | [https://vc-pod01.hybridlab.local](https://vc-pod01.hybridlab.local) | [https://172.18.1.169](https://172.18.1.169)
 DMZ_User_03 | POD 01-C | [https://vc-pod01.hybridlab.local](https://vc-pod01.hybridlab.local) | [https://172.18.1.173](https://172.18.1.173)
 DMZ_User_04 | POD 02-A | [https://vc-pod02.hybridlab.local](https://vc-pod02.hybridlab.local) | [https://172.18.1.177](https://172.18.1.177)
