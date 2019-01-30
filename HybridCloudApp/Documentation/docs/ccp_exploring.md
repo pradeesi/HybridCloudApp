@@ -17,7 +17,7 @@ As described in the Lab task 1, check Table 1 with the URL to access your CCP Co
 
 ## Explore CCP dashboard
 
-Login to your dedicated CCP Dashboard - find URL in [Table 1](lab_task_1_environment_access.md), use your Active Directory credentials that you can find in paper sheet on your desk.
+Login to your dedicated CCP Dashboard - find URL in [Table 1](LAB_access.md), use your Active Directory credentials that you can find in paper sheet on your desk.
 
 Once logged in, you will be taken to the "cluster" page.
 In this page you can manage your kubernetes clusters, edit their configuration, adding nodes or create node policies.
