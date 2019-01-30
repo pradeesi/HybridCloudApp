@@ -1,4 +1,4 @@
-## 6. Accessing Grafana dashboard
+## Accessing Grafana dashboard
 
 Once you are logged in to Kubernetes cluster dashboard, you can obtain password to grafana dashboard which provides grafical view of Kubernetes cluster condition, but also to monitor your applications. 
 
@@ -116,4 +116,4 @@ Since our application is deployed in default namespace, filter will show only lo
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-kibana-log-filter.png">
 
-Furthe filtering could be appliend, but this is not the main topic of this lab excercise. 
+Further filtering could be appliend, but this is not the main topic of this lab excercise. 
