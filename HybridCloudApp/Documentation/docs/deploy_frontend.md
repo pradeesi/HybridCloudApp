@@ -43,11 +43,9 @@ You will create kubernetes deployment for frontend app and expose it to the inte
 
 ### 5. Add Second Container Image ('nginx_srvr') to the Deployment Definition:
 
-* **5.1:** After clicking on the '**+ Add Container**' button (shown in the previous screenshot), click again on the '**Select Google Container Registry image**' and select '**nginx_srvr**' image from the pop-up window. 
+* **5.1:** After clicking on the '**+ Add Container**' button (shown in the previous screenshot), click again on the '**Existing ontainer image**' and click on the '**SELECT**' button. It will display the popup window. For this popup window, select the '**nginx_srvr**' image with 'latest' tag.
 
-	After selecting the image, click on the '**Done**' button as shown in the following screenshot -
-
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_6.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_nginx_image2.png)
 
 ### 6. Add Application Name, Select Cluster and Deploy the Application:
 
