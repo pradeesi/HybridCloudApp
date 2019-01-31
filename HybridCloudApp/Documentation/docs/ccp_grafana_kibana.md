@@ -58,43 +58,69 @@ Fluentd is an open source data collector. It works at the backend to collect and
 
 Kibana is an open source analytics and visualization platform designed to work with Elasticsearch. It allows you to create rich visualizations and dashboards with the aggregated data.
 
-By default access to Kibana is not exposed due to security reasons. The quickest way to login to Kibana is to setup port-forwarding towards POD where kibana has been deployed. Use your installed `kubectl` CLI client on windows and enter following command:
+By default access to Kibana is not exposed due to security reasons. You can expose Kibana to the external network by using 'NodePort'. Let's check wherher kibana service exists currently:
+
+    kubectl -n ccp get svc -n ccp
+    NAME                                        TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)                      AGE
+    ccp-efk-kibana                              ClusterIP      10.103.179.126   <none>         5601/TCP                     1d
+    ccp-monitor-grafana                         ClusterIP      10.99.197.50     <none>         80/TCP                       1d
+    ccp-monitor-prometheus-alertmanager         ClusterIP      10.105.91.170    <none>         80/TCP                       1d
+    ccp-monitor-prometheus-kube-state-metrics   ClusterIP      None             <none>         80/TCP                       1d
+    ccp-monitor-prometheus-node-exporter        ClusterIP      None             <none>         9100/TCP                     1d
+    ccp-monitor-prometheus-pushgateway          ClusterIP      10.103.53.72     <none>         9091/TCP                     1d
+    ccp-monitor-prometheus-server               ClusterIP      10.99.248.1      <none>         80/TCP                       1d
+    elasticsearch-logging                       ClusterIP      10.101.23.250    <none>         9200/TCP                     1d
+    kubernetes-dashboard                        ClusterIP      10.106.224.153   <none>         443/TCP                      1d
+    nginx-ingress-controller                    LoadBalancer   10.99.88.25      172.18.1.239   80:32290/TCP,443:31442/TCP   1d
+    nginx-ingress-default-backend               ClusterIP      10.103.155.52    <none>         80/TCP                       1d
+
+**Note** the service `TYPE` of the `ccp-efk-kibana`. Currently it is ClusterIP, which is not reacheable outside of the Cluster.
+In order to expose Logging dashboard (Kibana) for administrator, you can change `ClusterIP` service type to `NodePort` using following command:
+
+    kubectl -n ccp edit svc ccp-efk-kibana
+
+You will be taken to the `vi` editor. Please move arrows until line 3rd line from the bottom:
+
+    (...)
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+
+Change mode to edit using combination of keys in following order: `ESC` then press `i`. 
+
+Change value `ClusterIP` to `NodePort`, please pay attention to capital letters. Like this:
 
 
-    # kubectl get pods -n ccp
-    
-    NAME                                                         READY   STATUS      RESTARTS   AGE
-    ccp-efk-elasticsearch-curator-1548378000-7x2nd               0/1     Completed   0          2d
-    ccp-efk-elasticsearch-curator-1548464400-9dzxv               0/1     Completed   0          1d
-    ccp-efk-elasticsearch-curator-1548550800-gbv26               0/1     Completed   0          20h
-    ccp-efk-kibana-6d7c97575c-gqjvg                              1/1     Running     0          2d
-    ccp-monitor-grafana-84d4f8b644-nqpdl                         1/1     Running     0          2d
-    ccp-monitor-grafana-set-datasource-llvlc                     0/1     Completed   3          2d
-    ccp-monitor-prometheus-alertmanager-64c4f944cb-zxc2c         2/2     Running     0          2d
-    ccp-monitor-prometheus-kube-state-metrics-5b6855c558-lcpff   1/1     Running     0          2d
-    ccp-monitor-prometheus-node-exporter-48hh2                   1/1     Running     0          2d
-    ccp-monitor-prometheus-node-exporter-9wbb9                   1/1     Running     0          2d
-    ccp-monitor-prometheus-pushgateway-7cfbcd8dfd-s625f          1/1     Running     0          2d
-    ccp-monitor-prometheus-server-6fb9957f87-r7s29               2/2     Running     0          2d
-    elasticsearch-logging-0                                      1/1     Running     0          2d
-    fluentd-es-v2.0.2-8d6rm                                      1/1     Running     0          2d
-    fluentd-es-v2.0.2-hljg5                                      1/1     Running     0          2d
-    kubernetes-dashboard-5888c7c865-psk88                        1/1     Running     0          2d
-    metallb-controller-54559b4447-2rftf                          1/1     Running     0          2d
-    metallb-speaker-8pzdw                                        1/1     Running     0          2d
-    metallb-speaker-rtbp4                                        1/1     Running     0          2d
-    nginx-ingress-controller-fxg78                               1/1     Running     0          2d
-    nginx-ingress-controller-h8nk6                               1/1     Running     0          2d
-    nginx-ingress-default-backend-57fb689dd7-gx6sl               1/1     Running     0          2d
+    (...)
+      type: NodePort
+    status:
+      loadBalancer: {}
 
-    kubectl port-foward -n ccp ccp-efk-kibana-<id> 5601:5601
+Press `Esc` to exit from editing mode.
 
-    example:
-    kubectl port-foward -n ccp ccp-efk-kibana-6d7c97575c-gqjvg 5601:5601
-    
+Press following combination of keys to save file in the following sequnce `:` then type `wq` then press `enter`
+
+Confirm that the change has been successfully saved and execute following command to confirm service `type` for `ccp-efk-kibana`
+
+    kubectl -n ccp get svc
+    NAME                                        TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)                      AGE
+    ccp-efk-kibana                              NodePort       10.97.166.41     <none>         5601:30662/TCP               11h
+
+**Note** external service port, in above example it is `30662`. 
+
+Check node IP addresses by using following command:
+
+    kubectl get nodes -o wide
+
+**Note** any IP address of your node in the collumn `External-IP`
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-get-nodes-ip.png">
+
 Open Chrome web-browser, and enter following URL:
 
-    https://localhost:5061
+    http://<node_ip>:30662
+
+In the instruction example: http://172.18.1.240:30662
 
 Once page will be opened, you will be asked to create index pattern. It means, you have to point from which log collection the logs will be presented.
 
