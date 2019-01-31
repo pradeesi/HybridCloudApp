@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: rest-api-agent-network-policy
+  name: permit-port-5111-rest-api-agent
   namespace: default
 spec:
   podSelector:
