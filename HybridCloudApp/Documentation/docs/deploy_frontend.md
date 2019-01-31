@@ -39,7 +39,7 @@ You will create kubernetes deployment for frontend app and expose it to the inte
 
 * **4.2:** Add '**BACKEND\_HOST**' and '**BACKEND\_PORT**' variables as shown in the following screenshot (Use the values for 'BACKEND\_HOST' and 'BACKEND\_PORT' from the REST API Agent **NodePort Service** created earlier) -
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_5.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/add_env_variable2.png)
 
 ### 5. Add Second Container Image ('nginx_srvr') to the Deployment Definition:
 
