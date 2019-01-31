@@ -3,9 +3,6 @@ kind: NetworkPolicy
 metadata:
   name: default-deny
 spec:
-  podSelector:
-    matchLabels:
-      app: iot-backend
-      tier: mariadb
+  podSelector: {}
   policyTypes:
   - Ingress
