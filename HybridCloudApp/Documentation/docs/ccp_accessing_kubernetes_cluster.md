@@ -4,9 +4,9 @@ Once cluster installation has finished, you will see the status `READY` in CCP d
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-ready.png">
 
-Accessing new Kubernetes cluster requires to obtain the kubeconfig file. Click on the arrow on the right side of the cluster name to see additional options. Select `Download kuberconfig`. File will be downloaded on your desktop.
+Accessing new Kubernetes cluster requires to obtain the kubeconfig file. Click on the name of your cluster to see the detailed view.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-access-dashboard.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-view-details.png">
 
 From the same context menu you can enter to detailed more of the cluster, access Kubernetes dashboard or monitoring based on Prometheus and Kibana or even a delete cluster.
 
@@ -36,13 +36,17 @@ After successful login you will be redirected to the default namespace view:
 
 ## Kubectl - Kubernetes Command Line Interface
 
-While most of the options in Kubernetes are available through the dashboard, CLI commands are also available, and convenient to use. Kubectl is a software leveraging Kubernetes API and translate commands to specific API calls.  
+While most of the options in Kubernetes are available through the dashboard, CLI commands are also available, and convenient to use. Kubectl is a software leveraging Kubernetes API and translate commands to specific API calls.   
+
+**In the later excercises you will you `kubectl` commands to deploy application.**
 
 You can login via SSH to your Master node using PuTTY application available on your desktop on the jumphost. 
 
 * **Step 1** Obtain IP address of your Kubernetes Master node.
 
-Login to Cisco Container Platform, go to the details of you cluster and see the IP address of your Kubernetes Master node. Note there are two addresses, one is VIP and one is a real Node IP address assigned by DHCP. You can use either one.  
+Login to Cisco Container Platform, navigate to the following path:
+
+CCP Dashboard -> Clusters -> click on the `View Details` from the drop down option of your Cluster -> Look at the section `default-master-pool` -> note the `Public IP Address`
 
 * **Step 2** SSH to Master Node using PuTTY
 
