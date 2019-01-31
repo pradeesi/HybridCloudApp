@@ -168,8 +168,8 @@
                 <h2 id="accessing-kubernetes-cluster">Accessing Kubernetes Cluster</h2>
 <p>Once cluster installation has finished, you will see the status <code>READY</code> in CCP dashboard.</p>
 <p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-ready.png"></p>
-<p>Accessing new Kubernetes cluster requires to obtain the kubeconfig file. Click on the arrow on the right side of the cluster name to see additional options. Select <code>Download kuberconfig</code>. File will be downloaded on your desktop.</p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-access-dashboard.png"></p>
+<p>Accessing new Kubernetes cluster requires to obtain the kubeconfig file. Click on the name of your cluster to see the detailed view.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-view-details.png"></p>
 <p>From the same context menu you can enter to detailed more of the cluster, access Kubernetes dashboard or monitoring based on Prometheus and Kibana or even a delete cluster.</p>
 <p>Next task is to enter into the detailed view of the cluster, here you can also download kubeconfig file.</p>
 <p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-edit-details-2.png"></p>
@@ -184,12 +184,14 @@
 <p>After successful login you will be redirected to the default namespace view:</p>
 <p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-default-view.png"></p>
 <h2 id="kubectl-kubernetes-command-line-interface">Kubectl - Kubernetes Command Line Interface</h2>
-<p>While most of the options in Kubernetes are available through the dashboard, CLI commands are also available, and convenient to use. Kubectl is a software leveraging Kubernetes API and translate commands to specific API calls.  </p>
+<p>While most of the options in Kubernetes are available through the dashboard, CLI commands are also available, and convenient to use. Kubectl is a software leveraging Kubernetes API and translate commands to specific API calls.   </p>
+<p><strong>In the later excercises you will you <code>kubectl</code> commands to deploy application.</strong></p>
 <p>You can login via SSH to your Master node using PuTTY application available on your desktop on the jumphost. </p>
 <ul>
 <li><strong>Step 1</strong> Obtain IP address of your Kubernetes Master node.</li>
 </ul>
-<p>Login to Cisco Container Platform, go to the details of you cluster and see the IP address of your Kubernetes Master node. Note there are two addresses, one is VIP and one is a real Node IP address assigned by DHCP. You can use either one.  </p>
+<p>Login to Cisco Container Platform, navigate to the following path:</p>
+<p>CCP Dashboard -&gt; Clusters -&gt; click on the <code>View Details</code> from the drop down option of your Cluster -&gt; Look at the section <code>default-master-pool</code> -&gt; note the <code>Public IP Address</code></p>
 <ul>
 <li><strong>Step 2</strong> SSH to Master Node using PuTTY</li>
 </ul>

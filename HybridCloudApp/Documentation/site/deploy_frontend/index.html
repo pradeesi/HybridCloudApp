@@ -200,51 +200,52 @@
 <h3 id="3-add-frontend_server-container-image-to-the-deployment-definition">3. Add 'frontend_server' Container Image to the Deployment Definition:</h3>
 <ul>
 <li>
-<p><strong>3.1:</strong> Click on the '<strong>Select Google Container Registry Image</strong>' button on the 'Create Deployment' page as shown in the following screenshot -</p>
-<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_2.png" /></p>
+<p><strong>3.1:</strong> Select the '<strong>Existing container image</strong>' radio button on the 'Create Deployment' page and then click on 'SELECT' button to select the image as shown in the following screenshot -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_container1.png" /></p>
 </li>
 <li>
 <p><strong>3.2:</strong> Select the '<strong>frontend_server</strong>' container image from the pop-up window and click on the '<strong>SELECT</strong>' button as shown in the following screenshot -</p>
-<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_3.png" /></p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_frontend_srvr_image1.png" /></p>
 </li>
 </ul>
 <h3 id="4-add-environment-variables-to-the-frontend_server-container">4. Add Environment Variables to the 'frontend_server' Container:</h3>
 <ul>
 <li>
 <p><strong>4.1:</strong> Click on the '+ Add environment variable' button to add the environment variables for the 'frontend_server' container as shown in the following screenshot -</p>
-<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_4.png" /></p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/add_environment_1.png" /></p>
 </li>
 <li>
 <p><strong>4.2:</strong> Add '<strong>BACKEND_HOST</strong>' and '<strong>BACKEND_PORT</strong>' variables as shown in the following screenshot (Use the values for 'BACKEND_HOST' and 'BACKEND_PORT' from the REST API Agent <strong>NodePort Service</strong> created earlier) -</p>
-<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_5.png" /></p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/add_env_variable2.png" /></p>
 </li>
 </ul>
 <h3 id="5-add-second-container-image-nginx_srvr-to-the-deployment-definition">5. Add Second Container Image ('nginx_srvr') to the Deployment Definition:</h3>
 <ul>
 <li>
-<p><strong>5.1:</strong> After clicking on the '<strong>+ Add Container</strong>' button (shown in the previous screenshot), click again on the '<strong>Select Google Container Registry image</strong>' and select '<strong>nginx_srvr</strong>' image from the pop-up window. </p>
-<p>After selecting the image, click on the '<strong>Done</strong>' button as shown in the following screenshot -</p>
-<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_6.png" /></p>
+<p><strong>5.1:</strong> After clicking on the '<strong>+ Add Container</strong>' button (shown in the previous screenshot), click again on the '<strong>Existing ontainer image</strong>' and click on the '<strong>SELECT</strong>' button. It will display the popup window. For this popup window, select the '<strong>nginx_srvr</strong>' image with 'latest' tag.</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_nginx_image2.png" /></p>
+</li>
+<li>
+<p><strong>5.2:</strong> Click on the 'CONTINUE' button as shown in the following screenshot -</p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/continue2.png" /></p>
 </li>
 </ul>
 <h3 id="6-add-application-name-select-cluster-and-deploy-the-application">6. Add Application Name, Select Cluster and Deploy the Application:</h3>
 <ul>
 <li>
-<p><strong>6.1:</strong> Verify that you have '<strong>frontend_server</strong>' and '<strong>nginx_srvr</strong>' container images selected on your screen.</p>
-</li>
-<li>
-<p><strong>6.2:</strong> Change the application name to '<strong>iot-frontend-\&lt;user-#></strong>' and select the 'Cluster' from the drop down menu. </p>
+<p><strong>6.1:</strong> Change the application name to '<strong>iot-frontend-user-X</strong>' (Replace X with you POD number) and select the 'Cluster' from the drop down menu.</p>
 <p>Now you can click on the 'Deploy' button as shown in the following screenshot -</p>
-<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_7.png" /></p>
+<p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy1.png" /></p>
 <blockquote>
 <p><strong>Importnat:</strong> Application deployment may take some time. Wait for it's completion before proceeding with the next steps.</p>
 </blockquote>
 </li>
 </ul>
 <h3 id="7-expose-the-application-by-creating-kubernetes-service">7. Expose the Application by Creating Kubernetes Service:</h3>
+<p>Click on '<strong>Workloads</strong>' option from the left panel on the GKE Dashboard.</p>
 <ul>
 <li>
-<p><strong>7.1:</strong> Click on your Workload 'Name' (Deployment) as shown in the following screenshot -</p>
+<p><strong>7.1:</strong> Click on your Workload name '<strong>iot-frontend-user-X</strong>' (Kubernetes Deployment) as shown in the following screenshot -</p>
 <p><img alt="Rapi" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_8.png" /></p>
 </li>
 <li>
