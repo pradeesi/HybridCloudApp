@@ -56,19 +56,20 @@ You will create kubernetes deployment for frontend app and expose it to the inte
 
 ### 6. Add Application Name, Select Cluster and Deploy the Application:
 
-* **6.1:** Verify that you have '**frontend_server**' and '**nginx_srvr**' container images selected on your screen.
 
-* **6.2:** Change the application name to '**iot-frontend-\<user-\#\>**' and select the 'Cluster' from the drop down menu. 
+* **6.1:** Change the application name to '**iot-frontend-user-X**' (Replace X with you POD number) and select the 'Cluster' from the drop down menu.
 
 	Now you can click on the 'Deploy' button as shown in the following screenshot -
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_7.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy1.png)
 	
 	> **Importnat:** Application deployment may take some time. Wait for it's completion before proceeding with the next steps.
 
 ### 7. Expose the Application by Creating Kubernetes Service:
 
-* **7.1:** Click on your Workload 'Name' (Deployment) as shown in the following screenshot -
+Click on '**Workloads**' option from the left panel on the GKE Dashboard.
+
+* **7.1:** Click on your Workload name '**iot-frontend-user-X**' (Kubernetes Deployment) as shown in the following screenshot -
 
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_8.png)
 
