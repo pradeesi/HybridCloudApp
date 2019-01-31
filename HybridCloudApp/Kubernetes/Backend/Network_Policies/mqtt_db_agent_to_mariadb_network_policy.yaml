@@ -7,7 +7,6 @@ spec:
   podSelector:
     matchLabels:
       app: iot-backend
-      tier: mariadb
   policyTypes:
   - Ingress
   ingress:
