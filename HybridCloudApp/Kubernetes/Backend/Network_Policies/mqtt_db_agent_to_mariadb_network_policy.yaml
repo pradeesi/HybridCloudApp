@@ -4,7 +4,8 @@ metadata:
   name: default-deny
 spec:
   podSelector:
-    app: iot-backend
-    tier: mariadb
+    matchLabels:
+      app: iot-backend
+      tier: mariadb
   policyTypes:
   - Ingress
