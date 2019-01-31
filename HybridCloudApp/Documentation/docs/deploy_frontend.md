@@ -23,13 +23,13 @@ You will create kubernetes deployment for frontend app and expose it to the inte
 
 ### 3. Add 'frontend_server' Container Image to the Deployment Definition:
 
-* **3.1:** Click on the '**Select Google Container Registry Image**' button on the 'Create Deployment' page as shown in the following screenshot -
+* **3.1:** Select the '**Existing container image**' radio button on the 'Create Deployment' page and then click on 'SELECT' button to select the image as shown in the following screenshot -
 
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_container1.png)
 
 * **3.2:** Select the '**frontend_server**' container image from the pop-up window and click on the '**SELECT**' button as shown in the following screenshot -
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_3.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_frintend_srvr_image1.png)
 
 ### 4. Add Environment Variables to the 'frontend_server' Container:
 
