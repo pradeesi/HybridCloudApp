@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Kubernetes Exercise - Hybrid Cloud IoT App</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Kubernetes Exercise";
+    var mkdocs_page_input_path = "ccp_modify_numer_of_nodes.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Hybrid Cloud IoT App</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Lab Access</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../LAB_access/">Accessing the Lab Environment</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cisco Container Platform (CCP)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ccp_exploring/">Explore Cisco Container Platform (CCP)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_create_cluster/">Create Kubernetes Cluster on CCP (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_accessing_kubernetes_cluster/">Access Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Hybrid Cloud IoT Application</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../deploy_backend/">Deploy Backend App on Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../backend_exercise/">Explore Backend Application</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deploy_frontend/">Deploy Frontend App on Google Kubernetes Engine (GKE)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_grafana_kibana/">Explore Grafana and Kibana Modules on CCP</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Kubernetes Exercise</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#excercises-cisco-container-platform-modify-node-configuration">Excercises: Cisco Container Platform - modify node configuration</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Appendices (Optional - Read Only)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../RaPi_with_Sensor/">Appendix-2 Sensor Setup on Raspberry Pi</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../AWS_IoT/">Appendix-1 AWS IoT Core Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Hybrid Cloud IoT App</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Hybrid Cloud IoT Application &raquo;</li>
+        
+      
+    
+    <li>Kubernetes Exercise</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="excercises-cisco-container-platform-modify-node-configuration">Excercises: Cisco Container Platform - modify node configuration</h2>
+<p>By default, when new cluster is created, it puts Master node and Worker nodes to separate pools of nodes. 
+The reason behind it is to not deploy applications on the master node.</p>
+<p>This lab should be executed once your application has been deployed, on your Kubernetes cluster. One of the application components - REST APi agent is running on two worker nodes, since the replica has been set to 2.
+Let's try to remove one node from the cluster, and check how Kubernetes will maintain two copies of the POD.</p>
+<p><strong>TASK 1</strong> Using <code>kubectl</code> get information about all nodes in the cluster, including theis IP address.</p>
+<pre><code>kubectl get pods -o wide
+
+ccpuser@pod06-a-ccp-data-master40bae43bca:~$ kubectl get pods -o wide
+NAME                                          READY     STATUS    RESTARTS   AGE       IP            NODE                                NOMINATED NODE
+iot-backend-mariadb-6bbf6f4764-qxw6g          1/1       Running   0          1h        10.161.2.15   pod06-a-ccp-data-workerf49047e761   &lt;none&gt;
+iot-backend-mqtt-db-agent-57c88c58dd-wcbvs    1/1       Running   0          22m       10.161.2.21   pod06-a-ccp-data-workerf55c089976   &lt;none&gt;
+iot-backend-rest-api-agent-75bfb74dc4-bd52b   1/1       Running   0          22m       10.161.2.19   pod06-a-ccp-data-workerf49047e761   &lt;none&gt;
+iot-backend-rest-api-agent-75bfb74dc4-dgvbk   1/1       Running   0          34s       10.161.3.4    pod06-a-ccp-data-workerf55c089976   &lt;none&gt;
+</code></pre>
+<p><strong>TASK 2</strong> Decrease number of worker nodes in your cluster to <code>1</code></p>
+<p>Click on the small square next to <code>default-pool</code> to edit it's settings.  </p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-modify-worker-pool-edit.png"></p>
+<p>Decrease number of nodes to one and save</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-modify-cluster- decrease-number.png" width=500></p>
+<p><em>it may take several minutes until node will be removed, since Kubernetes must move PODs running on the removed node to the node that will stay within cluster. Sometimes the other node must download image, since that kind of POD was never deployed before</em></p>
+<p><strong>TASK 3</strong> Verify how PODs are distributed. Note how many replicas of <code>iot-backend-rest-api-agent</code> are running.</p>
+<p>Use kubectl command to check pods discritbution across worker nodes:</p>
+<pre><code>kubectl get pods -o wide
+
+ccpuser@pod06-a-ccp-data-master40bae43bca:~$ kubectl get pods -o wide
+NAME                                          READY     STATUS    RESTARTS   AGE       IP            NODE                                NOMINATED NODE
+iot-backend-mariadb-6bbf6f4764-qxw6g          1/1       Running   0          1h        10.161.2.15   pod06-a-ccp-data-workerf49047e761   &lt;none&gt;
+iot-backend-mqtt-db-agent-57c88c58dd-wcbvs    1/1       Running   0          22m       10.161.2.21   pod06-a-ccp-data-workerf49047e761   &lt;none&gt;
+iot-backend-rest-api-agent-75bfb74dc4-bd52b   1/1       Running   0          22m       10.161.2.19   pod06-a-ccp-data-workerf49047e761   &lt;none&gt;
+iot-backend-rest-api-agent-75bfb74dc4-dgvbk   1/1       Running   0          34s       10.161.3.4    pod06-a-ccp-data-workerf49047e761   &lt;none&gt;
+</code></pre>
+<p><strong>TASK 4</strong> Increase number of nodes back to <code>2</code>. </p>
+<p><strong>TASK 5</strong> Verify how many replicas of <code>iot-backend-rest-api-agent</code> are running and on which worker nodes.</p>
+<p><strong>TASK 6</strong> Force Kuberenetes to reschedule and distribute <code>iot-backend-rest-api-agent</code> across nodes.</p>
+<p>Note that adding node to the cluster does not change distribution of PODs automatically. In order to force Kubernetes to deploy POD on the second node, please delete one of the POD <code>iot-backend-rest-api-agent</code></p>
+<pre><code>kubectl delete pod iot-backend-rest-api-agent-XXXXXX
+</code></pre>
+<p>once this is completed verify what happend with <code>kubectl get pods -o wide</code> command.</p>
+<p>During delete operation, Kubernetes realized that POD should have 2 replicas, therefore, it deployed one more replica on the next worker node in the pool.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../RaPi_with_Sensor/" class="btn btn-neutral float-right" title="Appendix-2 Sensor Setup on Raspberry Pi">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ccp_grafana_kibana/" class="btn btn-neutral" title="Explore Grafana and Kibana Modules on CCP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../ccp_grafana_kibana/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../RaPi_with_Sensor/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

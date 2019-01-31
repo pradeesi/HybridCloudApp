@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Basic kubectl cmds - Hybrid Cloud IoT App</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Basic kubectl cmds";
+    var mkdocs_page_input_path = "basic_kubectl_cmds.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Hybrid Cloud IoT App</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Lab Access</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../LAB_access/">Accessing the Lab Environment</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cisco Container Platform (CCP)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ccp_exploring/">Explore Cisco Container Platform (CCP)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_create_cluster/">Create Kubernetes Cluster on CCP (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_accessing_kubernetes_cluster/">Access Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Hybrid Cloud IoT Application</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../deploy_backend/">Deploy Backend App on Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../backend_exercise/">Explore Backend Application</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deploy_frontend/">Deploy Frontend App on Google Kubernetes Engine (GKE)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_grafana_kibana/">Explore Grafana and Kibana Modules on CCP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_modify_numer_of_nodes/">Kubernetes Exercise</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Appendices (Optional - Read Only)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../RaPi_with_Sensor/">Appendix-2 Sensor Setup on Raspberry Pi</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../AWS_IoT/">Appendix-1 AWS IoT Core Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Hybrid Cloud IoT App</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Basic kubectl cmds</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>kubectl version</p>
+<p>kubectl get nodes</p>
+<p>kubectl run <deployment_name> --image=<container_image> --port=<port></p>
+<h3 id="kubernetes-deployments">Kubernetes Deployments:</h3>
+<p>A Deployment controller provides declarative updates for Pods and ReplicaSets. </p>
+<p>You describe a desired state in a Deployment object, and the Deployment controller changes the actual state to the desired state at a controlled rate. You can define Deployments to create new ReplicaSets, or to remove existing Deployments and adopt all their resources with new Deployments.</p>
+<ul>
+<li>
+<p><strong>Create Deployment</strong> Use the following command to create a deployment using a yaml file -</p>
+<pre><code>kubectl create -f &lt;yaml file path&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>List Deployments:</strong> Use the following command to list all kubernetes deployments -</p>
+<pre><code>kubectl get deployments
+</code></pre>
+</li>
+<li>
+<p><strong>Deployment Details:</strong> Use the following command to display the details of deployment - </p>
+<pre><code>kubectl describe deployment
+</code></pre>
+</li>
+<li>
+<p><strong>Scale Deployment:</strong> Use the following command to scale (up/down) a kubernetes deployment -</p>
+<pre><code>kubectl scale deployments/&lt;deployment_name&gt; --replicas=&lt;number of replicas&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Delete Deployment:</strong> Use the following command to delete a deployment -</p>
+<pre><code>kubectl delete deployment &lt;deployment_name&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="kubernetes-pods">Kubernetes Pods:</h3>
+<p>A Pod represents a unit of deployment: a single instance of an application in Kubernetes, which might consist of either a single container or a small number of containers that are tightly coupled and that share resources.</p>
+<ul>
+<li>
+<p><strong>List Pods:</strong> Use the following command to list all the pods:</p>
+<pre><code>kubectl get pods
+</code></pre>
+<p>or use wide option to see more details -</p>
+<pre><code>kubectl get pods -o wide
+</code></pre>
+</li>
+<li>
+<p><strong>List Pods Filter:</strong> You can filter the pods using the labels used in deployment -</p>
+<pre><code>kubectl get pods -l &lt;label_name&gt;=&lt;label_value&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Pod Details:</strong> Use the following command to see the containers and used images for pods -</p>
+<pre><code>kubectl describe pods
+</code></pre>
+</li>
+<li>
+<p><strong>Pod Logs:</strong> Use the following command to check the pod logs -</p>
+<pre><code>kubectl logs &lt;pod_name&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="kubernetes-services">Kubernetes Services:</h3>
+<p>A Kubernetes Service is an abstraction which defines a logical set of Pods and a policy by which to access them - sometimes called a micro-service.</p>
+<ul>
+<li>
+<p><strong>List Service:</strong> Use the following command to list the current Services -</p>
+<pre><code>kubectl get services
+</code></pre>
+<p>You can filter the services using the labels used in deployment -</p>
+<pre><code>kubectl get services -l &lt;label_name&gt;=&lt;label_value&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Create Service:</strong> Use the following command to create a new service -</p>
+<pre><code>kubectl expose deployment/&lt;deployment_name&gt; --type="NodePort" --port &lt;port&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Service Details:</strong> Use the following command to find out what port was opened externally (by the NodePort option) -</p>
+<pre><code>kubectl describe services/&lt;service_name&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Delete Service:</strong> Use the following command to delete a service -</p>
+<pre><code>kubectl delete service/&lt;service_name&gt;
+</code></pre>
+<p>or</p>
+<pre><code>kubectl delete service -l &lt;label_name&gt;=&lt;label_value&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Parse Service Node Port:</strong> Use the following script to filterout the node-port of a service (change the service name) -</p>
+<pre><code>export NODE_PORT=$(kubectl get services/&lt;service-name&gt; -o go-template='{{(index .spec.ports 0).nodePort}}')
+
+echo NODE_PORT=$NODE_PORT
+</code></pre>
+</li>
+</ul>
+<h3 id="kubernetes-secrets">Kubernetes Secrets:</h3>
+<p>A Secret is an object that stores a piece of sensitive data like a password or key.</p>
+<ul>
+<li>
+<p><strong>List Secrets:</strong> Use the following command to list all secrets</p>
+<pre><code>kubectl get secrets
+</code></pre>
+</li>
+<li>
+<p><strong>Secret Details:</strong> Use the following command to list the secret details - </p>
+<pre><code>kubectl describe secrets/&lt;secret_name&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Create Secret:</strong> Use the following command to create secret -</p>
+<pre><code>kubectl create secret generic &lt;secret_name&gt; --from-literal=&lt;key_name&gt;=&lt;key_value&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Delete Secret:</strong> use the following command to delete a secret - </p>
+<pre><code>kubectl delete secret &lt;secret_name&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="interacting-with-pod-containers">Interacting with Pod Containers</h3>
+<ul>
+<li>
+<p><strong>List Env Variables:</strong> Use the following command to list the environment variables -</p>
+<pre><code>kubectl exec &lt;pod_name&gt; env
+</code></pre>
+</li>
+<li>
+<p><strong>Access Container Shell:</strong> Use the following command to access bash shell in a container - </p>
+<pre><code>kubectl exec -ti &lt;pod_name&gt; bash
+</code></pre>
+<p><strong>Note:</strong> To close your container connection type '<strong>exit</strong>'.</p>
+</li>
+</ul>
+<h3 id="_1">=========================================</h3>
+<p>kubectl proxy</p>
+<p>curl http://localhost:8001/version</p>
+<p>export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+echo Name of the Pod: $POD_NAME</p>
+<p>curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy</p>
+<p>=========================================</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
