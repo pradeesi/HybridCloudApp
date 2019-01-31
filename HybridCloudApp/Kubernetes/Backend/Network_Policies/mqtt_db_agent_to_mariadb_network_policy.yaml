@@ -16,4 +16,4 @@ spec:
           app: iot-backend-mqtt-db-agent
     ports:
     - protocol: TCP
-      port: 3307
+      port: 5000
