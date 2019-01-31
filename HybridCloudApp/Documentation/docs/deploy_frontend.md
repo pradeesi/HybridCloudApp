@@ -50,7 +50,7 @@ You will create kubernetes deployment for frontend app and expose it to the inte
 * **5.2:** Click on the 'CONTINUE' button as shown in the following screenshot -
 
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/continue1.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/continue2.png)
 
 
 
