@@ -1,4 +1,5 @@
 site_name: Hybrid Cloud IoT App
+site_description: Welcome to the 'Containerized Applications on Hybrid Cloud Environments' Lab.
 
 nav:
   - Lab Access:
@@ -13,6 +14,8 @@ nav:
     - Deploy Frontend App on Google Kubernetes Engine (GKE): 'deploy_frontend.md'
     - Explore Grafana and Kibana Modules on CCP: ccp_grafana_kibana.md
     - Kubernetes Exercise: 'ccp_modify_numer_of_nodes.md'
+  - Kubernetes Network Policies:
+    - Apply Security Policy to REST API Agent: security_policies.md
   - Appendices (Optional - Read Only):
       Appendix-1 AWS IoT Core Configuration: 'AWS_IoT.md'
       Appendix-2 Sensor Setup on Raspberry Pi: 'RaPi_with_Sensor.md'

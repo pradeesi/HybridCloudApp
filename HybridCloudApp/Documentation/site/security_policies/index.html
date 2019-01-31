@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Access Kubernetes Cluster (Tenant Cluster) - Hybrid Cloud IoT App</title>
+  <title>Apply Security Policy to REST API Agent - Hybrid Cloud IoT App</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Access Kubernetes Cluster (Tenant Cluster)";
-    var mkdocs_page_input_path = "ccp_accessing_kubernetes_cluster.md";
+    var mkdocs_page_name = "Apply Security Policy to REST API Agent";
+    var mkdocs_page_input_path = "security_policies.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -71,18 +71,9 @@
                     
     <a class="" href="../ccp_create_cluster/">Create Kubernetes Cluster on CCP (Tenant Cluster)</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Access Kubernetes Cluster (Tenant Cluster)</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#accessing-kubernetes-cluster">Accessing Kubernetes Cluster</a></li>
-    
-
-    <li class="toctree-l3"><a href="#kubectl-kubernetes-command-line-interface">Kubectl - Kubernetes Command Line Interface</a></li>
-    
-
-    </ul>
+    <a class="" href="../ccp_accessing_kubernetes_cluster/">Access Kubernetes Cluster (Tenant Cluster)</a>
                 </li>
     </ul>
 	    </li>
@@ -118,9 +109,25 @@
 		
     <span class="caption-text">Kubernetes Network Policies</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../security_policies/">Apply Security Policy to REST API Agent</a>
+    <a class="current" href="./">Apply Security Policy to REST API Agent</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#applying-kubernetes-network-policies-to-secure-the-application">Applying Kubernetes Network Policies to Secure the Application</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#1-apply-deny-all-network-policy">1. Apply Deny All Network Policy:</a></li>
+        
+            <li><a class="toctree-l4" href="#2-apply-permit-port-5111-network-policy">2. Apply Permit Port 5111 Network Policy:</a></li>
+        
+            <li><a class="toctree-l4" href="#3-apply-permit-port-5050-network-policy">3. Apply Permit Port 5050 Network Policy:</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -162,11 +169,11 @@
     
       
         
-          <li>Cisco Container Platform (CCP) &raquo;</li>
+          <li>Kubernetes Network Policies &raquo;</li>
         
       
     
-    <li>Access Kubernetes Cluster (Tenant Cluster)</li>
+    <li>Apply Security Policy to REST API Agent</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -176,44 +183,116 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="accessing-kubernetes-cluster">Accessing Kubernetes Cluster</h2>
-<p>Once cluster installation has finished, you will see the status <code>READY</code> in CCP dashboard.</p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-ready.png"></p>
-<p>Accessing new Kubernetes cluster requires to obtain the kubeconfig file. Click on the name of your cluster to see the detailed view.</p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-view-details.png"></p>
-<p>From the same context menu you can enter to detailed more of the cluster, access Kubernetes dashboard or monitoring based on Prometheus and Kibana or even a delete cluster.</p>
-<p>Next task is to enter into the detailed view of the cluster, here you can also download kubeconfig file.</p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-edit-details-2.png"></p>
-<p>Next, click on the <code>Kubernetes Dashboard</code> button:</p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-access-dashboards.png"></p>
-<p>You will be redirected to Kubernetes standard dashboard. Cisco did not changed the Kubernetes User Interface intentionaly, since it is well known by developers. </p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-cluster-access-dashboard.png"></p>
-<p>Please select <code>Kubeconfig</code> option (which is the default) and select previously stored kubeconfig.yaml file which should be in the <code>Downloads</code> folder.</p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-select-kubeconfig.png"></p>
-<p>Once selected, click Sing-In:</p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-kubeconfig-selected.png"></p>
-<p>After successful login you will be redirected to the default namespace view:</p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-default-view.png"></p>
-<h2 id="kubectl-kubernetes-command-line-interface">Kubectl - Kubernetes Command Line Interface</h2>
-<p>While most of the options in Kubernetes are available through the dashboard, CLI commands are also available, and convenient to use. Kubectl is a software leveraging Kubernetes API and translate commands to specific API calls.   </p>
-<p><strong>In the later excercises you will you <code>kubectl</code> commands to deploy application.</strong></p>
-<p>You can login via SSH to your Master node using PuTTY application available on your desktop on the jumphost. </p>
-<ul>
-<li><strong>Step 1</strong> Obtain IP address of your Kubernetes Master node.</li>
-</ul>
-<p>Login to Cisco Container Platform, navigate to the following path:</p>
-<p>CCP Dashboard -&gt; Clusters -&gt; click on the <code>View Details</code> from the drop down option of your Cluster -&gt; Look at the section <code>default-master-pool</code> -&gt; note the <code>Public IP Address</code></p>
-<ul>
-<li><strong>Step 2</strong> SSH to Master Node using PuTTY</li>
-</ul>
-<p>Login to Kubernetes node require SSH private key. The Key is located on the Jumphost in the folder <code>C:\ssh-key\id_rsa.pem</code>. </p>
-<p>Open PuTTY, go to <code>Connection -&gt; SSH -&gt; Auth</code> and select private key - </p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/putty-private-key.png" width=500></p>
-<p>next go to <code>Connection -&gt; Data</code> and provide username <code>ccpuser</code> -  </p>
-<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/putty-username.png" width=500></p>
-<p>Once logged in to Kubernetes master node, you can use <code>kubectl</code> command. You can try example command to obtain nodes information.</p>
-<pre><code>kubectl get nodes -o wide
+                <h1 id="applying-kubernetes-network-policies-to-secure-the-application">Applying Kubernetes Network Policies to Secure the Application</h1>
+<p>A network policy is a specification of how groups of pods are allowed to communicate with each other and other network endpoints.</p>
+<p>NetworkPolicy resources use labels to select pods and define rules which specify what traffic is allowed to the selected pods.</p>
+<p>By now you should have your Hybrid Cloud IoT Application working end to end. Let's apply some Kubernetes Network Policies to allow traffic from the frontend app to port '5050' only (REST API AGENT container accepts HTTP requests on port '5050').</p>
+<h2 id="1-apply-deny-all-network-policy">1. Apply Deny All Network Policy:</h2>
+<p>Following Kubernetes Network Policy yaml definition would block all the traffic coming towards REST API Agent -</p>
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all-rest-api-agent
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: iot-backend-rest-api-agent
+      tier: rest-api-agent
+  policyTypes:
+  - Ingress
 </code></pre>
+<ul>
+<li>
+<p>1.1: Execute the following command on Kubernetes master node to apply this Network Policy on your REST API Agent -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Network_Policies/deny_all_rest_api_agent.yaml
+</code></pre>
+</li>
+<li>
+<p>1.2: Now try to referesh your Frontend App webpage. It should stop working.</p>
+</li>
+</ul>
+<h2 id="2-apply-permit-port-5111-network-policy">2. Apply Permit Port 5111 Network Policy:</h2>
+<p>Following Kubernetes Network Policy yaml definition would allow the traffic on port 5111 to REST API Agent -</p>
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: permit-port-5111-rest-api-agent
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: iot-backend-rest-api-agent
+      tier: rest-api-agent
+  policyTypes:
+  - Ingress
+  ingress:
+  - from: []
+    ports:
+    - protocol: TCP
+      port: 5111
+</code></pre>
+<ul>
+<li>
+<p>2.1: Execute the following command on Kubernetes master node to apply this Network Policy on your REST API Agent -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Network_Policies/permit_port_5111_rest_api_agent.yaml
+</code></pre>
+</li>
+<li>
+<p>2.2: Now try to referesh your Frontend App webpage. <strong>Does it work? Why?</strong></p>
+</li>
+</ul>
+<h2 id="3-apply-permit-port-5050-network-policy">3. Apply Permit Port 5050 Network Policy:</h2>
+<p>Following Kubernetes Network Policy yaml definition would allow the traffic on port 5050 to REST API Agent -</p>
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: permit-port-5050-rest-api-agent
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: iot-backend-rest-api-agent
+      tier: rest-api-agent
+  policyTypes:
+  - Ingress
+  ingress:
+  - from: []
+    ports:
+    - protocol: TCP
+      port: 5050
+</code></pre>
+<ul>
+<li>
+<p>3.1: Execute the following command on Kubernetes master node to apply this Network Policy on your REST API Agent -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Network_Policies/permit_port_5050_rest_api_agent.yaml
+</code></pre>
+</li>
+<li>
+<p>3.2: Now try to referesh your Frontend App webpage. <strong>Does it work? Why?</strong></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note: Other command related to Network Policy that you may use -
+</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Display Kubernetes Network Policies -</p>
+<pre><code>kubectl get NetworkPolicies
+</code></pre>
+</li>
+<li>
+<p>Display Network Policy Details -</p>
+<pre><code>kubectl describe NetworkPolicy &lt;Network Policy Name&gt;
+</code></pre>
+</li>
+<li>
+<p>Delete Network Policy -</p>
+<pre><code>kubectl delete NetworkPolicy &lt;Network Policy Name&gt;
+</code></pre>
+</li>
+</ul>
               
             </div>
           </div>
@@ -221,10 +300,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../deploy_backend/" class="btn btn-neutral float-right" title="Deploy Backend App on Kubernetes Cluster (Tenant Cluster)">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../RaPi_with_Sensor/" class="btn btn-neutral float-right" title="Appendix-2 Sensor Setup on Raspberry Pi">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../ccp_create_cluster/" class="btn btn-neutral" title="Create Kubernetes Cluster on CCP (Tenant Cluster)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ccp_modify_numer_of_nodes/" class="btn btn-neutral" title="Kubernetes Exercise"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -250,10 +329,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../ccp_create_cluster/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../ccp_modify_numer_of_nodes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../deploy_backend/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../RaPi_with_Sensor/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
