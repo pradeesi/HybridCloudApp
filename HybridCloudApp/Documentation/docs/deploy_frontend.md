@@ -29,7 +29,7 @@ You will create kubernetes deployment for frontend app and expose it to the inte
 
 * **3.2:** Select the '**frontend_server**' container image from the pop-up window and click on the '**SELECT**' button as shown in the following screenshot -
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_frintend_srvr_image1.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_frontend_srvr_image1.png)
 
 ### 4. Add Environment Variables to the 'frontend_server' Container:
 
