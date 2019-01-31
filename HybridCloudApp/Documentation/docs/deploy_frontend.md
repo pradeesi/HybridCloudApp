@@ -47,6 +47,13 @@ You will create kubernetes deployment for frontend app and expose it to the inte
 
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_nginx_image2.png)
 
+* **5.2:** Click on the 'CONTINUE' button as shown in the following screenshot -
+
+
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/continue1.png)
+
+
+
 ### 6. Add Application Name, Select Cluster and Deploy the Application:
 
 * **6.1:** Verify that you have '**frontend_server**' and '**nginx_srvr**' container images selected on your screen.
