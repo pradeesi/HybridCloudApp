@@ -4,8 +4,6 @@ metadata:
   name: test-network-policy
   namespace: default
 spec:
-  podSelector:
-    matchLabels:
-      app: iot-backend
+  podSelector: {}
   policyTypes:
   - Ingress
