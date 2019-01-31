@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Access Kubernetes Cluster (Tenant Cluster) - Hybrid Cloud IoT App</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Access Kubernetes Cluster (Tenant Cluster)";
+    var mkdocs_page_input_path = "ccp_accessing_kubernetes_cluster.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Hybrid Cloud IoT App</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Lab Access</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../LAB_access/">Accessing the Lab Environment</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cisco Container Platform (CCP)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ccp_exploring/">Explore Cisco Container Platform (CCP)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_create_cluster/">Create Kubernetes Cluster on CCP (Tenant Cluster)</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Access Kubernetes Cluster (Tenant Cluster)</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#accessing-kubernetes-cluster">Accessing Kubernetes Cluster</a></li>
+    
+
+    <li class="toctree-l3"><a href="#kubectl-kubernetes-command-line-interface">Kubectl - Kubernetes Command Line Interface</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Hybrid Cloud IoT Application</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../deploy_backend/">Deploy Backend App on Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../backend_exercise/">Explore Backend Application</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deploy_frontend/">Deploy Frontend App on Google Kubernetes Engine (GKE)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_grafana_kibana/">Explore Grafana and Kibana Modules on CCP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_modify_numer_of_nodes/">Kubernetes Exercise</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Kubernetes Network Policies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../security_policies/">Apply Security Policy to REST API Agent</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Appendices (Optional - Read Only)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../RaPi_with_Sensor/">Appendix-2 Sensor Setup on Raspberry Pi</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../AWS_IoT/">Appendix-1 AWS IoT Core Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Hybrid Cloud IoT App</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Cisco Container Platform (CCP) &raquo;</li>
+        
+      
+    
+    <li>Access Kubernetes Cluster (Tenant Cluster)</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="accessing-kubernetes-cluster">Accessing Kubernetes Cluster</h2>
+<p>Once cluster installation has finished, you will see the status <code>READY</code> in CCP dashboard.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-ready.png"></p>
+<p>Accessing new Kubernetes cluster requires to obtain the kubeconfig file. Click on the name of your cluster to see the detailed view.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-view-details.png"></p>
+<p>From the same context menu you can enter to detailed more of the cluster, access Kubernetes dashboard or monitoring based on Prometheus and Kibana or even a delete cluster.</p>
+<p>Next task is to enter into the detailed view of the cluster, here you can also download kubeconfig file.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-edit-details-2.png"></p>
+<p>Next, click on the <code>Kubernetes Dashboard</code> button:</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-access-dashboards.png"></p>
+<p>You will be redirected to Kubernetes standard dashboard. Cisco did not changed the Kubernetes User Interface intentionaly, since it is well known by developers. </p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-cluster-access-dashboard.png"></p>
+<p>Please select <code>Kubeconfig</code> option (which is the default) and select previously stored kubeconfig.yaml file which should be in the <code>Downloads</code> folder.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-select-kubeconfig.png"></p>
+<p>Once selected, click Sing-In:</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-kubeconfig-selected.png"></p>
+<p>After successful login you will be redirected to the default namespace view:</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-default-view.png"></p>
+<h2 id="kubectl-kubernetes-command-line-interface">Kubectl - Kubernetes Command Line Interface</h2>
+<p>While most of the options in Kubernetes are available through the dashboard, CLI commands are also available, and convenient to use. Kubectl is a software leveraging Kubernetes API and translate commands to specific API calls.   </p>
+<p><strong>In the later excercises you will you <code>kubectl</code> commands to deploy application.</strong></p>
+<p>You can login via SSH to your Master node using PuTTY application available on your desktop on the jumphost. </p>
+<ul>
+<li><strong>Step 1</strong> Obtain IP address of your Kubernetes Master node.</li>
+</ul>
+<p>Login to Cisco Container Platform, navigate to the following path:</p>
+<p>CCP Dashboard -&gt; Clusters -&gt; click on the <code>View Details</code> from the drop down option of your Cluster -&gt; Look at the section <code>default-master-pool</code> -&gt; note the <code>Public IP Address</code></p>
+<ul>
+<li><strong>Step 2</strong> SSH to Master Node using PuTTY</li>
+</ul>
+<p>Login to Kubernetes node require SSH private key. The Key is located on the Jumphost in the folder <code>C:\ssh-key\id_rsa.pem</code>. </p>
+<p>Open PuTTY, go to <code>Connection -&gt; SSH -&gt; Auth</code> and select private key - </p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/putty-private-key.png" width=500></p>
+<p>next go to <code>Connection -&gt; Data</code> and provide username <code>ccpuser</code> -  </p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/putty-username.png" width=500></p>
+<p>Once logged in to Kubernetes master node, you can use <code>kubectl</code> command. You can try example command to obtain nodes information.</p>
+<pre><code>kubectl get nodes -o wide
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../deploy_backend/" class="btn btn-neutral float-right" title="Deploy Backend App on Kubernetes Cluster (Tenant Cluster)">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ccp_create_cluster/" class="btn btn-neutral" title="Create Kubernetes Cluster on CCP (Tenant Cluster)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../ccp_create_cluster/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../deploy_backend/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

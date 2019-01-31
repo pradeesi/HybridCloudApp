@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Accessing the Lab Environment - Hybrid Cloud IoT App</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Accessing the Lab Environment";
+    var mkdocs_page_input_path = "LAB_access.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Hybrid Cloud IoT App</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Lab Access</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Accessing the Lab Environment</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#connectivity-check">Connectivity Check</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#lab-access-general-description">Lab access general description</a></li>
+        
+            <li><a class="toctree-l4" href="#1-on-prem-private-infrastructure-access-vpn">1. On-prem private infrastructure access (VPN)</a></li>
+        
+            <li><a class="toctree-l4" href="#2-optional-remote-desktop-connection">2 (Optional) Remote desktop connection</a></li>
+        
+            <li><a class="toctree-l4" href="#3-accessing-vcenter">3. Accessing vCenter</a></li>
+        
+            <li><a class="toctree-l4" href="#4-accessing-cisco-container-platform">4. Accessing Cisco Container Platform</a></li>
+        
+            <li><a class="toctree-l4" href="#5-google-cloud-access">5. Google Cloud access</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cisco Container Platform (CCP)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ccp_exploring/">Explore Cisco Container Platform (CCP)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_create_cluster/">Create Kubernetes Cluster on CCP (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_accessing_kubernetes_cluster/">Access Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Hybrid Cloud IoT Application</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../deploy_backend/">Deploy Backend App on Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../backend_exercise/">Explore Backend Application</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deploy_frontend/">Deploy Frontend App on Google Kubernetes Engine (GKE)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_grafana_kibana/">Explore Grafana and Kibana Modules on CCP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_modify_numer_of_nodes/">Kubernetes Exercise</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Kubernetes Network Policies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../security_policies/">Apply Security Policy to REST API Agent</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Appendices (Optional - Read Only)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../RaPi_with_Sensor/">Appendix-2 Sensor Setup on Raspberry Pi</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../AWS_IoT/">Appendix-1 AWS IoT Core Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Hybrid Cloud IoT App</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Lab Access &raquo;</li>
+        
+      
+    
+    <li>Accessing the Lab Environment</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="connectivity-check">Connectivity Check</h1>
+<h2 id="lab-access-general-description">Lab access general description</h2>
+<p>The lab has been built leveraging multiple cloud environments as following:</p>
+<ul>
+<li>Amazon Web Services</li>
+<li>Google Cloud</li>
+<li>Private intrastructure on-prem</li>
+</ul>
+<p>During this lab, you will get access to Google Cloud and Private Infrastructure, as these are providing container environment. Amazon Web Services is used in this setup as a message broker only which is a function already provided by Amazon. </p>
+<h2 id="1-on-prem-private-infrastructure-access-vpn">1. On-prem private infrastructure access (VPN)</h2>
+<p>In order to get access to private network, please first find credentials for your POD in the paper sheet on in the DMZ_USER_XX.txt file on the desktop. </p>
+<p>Each LAB User will have dedicate instance on Cisco Container Platform, where you can manage Kubernetes Cluster. Once you will create Kubernetes cluster, you will deploy your containerized application.</p>
+<p><em>Multiple Users are using same server, hence the naming POD0X-Y where X is a server number and Y is a environment ID within that server. Servers are running ESXi, and each ESXi is managed by own vCenter.
+Two to five users will share the same hardware server and same vCenter, however each User will have own instance of Cisco Container Platform.</em></p>
+<h3 id="11-cisco-anyconnect-mobility-client">1.1 Cisco Anyconnect Mobility Client</h3>
+<p>Run Cisco Anyconnect VPN client available on your desktop.</p>
+<p>You’ll need to review and configure the AnyConnect options. After Anyconnect launches, you’ll need to click on the “Configuration” button on the main panel. See image below.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_without_IP.png" width = 500></p>
+<p>In case of the issues with certificate, you will need to uncheck the option that says “Block connections to untrusted servers”. Your selection is immediately saved.</p>
+<p><img alt="anyconnect settings picture here" src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_settings.png" /></p>
+<p>Close the Configuration window.</p>
+<p><strong>Enter VPN IP Address as provided in the paper sheet on your desk or on below screenshot. Then choose “Connect”.</strong></p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_with_IP.png" width = 500></p>
+<p>After a few seconds, you’ll see a new window notifying you of an “Untrusted Server Certificate”. This is expected and not a real issue. Choose “Connect Anyway”.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_accept_cert.png" width = 500></p>
+<p>You’ll see a new window prompting you to provide your Lab’s network credentials. Enter the Username and Password as provided in the paper sheet. Choose “OK”.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_login2.png" width = 500></p>
+<p>Next you’ll see the main AnyConnect window go through several connection states. When it has completed establishing the connection, AnyConnect will iconify in the Notification Area of the Windows Taskbar. When you have an established VPN connection, the AnyConnect icon will display a symbol of a padlock.  </p>
+<p>Your are connected to infrastructure on-prem. You can interact with resources in your lab by <strong>either using jumphost or accessing devices directly</strong>. </p>
+<h2 id="2-optional-remote-desktop-connection">2 (Optional) Remote desktop connection</h2>
+<p><em>This step is optional, you can perform all operations from the desktop as well.</em></p>
+<p>Open Remote Desktop Client (icon available on the desktop). If there is no icon for Remote Desktop Connection on the Desktop, click start, and type <code>mstsc</code></p>
+<p>Click <code>show options</code> and type IP address of the jumphost and username. Don't forget to specify domain name which is <code>HYBRIDLAB</code>.</p>
+<pre><code>Computer: 172.18.1.10
+User name: HYBRIDLAB\DMZ_USER_&lt;ID&gt;
+</code></pre>
+<p>Populated fields should be similar to the picture.  </p>
+<p>You can find password in the paper sheet or in the <code>DMZ_USER_XX.txt</code> file.</p>
+<p><strong>Each user will login to the same jumphost: <code>172.18.1.10</code>, regardless of the POD or server they should use</strong></p>
+<p><img src=https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png width = 500></p>
+<h2 id="3-accessing-vcenter">3. Accessing vCenter</h2>
+<p>Users are grouped by PODs, each POD is managed by single VMWare vCenter instance. Please use respective vCenter for your POD according to below table:</p>
+<p><em>Table 1: User to vCenter anc CCP assignment</em></p>
+<table>
+<thead>
+<tr>
+<th>VPN/AD User</th>
+<th>POD name</th>
+<th>vCenter URL</th>
+<th>CCP Control Plane URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DMZ_User_01</td>
+<td>POD 01-A</td>
+<td><a href="https://vc-pod01.hybridlab.local">https://vc-pod01.hybridlab.local</a></td>
+<td><a href="https://172.18.1.165">https://172.18.1.165</a></td>
+</tr>
+<tr>
+<td>DMZ_User_02</td>
+<td>POD 01-B</td>
+<td><a href="https://vc-pod01.hybridlab.local">https://vc-pod01.hybridlab.local</a></td>
+<td><a href="https://172.18.1.169">https://172.18.1.169</a></td>
+</tr>
+<tr>
+<td>DMZ_User_03</td>
+<td>POD 02-A</td>
+<td><a href="https://vc-pod02.hybridlab.local">https://vc-pod02.hybridlab.local</a></td>
+<td><a href="https://172.18.1.177">https://172.18.1.177</a></td>
+</tr>
+<tr>
+<td>DMZ_User_04</td>
+<td>POD 02-B</td>
+<td><a href="https://vc-pod02.hybridlab.local">https://vc-pod02.hybridlab.local</a></td>
+<td><a href="https://172.18.1.181">https://172.18.1.181</a></td>
+</tr>
+<tr>
+<td>DMZ_User_05</td>
+<td>POD 03-A</td>
+<td><a href="https://vc-pod03.hybridlab.local">https://vc-pod03.hybridlab.local</a></td>
+<td><a href="https://172.18.1.189">https://172.18.1.189</a></td>
+</tr>
+<tr>
+<td>DMZ_User_06</td>
+<td>POD 03-B</td>
+<td><a href="https://vc-pod03.hybridlab.local">https://vc-pod03.hybridlab.local</a></td>
+<td><a href="https://172.18.1.193">https://172.18.1.193</a></td>
+</tr>
+<tr>
+<td>DMZ_User_07</td>
+<td>POD 04-A</td>
+<td><a href="https://vc-pod04.hybridlab.local">https://vc-pod04.hybridlab.local</a></td>
+<td><a href="https://172.18.1.197">https://172.18.1.197</a></td>
+</tr>
+<tr>
+<td>DMZ_User_08</td>
+<td>POD 04-B</td>
+<td><a href="https://vc-pod04.hybridlab.local">https://vc-pod04.hybridlab.local</a></td>
+<td><a href="https://172.18.1.201">https://172.18.1.201</a></td>
+</tr>
+<tr>
+<td>DMZ_User_09</td>
+<td>POD 04-C</td>
+<td><a href="https://vc-pod04.hybridlab.local">https://vc-pod04.hybridlab.local</a></td>
+<td><a href="https://172.18.1.205">https://172.18.1.205</a></td>
+</tr>
+<tr>
+<td>DMZ_User_10</td>
+<td>POD 04-D</td>
+<td><a href="https://vc-pod04.hybridlab.local">https://vc-pod04.hybridlab.local</a></td>
+<td><a href="https://172.18.1.209">https://172.18.1.209</a></td>
+</tr>
+<tr>
+<td>DMZ_User_11</td>
+<td>POD 06-A</td>
+<td><a href="https://vc-pod06.hybridlab.local">https://vc-pod06.hybridlab.local</a></td>
+<td><a href="https://172.18.1.213">https://172.18.1.213</a></td>
+</tr>
+<tr>
+<td>DMZ_User_12</td>
+<td>POD 06-B</td>
+<td><a href="https://vc-pod06.hybridlab.local">https://vc-pod06.hybridlab.local</a></td>
+<td><a href="https://172.18.1.217">https://172.18.1.217</a></td>
+</tr>
+<tr>
+<td>DMZ_User_13</td>
+<td>POD 06-C</td>
+<td><a href="https://vc-pod06.hybridlab.local">https://vc-pod06.hybridlab.local</a></td>
+<td><a href="https://172.18.1.221">https://172.18.1.221</a></td>
+</tr>
+<tr>
+<td>DMZ_User_14</td>
+<td>POD 06-D</td>
+<td><a href="https://vc-pod06.hybridlab.local">https://vc-pod06.hybridlab.local</a></td>
+<td><a href="https://172.18.1.225">https://172.18.1.225</a></td>
+</tr>
+<tr>
+<td>DMZ_User_15</td>
+<td>POD 06-E</td>
+<td><a href="https://vc-pod06.hybridlab.local">https://vc-pod06.hybridlab.local</a></td>
+<td><a href="https://172.18.1.173">https://172.18.1.173</a></td>
+</tr>
+<tr>
+<td>DMZ_User_16</td>
+<td>POD 07-A</td>
+<td><a href="https://vc-pod07.hybridlab.local">https://vc-pod07.hybridlab.local</a></td>
+<td><a href="https://172.18.1.229">https://172.18.1.229</a></td>
+</tr>
+<tr>
+<td>DMZ_User_17</td>
+<td>POD 07-B</td>
+<td><a href="https://vc-pod07.hybridlab.local">https://vc-pod07.hybridlab.local</a></td>
+<td><a href="https://172.18.1.233">https://172.18.1.233</a></td>
+</tr>
+<tr>
+<td>DMZ_User_18</td>
+<td>POD 07-C</td>
+<td><a href="https://vc-pod07.hybridlab.local">https://vc-pod07.hybridlab.local</a></td>
+<td><a href="https://172.18.1.237">https://172.18.1.237</a></td>
+</tr>
+<tr>
+<td>DMZ_User_19</td>
+<td>POD 07-D</td>
+<td><a href="https://vc-pod07.hybridlab.local">https://vc-pod07.hybridlab.local</a></td>
+<td><a href="https://172.18.1.241">https://172.18.1.241</a></td>
+</tr>
+<tr>
+<td>DMZ_User_20</td>
+<td>POD 07-E</td>
+<td><a href="https://vc-pod07.hybridlab.local">https://vc-pod07.hybridlab.local</a></td>
+<td><a href="https://172.18.1.185">https://172.18.1.185</a></td>
+</tr>
+</tbody>
+</table>
+<p>To avoid issues with Flash Player, please select HTML5 mode for vCenter User Interface:</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-select-html-flash.png"></p>
+<p>Please enter your Active Directory credentials from the DMZ_USER_XX.txt file on your desktop, or paper sheet. You don't have to specify domain name.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vsphere-login.png"></p>
+<h2 id="4-accessing-cisco-container-platform">4. Accessing Cisco Container Platform</h2>
+<p>Cisco Container Platform manages Kuberenetes clusters in the private infrasturcture. You will have access to dedicated instance of Cisco Container Platform, from which you will manage you own Kuberenetes Clusters used later on to deploy application.</p>
+<p>Please refer to the <a href="#3-accessing-vcenter">Table 1</a> to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login without specifying domain name - see following picture:</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png" width = 500></p>
+<h2 id="5-google-cloud-access">5. Google Cloud access</h2>
+<p>Open Chrome web browser from your desktop (you can use either jumphost or local PC)
+Go to <a href="https://cloud.google.com">http://cloud.google.com</a>, click on sign-in in the top right corner</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-sign-in.png"></p>
+<p>Enter username for your lab pod which you can find in the paper sheet or <code>DMZ_USER_XX.txt</code> file on your desktop. You can change language to your preferred.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-login1.png" width = 500></p>
+<p>Once logged in, click on the <code>Console</code> button in the top right corner to open Google Cloud Platform Console.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-console-button1.png"></p>
+<p>When you sign-in to Google Cloud admin panel for the first time, you will be asked to accept Terms of Service, provide country of residence and email updates. Please select following options, and click <code>AGREE AND CONTINUE</code></p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-accept-terms1png.png" width=500></p>
+<p>Next, you will have to select project - click on the <code>Select a project</code></p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-select-project1.png"></p>
+<p>In the new window, select project `fwardz-001</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-select-project1-2.png" width=500></p>
+<p>Now you can access Google Kubernetes Engine - a Kubernetes Cluster in the Google Cloud</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-go-gke1.png"></p>
+<p>You should see screen with warning about no sufficient rights to see the GKE Cluster object, however, you can still navigate to "Workloads" where you can deploy applications on the GKE Cluster.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-gke-workloads1.png"></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ccp_exploring/" class="btn btn-neutral float-right" title="Explore Cisco Container Platform (CCP)">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="../ccp_exploring/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

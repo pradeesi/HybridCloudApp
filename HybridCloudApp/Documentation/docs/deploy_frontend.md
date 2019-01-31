@@ -23,47 +23,53 @@ You will create kubernetes deployment for frontend app and expose it to the inte
 
 ### 3. Add 'frontend_server' Container Image to the Deployment Definition:
 
-* **3.1:** Click on the '**Select Google Container Registry Image**' button on the 'Create Deployment' page as shown in the following screenshot -
+* **3.1:** Select the '**Existing container image**' radio button on the 'Create Deployment' page and then click on 'SELECT' button to select the image as shown in the following screenshot -
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_2.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_container1.png)
 
 * **3.2:** Select the '**frontend_server**' container image from the pop-up window and click on the '**SELECT**' button as shown in the following screenshot -
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_3.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_frontend_srvr_image1.png)
 
 ### 4. Add Environment Variables to the 'frontend_server' Container:
 
 * **4.1:** Click on the '+ Add environment variable' button to add the environment variables for the 'frontend_server' container as shown in the following screenshot -
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_4.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/add_environment_1.png)
 
 * **4.2:** Add '**BACKEND\_HOST**' and '**BACKEND\_PORT**' variables as shown in the following screenshot (Use the values for 'BACKEND\_HOST' and 'BACKEND\_PORT' from the REST API Agent **NodePort Service** created earlier) -
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_5.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/add_env_variable2.png)
 
 ### 5. Add Second Container Image ('nginx_srvr') to the Deployment Definition:
 
-* **5.1:** After clicking on the '**+ Add Container**' button (shown in the previous screenshot), click again on the '**Select Google Container Registry image**' and select '**nginx_srvr**' image from the pop-up window. 
+* **5.1:** After clicking on the '**+ Add Container**' button (shown in the previous screenshot), click again on the '**Existing ontainer image**' and click on the '**SELECT**' button. It will display the popup window. For this popup window, select the '**nginx_srvr**' image with 'latest' tag.
 
-	After selecting the image, click on the '**Done**' button as shown in the following screenshot -
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/select_nginx_image2.png)
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_6.png)
+* **5.2:** Click on the 'CONTINUE' button as shown in the following screenshot -
+
+
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/continue2.png)
+
+
 
 ### 6. Add Application Name, Select Cluster and Deploy the Application:
 
-* **6.1:** Verify that you have '**frontend_server**' and '**nginx_srvr**' container images selected on your screen.
 
-* **6.2:** Change the application name to '**iot-frontend-\<user-\#\>**' and select the 'Cluster' from the drop down menu. 
+* **6.1:** Change the application name to '**iot-frontend-user-X**' (Replace X with you POD number) and select the 'Cluster' from the drop down menu.
 
 	Now you can click on the 'Deploy' button as shown in the following screenshot -
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_7.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy1.png)
 	
 	> **Importnat:** Application deployment may take some time. Wait for it's completion before proceeding with the next steps.
 
 ### 7. Expose the Application by Creating Kubernetes Service:
 
-* **7.1:** Click on your Workload 'Name' (Deployment) as shown in the following screenshot -
+Click on '**Workloads**' option from the left panel on the GKE Dashboard.
+
+* **7.1:** Click on your Workload name '**iot-frontend-user-X**' (Kubernetes Deployment) as shown in the following screenshot -
 
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/deploy_gke_workload_8.png)
 

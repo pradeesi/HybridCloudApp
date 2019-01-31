@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all-rest-api-agent
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: iot-backend-rest-api-agent
+      tier: rest-api-agent
+  policyTypes:
+  - Ingress

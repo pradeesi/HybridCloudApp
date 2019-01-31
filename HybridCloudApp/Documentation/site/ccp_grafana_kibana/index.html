@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Explore Grafana and Kibana Modules on CCP - Hybrid Cloud IoT App</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Explore Grafana and Kibana Modules on CCP";
+    var mkdocs_page_input_path = "ccp_grafana_kibana.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Hybrid Cloud IoT App</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Lab Access</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../LAB_access/">Accessing the Lab Environment</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cisco Container Platform (CCP)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ccp_exploring/">Explore Cisco Container Platform (CCP)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_create_cluster/">Create Kubernetes Cluster on CCP (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_accessing_kubernetes_cluster/">Access Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Hybrid Cloud IoT Application</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../deploy_backend/">Deploy Backend App on Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../backend_exercise/">Explore Backend Application</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deploy_frontend/">Deploy Frontend App on Google Kubernetes Engine (GKE)</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Explore Grafana and Kibana Modules on CCP</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#accessing-grafana-dashboard">Accessing Grafana dashboard</a></li>
+    
+
+    <li class="toctree-l3"><a href="#7-accessing-logs-on-cisco-container-platform">7. Accessing logs on Cisco Container Platform</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_modify_numer_of_nodes/">Kubernetes Exercise</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Kubernetes Network Policies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../security_policies/">Apply Security Policy to REST API Agent</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Appendices (Optional - Read Only)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../RaPi_with_Sensor/">Appendix-2 Sensor Setup on Raspberry Pi</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../AWS_IoT/">Appendix-1 AWS IoT Core Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Hybrid Cloud IoT App</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Hybrid Cloud IoT Application &raquo;</li>
+        
+      
+    
+    <li>Explore Grafana and Kibana Modules on CCP</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="accessing-grafana-dashboard">Accessing Grafana dashboard</h2>
+<p>Once you are logged in to Kubernetes cluster dashboard, you can obtain password to grafana dashboard which provides grafical view of Kubernetes cluster condition, but also to monitor your applications. </p>
+<p>Passwords are stored in Kubernetes Secrets object. Grafana admin password can be decoded from base64 encryption, and copy-pasted to grafana login page.</p>
+<p>Next steps will show you how to find grafana password:</p>
+<p>First, change namespace to <code>CCP</code>:</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-cluster-access-dashboard.png"></p>
+<p>Next, go to <code>Secrets</code> object in the menu, and look and the main pane on the right, you will be looking for secret called <code>ccp-monitor-grafana</code></p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-ccp-secrets-1_2.png"></p>
+<p>Got to second page and there you will find desired Secret.  </p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-ccp-secrets-2_2.png"></p>
+<p>In the <code>Data</code> field you will see admin-password and small eye icon. Please click on that icon to uncover the password. Once uncovered please copy it to clipboard.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-ccp-grafana-password.png">  </p>
+<p>Alternatively, you can use following one-line <code>kubectl</code> command to obtain grafana admin-password. Please use this command from the master node, rather local PC as it may not have base64 installed.</p>
+<p><strong> This command works only in linux environment, you can use it on the Kubernetes master node to which you can SSH </strong></p>
+<pre><code>kubectl -n ccp get secret ccp-monitor-grafana -o=jsonpath='{.data.admin-password}' | base64 --decode
+</code></pre>
+<p>Next, please go back to the CCP dashboard, select your cluster, go into the detail mode and select <code>Grafana</code> button.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-grafana-button.png"></p>
+<p>You will be redirected to the Grafana page, where you can login with username <code>admin</code> and copied password from Secret.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/grafana-login.png"></p>
+<p>Once logged in to grafana, please select in the top left corner <code>Home</code> drop down menu - </p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-grafana-home.png"> </p>
+<p>select <code>Kubernetes Cluster Monitoring (Prometheus)</code>. The dashboard where you can monitor resource utilisation of all PODs across all namespaces.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-grafana-select-source.png"></p>
+<p>You should see graphs like this - </p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-grafana-dashboard.png"></p>
+<h2 id="7-accessing-logs-on-cisco-container-platform">7. Accessing logs on Cisco Container Platform</h2>
+<p>The Elasticsearch, Fluentd, and Kibana (EFK) stack enables you to collect and monitor log data from containerized applications for troubleshooting or compliance purposes. These components are automatically installed when you install Cisco Container Platform.</p>
+<p>Fluentd is an open source data collector. It works at the backend to collect and forward the log data to Elasticsearch.</p>
+<p>Kibana is an open source analytics and visualization platform designed to work with Elasticsearch. It allows you to create rich visualizations and dashboards with the aggregated data.</p>
+<p>By default access to Kibana is not exposed due to security reasons. The quickest way to login to Kibana is to setup port-forwarding towards POD where kibana has been deployed. Use your installed <code>kubectl</code> CLI client on windows and enter following command:</p>
+<pre><code># kubectl get pods -n ccp
+
+NAME                                                         READY   STATUS      RESTARTS   AGE
+ccp-efk-elasticsearch-curator-1548378000-7x2nd               0/1     Completed   0          2d
+ccp-efk-elasticsearch-curator-1548464400-9dzxv               0/1     Completed   0          1d
+ccp-efk-elasticsearch-curator-1548550800-gbv26               0/1     Completed   0          20h
+ccp-efk-kibana-6d7c97575c-gqjvg                              1/1     Running     0          2d
+ccp-monitor-grafana-84d4f8b644-nqpdl                         1/1     Running     0          2d
+ccp-monitor-grafana-set-datasource-llvlc                     0/1     Completed   3          2d
+ccp-monitor-prometheus-alertmanager-64c4f944cb-zxc2c         2/2     Running     0          2d
+ccp-monitor-prometheus-kube-state-metrics-5b6855c558-lcpff   1/1     Running     0          2d
+ccp-monitor-prometheus-node-exporter-48hh2                   1/1     Running     0          2d
+ccp-monitor-prometheus-node-exporter-9wbb9                   1/1     Running     0          2d
+ccp-monitor-prometheus-pushgateway-7cfbcd8dfd-s625f          1/1     Running     0          2d
+ccp-monitor-prometheus-server-6fb9957f87-r7s29               2/2     Running     0          2d
+elasticsearch-logging-0                                      1/1     Running     0          2d
+fluentd-es-v2.0.2-8d6rm                                      1/1     Running     0          2d
+fluentd-es-v2.0.2-hljg5                                      1/1     Running     0          2d
+kubernetes-dashboard-5888c7c865-psk88                        1/1     Running     0          2d
+metallb-controller-54559b4447-2rftf                          1/1     Running     0          2d
+metallb-speaker-8pzdw                                        1/1     Running     0          2d
+metallb-speaker-rtbp4                                        1/1     Running     0          2d
+nginx-ingress-controller-fxg78                               1/1     Running     0          2d
+nginx-ingress-controller-h8nk6                               1/1     Running     0          2d
+nginx-ingress-default-backend-57fb689dd7-gx6sl               1/1     Running     0          2d
+
+kubectl port-foward -n ccp ccp-efk-kibana-&lt;id&gt; 5601:5601
+
+example:
+kubectl port-foward -n ccp ccp-efk-kibana-6d7c97575c-gqjvg 5601:5601
+</code></pre>
+<p>Open Chrome web-browser, and enter following URL:</p>
+<pre><code>https://localhost:5061
+</code></pre>
+<p>Once page will be opened, you will be asked to create index pattern. It means, you have to point from which log collection the logs will be presented.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-kibana-home.png"></p>
+<p>Click on Management and type <code>logstash-*</code> in the field - </p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-kibana-create-index.png"></p>
+<p>Next, you will be asked to add additional pattern to the presented logs</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-kibana-create-index-2.png"></p>
+<p>After this, you will be able to see logs from all PODs and applications working on this cluster. To do this, go to Discovery panel, and type in the filter at the top of the page:</p>
+<pre><code>kubernetes.namespace.name = default
+</code></pre>
+<p>Since our application is deployed in default namespace, filter will show only logs from pods deployed in that namespace.</p>
+<p><img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-kibana-log-filter.png"></p>
+<p>Further filtering could be appliend, but this is not the main topic of this lab excercise. </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ccp_modify_numer_of_nodes/" class="btn btn-neutral float-right" title="Kubernetes Exercise">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../deploy_frontend/" class="btn btn-neutral" title="Deploy Frontend App on Google Kubernetes Engine (GKE)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../deploy_frontend/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../ccp_modify_numer_of_nodes/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

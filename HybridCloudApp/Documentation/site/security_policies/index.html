@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Apply Security Policy to REST API Agent - Hybrid Cloud IoT App</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Apply Security Policy to REST API Agent";
+    var mkdocs_page_input_path = "security_policies.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Hybrid Cloud IoT App</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Lab Access</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../LAB_access/">Accessing the Lab Environment</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Cisco Container Platform (CCP)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ccp_exploring/">Explore Cisco Container Platform (CCP)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_create_cluster/">Create Kubernetes Cluster on CCP (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_accessing_kubernetes_cluster/">Access Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Hybrid Cloud IoT Application</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../deploy_backend/">Deploy Backend App on Kubernetes Cluster (Tenant Cluster)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../backend_exercise/">Explore Backend Application</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deploy_frontend/">Deploy Frontend App on Google Kubernetes Engine (GKE)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_grafana_kibana/">Explore Grafana and Kibana Modules on CCP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ccp_modify_numer_of_nodes/">Kubernetes Exercise</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Kubernetes Network Policies</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Apply Security Policy to REST API Agent</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#applying-kubernetes-network-policies-to-secure-the-application">Applying Kubernetes Network Policies to Secure the Application</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#1-apply-deny-all-network-policy">1. Apply Deny All Network Policy:</a></li>
+        
+            <li><a class="toctree-l4" href="#2-apply-permit-port-5111-network-policy">2. Apply Permit Port 5111 Network Policy:</a></li>
+        
+            <li><a class="toctree-l4" href="#3-apply-permit-port-5050-network-policy">3. Apply Permit Port 5050 Network Policy:</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Appendices (Optional - Read Only)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../RaPi_with_Sensor/">Appendix-2 Sensor Setup on Raspberry Pi</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../AWS_IoT/">Appendix-1 AWS IoT Core Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Hybrid Cloud IoT App</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Kubernetes Network Policies &raquo;</li>
+        
+      
+    
+    <li>Apply Security Policy to REST API Agent</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="applying-kubernetes-network-policies-to-secure-the-application">Applying Kubernetes Network Policies to Secure the Application</h1>
+<p>A network policy is a specification of how groups of pods are allowed to communicate with each other and other network endpoints.</p>
+<p>NetworkPolicy resources use labels to select pods and define rules which specify what traffic is allowed to the selected pods.</p>
+<p>By now you should have your Hybrid Cloud IoT Application working end to end. Let's apply some Kubernetes Network Policies to allow traffic from the frontend app to port '5050' only (REST API AGENT container accepts HTTP requests on port '5050').</p>
+<h2 id="1-apply-deny-all-network-policy">1. Apply Deny All Network Policy:</h2>
+<p>Following Kubernetes Network Policy yaml definition would block all the traffic coming towards REST API Agent -</p>
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all-rest-api-agent
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: iot-backend-rest-api-agent
+      tier: rest-api-agent
+  policyTypes:
+  - Ingress
+</code></pre>
+<ul>
+<li>
+<p>1.1: Execute the following command on Kubernetes master node to apply this Network Policy on your REST API Agent -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Network_Policies/deny_all_rest_api_agent.yaml
+</code></pre>
+</li>
+<li>
+<p>1.2: Now try to referesh your Frontend App webpage. It should stop working.</p>
+</li>
+</ul>
+<h2 id="2-apply-permit-port-5111-network-policy">2. Apply Permit Port 5111 Network Policy:</h2>
+<p>Following Kubernetes Network Policy yaml definition would allow the traffic on port 5111 to REST API Agent -</p>
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: permit-port-5111-rest-api-agent
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: iot-backend-rest-api-agent
+      tier: rest-api-agent
+  policyTypes:
+  - Ingress
+  ingress:
+  - from: []
+    ports:
+    - protocol: TCP
+      port: 5111
+</code></pre>
+<ul>
+<li>
+<p>2.1: Execute the following command on Kubernetes master node to apply this Network Policy on your REST API Agent -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Network_Policies/permit_port_5111_rest_api_agent.yaml
+</code></pre>
+</li>
+<li>
+<p>2.2: Now try to referesh your Frontend App webpage. <strong>Does it work? Why?</strong></p>
+</li>
+</ul>
+<h2 id="3-apply-permit-port-5050-network-policy">3. Apply Permit Port 5050 Network Policy:</h2>
+<p>Following Kubernetes Network Policy yaml definition would allow the traffic on port 5050 to REST API Agent -</p>
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: permit-port-5050-rest-api-agent
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: iot-backend-rest-api-agent
+      tier: rest-api-agent
+  policyTypes:
+  - Ingress
+  ingress:
+  - from: []
+    ports:
+    - protocol: TCP
+      port: 5050
+</code></pre>
+<ul>
+<li>
+<p>3.1: Execute the following command on Kubernetes master node to apply this Network Policy on your REST API Agent -</p>
+<pre><code>kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Network_Policies/permit_port_5050_rest_api_agent.yaml
+</code></pre>
+</li>
+<li>
+<p>3.2: Now try to referesh your Frontend App webpage. <strong>Does it work? Why?</strong></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note: Other command related to Network Policy that you may use -
+</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Display Kubernetes Network Policies -</p>
+<pre><code>kubectl get NetworkPolicies
+</code></pre>
+</li>
+<li>
+<p>Display Network Policy Details -</p>
+<pre><code>kubectl describe NetworkPolicy &lt;Network Policy Name&gt;
+</code></pre>
+</li>
+<li>
+<p>Delete Network Policy -</p>
+<pre><code>kubectl delete NetworkPolicy &lt;Network Policy Name&gt;
+</code></pre>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../RaPi_with_Sensor/" class="btn btn-neutral float-right" title="Appendix-2 Sensor Setup on Raspberry Pi">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ccp_modify_numer_of_nodes/" class="btn btn-neutral" title="Kubernetes Exercise"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../ccp_modify_numer_of_nodes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../RaPi_with_Sensor/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
