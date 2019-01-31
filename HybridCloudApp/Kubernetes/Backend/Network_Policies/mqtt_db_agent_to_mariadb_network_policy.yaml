@@ -9,11 +9,3 @@ spec:
       app: iot-backend
   policyTypes:
   - Ingress
-  ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          app: iot-backend-mqtt-db-agent
-    ports:
-    - protocol: TCP
-      port: 5000
