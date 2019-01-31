@@ -58,7 +58,7 @@ Fluentd is an open source data collector. It works at the backend to collect and
 
 Kibana is an open source analytics and visualization platform designed to work with Elasticsearch. It allows you to create rich visualizations and dashboards with the aggregated data.
 
-By default access to Kibana is not exposed due to security reasons. You can expose Kibana to the external network by using 'NodePort'. Let's check wherher kibana service exists currently:
+By default access to Kibana is not exposed due to security reasons. You can expose Kibana to the external network by using 'NodePort'. Let's check whether kibana service exists currently:
 
     kubectl -n ccp get svc -n ccp
     NAME                                        TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)                      AGE
@@ -98,7 +98,7 @@ Change value `ClusterIP` to `NodePort`, please pay attention to capital letters.
 
 Press `Esc` to exit from editing mode.
 
-Press following combination of keys to save file in the following sequnce `:` then type `wq` then press `enter`
+Press following combination of keys to save file in the following sequence `:` then type `wq` then press `enter`
 
 Confirm that the change has been successfully saved and execute following command to confirm service `type` for `ccp-efk-kibana`
 
@@ -106,7 +106,7 @@ Confirm that the change has been successfully saved and execute following comman
     NAME                                        TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)                      AGE
     ccp-efk-kibana                              NodePort       10.97.166.41     <none>         5601:30662/TCP               11h
 
-**Note** external service port, in above example it is `30662`. 
+**Note** external service port, in above example is `30662`. 
 
 Check node IP addresses by using following command:
 
@@ -116,7 +116,7 @@ Check node IP addresses by using following command:
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-get-nodes-ip.png">
 
-Open Chrome web-browser, and enter following URL:
+Open Chrome web-browser and enter following URL:
 
     http://<node_ip>:30662
 
