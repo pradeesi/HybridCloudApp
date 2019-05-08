@@ -31,27 +31,6 @@ def read_DHT11_data(gpio_pin):
     return humidity, temperature
 
 
-def prepare_sensor_data():
-	try:
-		# Read sensor data
-		humidity, temperature = read_DHT11_data(SENSOR_GPIO_PIN) 
-
-		# Prepare json paylod
-		sensor_data = {}
-		sensor_data['SensorID'] = SENSOR_ID
-		sensor_data['Location'] = CITY
-		sensor_data['DateTime'] = str(datetime.datetime.utcnow())
-		sensor_data['Temperature'] = temperature
-		sensor_data['Humidity'] = humidity
-
-		sensor_data_json = json.dumps(sensor_data)
-
-		# Return Json Data
-		return sensor_data_json
-	except:
-		print "Error in prepare_sensor_data"
-		return None
-
 
 settings = get_Settings('SENSOR_SETTINGS')
 
