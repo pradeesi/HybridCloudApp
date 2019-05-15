@@ -18,7 +18,7 @@ spec:
         app: iot-backend-mqtt-db-agent
     spec:
       containers:
-      - image: pradeesi/mqtt_db_plugin:v2
+      - image: pradeesi/mqtt_db_plugin:latest
         name: mqtt-db-agent
         env:
         - name: DB_PASSWORD
