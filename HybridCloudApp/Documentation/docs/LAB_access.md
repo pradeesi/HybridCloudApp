@@ -51,16 +51,16 @@ Next you’ll see the main AnyConnect window go through several connection state
 Your are connected to infrastructure on-prem. You can interact with resources in your lab by **either using jumphost or accessing devices directly**. 
 
 
-## 2 (Optional) Remote desktop connection
+## 2 Accessing Management Station
 
-_This step is optional, you can perform all operations from the desktop as well._
+Open PuTTY client (icon available on the desktop). If there is no icon for PuTTY, click start, and type `putty`
+Open file available on https://cs.co/hybridlab.txt to 
 
-Open Remote Desktop Client (icon available on the desktop). If there is no icon for Remote Desktop Connection on the Desktop, click start, and type `mstsc`
+Enter following IP address, make sure SSH is the selected protocol.
 
-Click `show options` and type IP address of the jumphost and username. Don't forget to specify domain name which is `HYBRIDLAB`.
-
-    Computer: 172.18.1.10
-    User name: HYBRIDLAB\DMZ_USER_<ID>
+    Computer: 172.18.0.50
+    User name: student<XX>
+    _where XX is your lab ID_
 
 Populated fields should be similar to the picture.  
 
@@ -69,44 +69,6 @@ You can find password in the paper sheet or in the `DMZ_USER_XX.txt` file.
 **Each user will login to the same jumphost: `172.18.1.10`, regardless of the POD or server they should use**
 
 <img src=https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png width = 500>
-
-## 3. Accessing vCenter
-
-Users are grouped by PODs, each POD is managed by single VMWare vCenter instance. Please use respective vCenter for your POD according to below table:
-
-*Table 1: User to vCenter anc CCP assignment*
-
-VPN/AD User | POD name | vCenter URL | CCP Control Plane URL
---- | --- | --- | ---
-DMZ_User_01 | POD 01-A | [https://vc-pod01.hybridlab.local](https://vc-pod01.hybridlab.local) | [https://172.18.1.165](https://172.18.1.165)
-DMZ_User_02 | POD 01-B | [https://vc-pod01.hybridlab.local](https://vc-pod01.hybridlab.local) | [https://172.18.1.169](https://172.18.1.169)
-DMZ_User_03 | POD 02-A | [https://vc-pod02.hybridlab.local](https://vc-pod02.hybridlab.local) | [https://172.18.1.177](https://172.18.1.177)
-DMZ_User_04 | POD 02-B | [https://vc-pod02.hybridlab.local](https://vc-pod02.hybridlab.local) | [https://172.18.1.181](https://172.18.1.181)
-DMZ_User_05 | POD 03-A | [https://vc-pod03.hybridlab.local](https://vc-pod03.hybridlab.local) | [https://172.18.1.189](https://172.18.1.189)
-DMZ_User_06 | POD 03-B | [https://vc-pod03.hybridlab.local](https://vc-pod03.hybridlab.local) | [https://172.18.1.193](https://172.18.1.193)
-DMZ_User_07 | POD 04-A | [https://vc-pod04.hybridlab.local](https://vc-pod04.hybridlab.local) | [https://172.18.1.197](https://172.18.1.197)
-DMZ_User_08 | POD 04-B | [https://vc-pod04.hybridlab.local](https://vc-pod04.hybridlab.local) | [https://172.18.1.201](https://172.18.1.201)
-DMZ_User_09 | POD 04-C | [https://vc-pod04.hybridlab.local](https://vc-pod04.hybridlab.local) | [https://172.18.1.205](https://172.18.1.205)
-DMZ_User_10 | POD 04-D | [https://vc-pod04.hybridlab.local](https://vc-pod04.hybridlab.local) | [https://172.18.1.209](https://172.18.1.209)
-DMZ_User_11 | POD 06-A | [https://vc-pod06.hybridlab.local](https://vc-pod06.hybridlab.local) | [https://172.18.1.213](https://172.18.1.213)
-DMZ_User_12 | POD 06-B | [https://vc-pod06.hybridlab.local](https://vc-pod06.hybridlab.local) | [https://172.18.1.217](https://172.18.1.217)
-DMZ_User_13 | POD 06-C | [https://vc-pod06.hybridlab.local](https://vc-pod06.hybridlab.local) | [https://172.18.1.221](https://172.18.1.221)
-DMZ_User_14 | POD 06-D | [https://vc-pod06.hybridlab.local](https://vc-pod06.hybridlab.local) | [https://172.18.1.225](https://172.18.1.225)
-DMZ_User_15 | POD 06-E | [https://vc-pod06.hybridlab.local](https://vc-pod06.hybridlab.local) | [https://172.18.1.173](https://172.18.1.173)
-DMZ_User_16 | POD 07-A | [https://vc-pod07.hybridlab.local](https://vc-pod07.hybridlab.local) | [https://172.18.1.229](https://172.18.1.229)
-DMZ_User_17 | POD 07-B | [https://vc-pod07.hybridlab.local](https://vc-pod07.hybridlab.local) | [https://172.18.1.233](https://172.18.1.233)
-DMZ_User_18 | POD 07-C | [https://vc-pod07.hybridlab.local](https://vc-pod07.hybridlab.local) | [https://172.18.1.237](https://172.18.1.237)
-DMZ_User_19 | POD 07-D | [https://vc-pod07.hybridlab.local](https://vc-pod07.hybridlab.local) | [https://172.18.1.241](https://172.18.1.241)
-DMZ_User_20 | POD 07-E | [https://vc-pod07.hybridlab.local](https://vc-pod07.hybridlab.local) | [https://172.18.1.185](https://172.18.1.185)
-
-To avoid issues with Flash Player, please select HTML5 mode for vCenter User Interface:
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vcenter-select-html-flash.png">
-
-Please enter your Active Directory credentials from the DMZ_USER_XX.txt file on your desktop, or paper sheet. You don't have to specify domain name.
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/vsphere-login.png">
-
 
 ## 4. Accessing Cisco Container Platform
 

@@ -2,14 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mariadb-service
+  name: mariadb-service-np
   labels:
     app: iot-backend
 spec:
   ports:
     - protocol: TCP
       port: 3306
+      nodePort: 30306
   selector:
     app: iot-backend
     tier: mariadb
-  type: "LoadBalancer"
+  type: "NodePort"

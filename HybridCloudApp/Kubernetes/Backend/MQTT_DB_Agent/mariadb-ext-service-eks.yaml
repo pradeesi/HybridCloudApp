@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-service
+spec:
+  ports:
+  - name: sql
+    protocol: TCP
+    port: 3306
+    targetPort: 3306
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+   name: mariadb-service
+subsets:
+  - addresses:
+      - ip: <mariadb-service_LoadBalancer_IP>
+    ports:
+      - port: 3306
+        name: sql
