@@ -8,19 +8,14 @@ The lab has been built leveraging multiple cloud environments as following:
 - Google Cloud
 - Private intrastructure on-prem
 
-During this lab, you will get access to Google Cloud and Private Infrastructure, as these are providing container environment. Amazon Web Services is used in this setup as a message broker only which is a function already provided by Amazon. 
-
+You will have access to Cisco Container Platform GUI, where you will setup new Kubernetes Cluster deployed in AWS. You will have access to existing Kubernetes cluster on-premise (in Cisco Lab Data Center) and in addtion you will deploy some microservices in Google Kubernetes Engine. In total you will manage your application that will be deployed in 3 different environments. In this lab you will see how to connect microservices together to make whole application work.
+Most of the tasks you will do from Linux Management Station that is running on-premise. From there you will deploy components of your application in Kubernetes Cluster in AWS and on-premise.
 
 ## 1. On-prem private infrastructure access (VPN)
 
-In order to get access to private network, please first find credentials for your POD in the paper sheet on in the DMZ_USER_XX.txt file on the desktop. 
+In order to get access to private network, please first find credentials for your POD in the paper sheet.
 
-Each LAB User will have dedicate instance on Cisco Container Platform, where you can manage Kubernetes Cluster. Once you will create Kubernetes cluster, you will deploy your containerized application.
-
-_Multiple Users are using same server, hence the naming POD0X-Y where X is a server number and Y is a environment ID within that server. Servers are running ESXi, and each ESXi is managed by own vCenter.
-Two to five users will share the same hardware server and same vCenter, however each User will have own instance of Cisco Container Platform._
-
-### 1.1 Cisco Anyconnect Mobility Client
+### 2 Cisco Anyconnect Mobility Client
 
 Run Cisco Anyconnect VPN client available on your desktop.
 
@@ -48,44 +43,37 @@ You’ll see a new window prompting you to provide your Lab’s network credenti
 
 Next you’ll see the main AnyConnect window go through several connection states. When it has completed establishing the connection, AnyConnect will iconify in the Notification Area of the Windows Taskbar. When you have an established VPN connection, the AnyConnect icon will display a symbol of a padlock.  
 
-Your are connected to infrastructure on-prem. You can interact with resources in your lab by **either using jumphost or accessing devices directly**. 
+Your are connected to infrastructure on-prem. 
 
-
-## 2 Accessing Management Station
+## 3 Accessing Management Station
 
 Open PuTTY client (icon available on the desktop). If there is no icon for PuTTY, click start, and type `putty`
-Open file available on https://cs.co/hybridlab.txt to 
+
+
 
 Enter following IP address, make sure SSH is the selected protocol.
 
     Computer: 172.18.0.50
     User name: student<XX>
-    _where XX is your lab ID_
+    _where XX is your lab ID_ ie. student7 or student12
 
-Populated fields should be similar to the picture.  
+You can find password in the paper sheet.
 
-You can find password in the paper sheet or in the `DMZ_USER_XX.txt` file.
-
-**Each user will login to the same jumphost: `172.18.1.10`, regardless of the POD or server they should use**
-
-<img src=https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rdp_dmz_creds.png width = 500>
-
-## 4. Accessing Cisco Container Platform
+## 4 Accessing Cisco Container Platform
 
 Cisco Container Platform manages Kuberenetes clusters in the private infrasturcture. You will have access to dedicated instance of Cisco Container Platform, from which you will manage you own Kuberenetes Clusters used later on to deploy application.
 
-Please refer to the [Table 1](#3-accessing-vcenter) to access your own Cisco Container Platform dashboad. Use your Active Directory credentials to login without specifying domain name - see following picture:
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp_login_ad.png" width = 500>
+Please look at the URL on the paper sheet to access your Cisco Container Platform (CCP) instance. In this lab Single CCP is shared with multiple users. 
+**You can explore CCP through the GUI, but please respect other participants and follow only steps from instruction for changes.**
 
 ## 5. Google Cloud access
 
-Open Chrome web browser from your desktop (you can use either jumphost or local PC)
+Open Chrome web browser from your desktop
 Go to [http://cloud.google.com](https://cloud.google.com), click on sign-in in the top right corner
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-sign-in.png">
 
-Enter username for your lab pod which you can find in the paper sheet or `DMZ_USER_XX.txt` file on your desktop. You can change language to your preferred.
+Enter username for your lab pod which you can find in the paper sheet. You can change language to your preferred.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-login1.png" width = 500>
 
@@ -112,3 +100,9 @@ Now you can access Google Kubernetes Engine - a Kubernetes Cluster in the Google
 You should see screen with warning about no sufficient rights to see the GKE Cluster object, however, you can still navigate to "Workloads" where you can deploy applications on the GKE Cluster.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-gke-workloads1.png">
+
+## 6. Amazon Web Services access
+
+From Chrome web browser on your desktop, please open URL [https://fwardzic.signin.aws.amazon.com/console](https://fwardzic.signin.aws.amazon.com/console)
+
+Enter your credentials that you can find on the paper sheet.
