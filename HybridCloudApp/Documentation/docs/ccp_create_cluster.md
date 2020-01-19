@@ -1,41 +1,85 @@
 ## Create Tenant Data Cluster
 
-After login to Cisco Container Platform, click `New Cluster` button, you will be redirected to the new page where you would have to provide details of your new Kubernetes cluster.
+After login to Cisco Container Platform, got to AWS tab and click `New Cluster` button. You will be redirected to the new page where you will provide details of your new Kubernetes EKS cluster.
 
-During creation, you will be asked to specify some parameters. Please open google sheet and find your POD ID in the tab.
+- Step 1 - Basic Information - select infrastructure provider, AWS Region and Kubernetes cluster version and name. Please use following parameters.
 
-[_**Google Sheet**_](https://docs.google.com/spreadsheets/d/1r81v_Mb-GKGV-d3GNoMygn4JIsF2UeRC3JTDz-sN48s/edit?usp=sharing)
+  - **Infrastructure Provider:** *aws*
+  - **AWS Region:** *eu-central-1*
+  - **Kubernetes Version:** *1.14*
+  - **Kubernetes Cluster Name:** *studentXX*
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-clusters-empty.png">
+studentXX - XX is your unique student ID.
 
-- Step 1 - Basic Information - select infrastructure provider, Kubernetes cluster name and Container Network Interface:
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-basic-info.png">
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step1.png">
+- Step 2 - Node Contfiguration - here you will configure how EKS nodes will be setup. You will specify EC2 instance type, AMI image, number of worker nodes, IAM Role and SSH public key, so you could ssh into the node for troubleshooting purposes. 
+**Please use exact paramaters as instruction says.**
 
-_In this step you have selected "Calico" as a Container Networking Interface, however there are other two supported - Cisco ACI and Contiv-VPP. Cisco ACI integration is done automatically during new Kubernetes cluster creation, CCP configures tenant in ACI with required network policies and Policy Based Routing that is used as a Load-Balancing services in hardware._
+  - **Instance Type:** *t2.small*
 
-- Step 2 - Provider Settings - infrastructure provider details such as storage, vSwitch port-group and base image with approriate Kubernetes version:
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-instance-type.png">
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step2.png">
+  - **Machine Image:** select *Filter Option* hover mouse on the *"i"* icon and select **1.14** image.
 
-_This lab is based on regular UCS servers, however, CCP in combination with Cisco hyperconverged infrastructure - Hyperflex results in best in class performance. CCP can automatically provision dynamic persistent volumes directly on Hyperflex, rather on vmware, bypassing extra layer of virtualisation._
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-image-version.png">
 
-- Step 3 - Node configuration - here you can configure node sizing, provide access information such as public SSH key, Load-Balancer VIP, subnet for PODs.  
+  - **Worker Count:** *Please decrease to* **1**
 
-**Do not** enable service-mesh based on Istio 1.0 and finally provide rigths for managing kubernetes clusters in AWS public cloud.
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-worker-count.png">
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step3-1.png">
+  - **IAM Access role ARN:** *type here your username, and select role accociated to your user, i.e.* **student17-role**
 
-On the next screen you will see option to enable `Harbor Registry`, to enable local docker image. At this point please **do not** select this option.
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-iam-role.png">
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step4.png">
+Your AWS user is configured with IAM policy that allows to assume this specific role. For this CCP leverages IAM-Authenticator add-on, that is installed in Linux jumphost. Later on the Linux machine You will login to your aws cli with your associated aws credentials and then you will be able to manage you new EKS Kubernetes Cluster. Instead of using username and password or private certificates, IAM Authenticator leverages AWS STS (Secure Token Service) to tokenize and sign URL requests towards your EKS Cluster. AWS IAM is responsible to authorize request and pass commands to your Kubernetes Cluster.
+During creation of EKS Cluster, this role is associated with Kubernets System:Masters group which provides full access to your cluster.
+
+  - **SSH Public Key:** login to Linux jumphost, and generate SSH keypair with type ed25519. 
+  Type in the Linux command line:
+
+        `ssh-keygen -t ed25519`
+
+    Press just press enter to accept default answer for following quesitons. Once key is generated, copy public key without, username at the end, to the CCP GUI.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/linux-ssh-key.png">
+
+Once copied, please press **Next** to go to further screen.
+
+- Step 3 - VPC configuration - here specify your VPC subnets. CCP will request VPC creation in AWS, with subnets, internet gateway, nat gateways. It is creating 3 private and 3 public subnets. Please modify default subnet's second octet only to match your username ID (ie. for studnet17 it will be 10.17.0.0/16 in the Subnet CIDR, and following Public and Private subnets must fall behind main VPC subnet, 10.17.0.0/24, 10.17.1.0/24 etc.)
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-vpc.png">
+
+CCP will create for each cluster following network topology in AWS:
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-vpc-topology.png">
 
 Click Next to enter the summary page, and just confirm all data are valid according to google sheet. Once confirmed please click `Finish`.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-create-cluster-step5.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-summary.png">
 
 Once finished, you will see progress bar to check status of the cluster creation.
 
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-creating.png">
+
 ## Monitor cluster creation
 
-You can observe tenant cluster creation from CCP Dashboard, however, if you are interested to see more details, you can login to vCenter and monitor VM cloning process.
+You can observe tenant cluster creation from CCP Dashboard, however, if you are interested to see more details, you can login to AWS dashboard and go to EKS to monitor master creation, and then to CloudFormation to see status of CloudFormation Stack deployment. CloudFormation is a AWS tool to automate creation of different objects.
+
+Login to AWS dashboard, and select EKS service.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-eks-find.png">
+
+In EKS dashboard you will see EKS service creation progress. Once finished you can move to CloudFormation dashboard.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-cloudformation-find.png">
+
+From there find your stack (based on your username) and watch deployment progress.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-cloudformation-watch.png">
+
+Once finished, you should see in CCP GUI that the Kubernetes Cluster in AWS has been deployed successfully.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-ready.png">
+
+At this point go to the next chapter to connect your Kubernetes Cluster in AWS to Hybrid Network that provides access to on-premise Data Center.
