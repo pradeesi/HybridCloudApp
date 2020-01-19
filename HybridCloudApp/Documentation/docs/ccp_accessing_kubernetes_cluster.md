@@ -1,65 +1,58 @@
 ## Accessing Kubernetes Cluster
 
-Once cluster installation has finished, you will see the status `READY` in CCP dashboard.
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-ready.png">
-
-Accessing new Kubernetes cluster requires to obtain the kubeconfig file. Click on the name of your cluster to see the detailed view.
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-view-details.png">
-
-From the same context menu you can enter to detailed more of the cluster, access Kubernetes dashboard or monitoring based on Prometheus and Kibana or even a delete cluster.
-
-Next task is to enter into the detailed view of the cluster, here you can also download kubeconfig file.
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-edit-details-2.png">
-
-Next, click on the `Kubernetes Dashboard` button:
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp-cluster-access-dashboards.png">
-
-You will be redirected to Kubernetes standard dashboard. Cisco did not changed the Kubernetes User Interface intentionaly, since it is well known by developers. 
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-cluster-access-dashboard.png">
-
-Please select `Kubeconfig` option (which is the default) and select previously stored kubeconfig.yaml file which should be in the `Downloads` folder.
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-select-kubeconfig.png">
-
-Once selected, click Sing-In:
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-kubeconfig-selected.png">
-
-After successful login you will be redirected to the default namespace view:
-
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/k8s-default-view.png">
-
 ## Kubectl - Kubernetes Command Line Interface
 
-While most of the options in Kubernetes are available through the dashboard, CLI commands are also available, and convenient to use. Kubectl is a software leveraging Kubernetes API and translate commands to specific API calls.   
+While most of the options in Kubernetes are available through the dashboard, CLI commands are also available, and convenient to use. Kubectl is a software leveraging Kubernetes API and translate commands to specific API calls. This tool will be used during the lab.
 
-**In the later excercises you will you `kubectl` commands to deploy application.**
+Once connectivity to your new EKS Kubernetes Cluster is confirmed, go back to Cisco Container Platform (CCP) web page, login if required and select Clusters -> AWS to display your newely created Kubernetes EKS cluster.
 
-You can login via SSH to your Master node using PuTTY application available on your desktop on the jumphost. 
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-ready.png">
 
-* **Step 1** Obtain IP address of your Kubernetes Master node.
+- **Step 1:** Accessing new Kubernetes cluster requires to obtain the kubeconfig file. Click on the name of your cluster to see the detailed view.
 
-Login to Cisco Container Platform, navigate to the following path:
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-download-kubeconfig.png">
 
-CCP Dashboard -> Clusters -> click on the `View Details` from the drop down option of your Cluster -> Look at the section `default-master-pool` -> note the `Public IP Address`
+- **Step 2:** Copy kubeconfig file to your linux jumphost machine using SCP. Open WinSCP from the desktop, and login to Linux Jumphost using your credentials.
 
-* **Step 2** SSH to Master Node using PuTTY
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/scp.png">
 
-Login to Kubernetes node require SSH private key. The Key is located on the Jumphost in the folder `C:\ssh-key\id_rsa.pem`. 
+Copy kubeconfig file into your home directory (this is the directory opened after successful login)
 
-Open PuTTY, go to `Connection -> SSH -> Auth` and select private key - 
+- **Step 3:** Merge EKS kubeconfig file with existing kubeconfig file for on-premise Kubernetes.
+SSH to Linux machine using PuTTY, change directory to *.kube* and list files, you should notice file *on-prem.yaml*.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/putty-private-key.png" width=500>
+        ls -la
+        cd .kube
+        ls -la
 
-next go to `Connection -> Data` and provide username `ccpuser` -  
+Merge kubeconfig files so you will be able to switch between contexts using kubectl tool, rather specifying full path to your kubeconfig file in every command.
+This command will merge kubeconfig files and create new file in `~/.kube/config`. This is the default location for kubectl to find access information to particular Kubernetes Cluster.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/putty-username.png" width=500>
+        KUBECONFIG=~/.kube/on-prem.yaml:~/kubeconfig.yaml kubectl config view --flatten > ~/.kube/config
 
-Once logged in to Kubernetes master node, you can use `kubectl` command. You can try example command to obtain nodes information.
+List files again in `~/.kube/config` directory to make sure that new `config` file is there.
 
-    kubectl get nodes -o wide
+- **Step 4:** Kubeconfig file usually contains private certificate that is uathorized by kubernetes directly. In case of EKS, AWS IAM authenthentication is involved. Instead of certiciate, we will use your AWS access keypair to authenticate. On the linux jumphost, aws cli tool is installed. Similarily to kubectl this tool provides management access to your AWS account. Using this tool you can spawn new VM or create new networking infrastructure like VPC, subnets etc. In this lab, aws cli is leveraged by IAM-Authenticator module to sign-up kubectl requests towards EKS. 
+
+Obtain login access keypair from AWS webpage first:
+
+Login to AWS Dashboard, click on your username in the top right corner and select *My Security Credentials*.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-access-key-enter.png">
+
+- **Step 5:** Create new Access Key
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-access-key-create-new.png">
+
+in the new window obtain access key ID and secret by copying it to clipboard.
+
+In the Linux jumphost, type:
+
+        aws configure
+
+and paste access key ID and secret that you obtained from AWS webpage.
+
+
+From now you can switch contexts to access and send commands to Kubernetes cluster in AWS or on-premise Data Cetner.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/linux-import-eks-kubeconfig.png">
