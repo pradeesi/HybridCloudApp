@@ -5,7 +5,7 @@ CCP created dedicated VPC for every Kubernetes EKS Cluster. You can now start wo
 
 In order to provider secure connectivity between application components, we would need to establish IPSec Tunnel between AWS and on-premise data center. To avoid too many IPsec tunnels, we will leverage following topology, where AWS VPC infrastructure is configured in Hub-and-Spoke topology with Transit VPC as a Hub location. 
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-transit.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-transit-vpc-architecture.png">
 
 This solution is well described in two following white papers:
 
@@ -64,10 +64,10 @@ Select your Virtual Private Gateway, and click on Tags tab in the bottom working
 
 In the new window click *Create Tag*, and then add following tag (it must be exactly this one, no capital letters !)
 
-        **Key:** transitvpc:spoke
-        **Value:** true
+  **Key:** transitvpc:spoke
+  **Value:** true
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vgw-add-tag.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vpn-pending.png">
 
 Once completed, select *Site-to-Site VPN connections* in the left menu.
 Watch for new VPN connections  created between your new Virtual Private Gateway and CSR1000v virtual routers in Transit VPC.
@@ -86,7 +86,7 @@ Wait until status will change to *available*
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vpc-rt-search.png">
 
-- **Step 3.** Edit VPC Main Routing Table. Check in which row the *Main* column contains *Yes*. Select that route table (usually it does not have a name) and select Routes tab from the bottom panel. Click on *Add routes* button here.
+- **Step 3.** Edit VPC Main Routing Table. Check in which row the *Main* column contains *Yes*. Select that route table (usually it does not have a name) and select Routes tab from the bottom panel. Click on *Edit routes* button here.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vpc-rt-edit-route.png">
 
@@ -97,9 +97,9 @@ Wait until status will change to *available*
 
   Click *Save routes*
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vpc-main-routing-find.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vpc-subnet-add-route.png">
 
-- **Step 5.** Add the same return route under subnets. From the panel above select *studentXX-private-route-table1** only and add the same subnet as in Step 4.
+- **Step 5.** Add the same return route under *subnets*. From the panel above select *studentXX-private-route-table1** only and add the same subnet as in Step 4.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vpc-rt-subnet-edit.png">
 
