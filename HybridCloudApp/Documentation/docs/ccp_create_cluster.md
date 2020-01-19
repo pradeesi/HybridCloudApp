@@ -26,7 +26,7 @@ studentXX - XX is your unique student ID.
 
   - **Worker Count:** *Please decrease to* **1**
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-worker-count.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-worked-count.png">
 
   - **IAM Access role ARN:** *type here your username, and select role accociated to your user, i.e.* **student17-role**
 
@@ -38,7 +38,7 @@ During creation of EKS Cluster, this role is associated with Kubernets System:Ma
   - **SSH Public Key:** login to Linux jumphost, and generate SSH keypair with type ed25519. 
   Type in the Linux command line:
 
-        `ssh-keygen -t ed25519`
+        ssh-keygen -t ed25519
 
     Press just press enter to accept default answer for following quesitons. Once key is generated, copy public key without, username at the end, to the CCP GUI.
 
@@ -52,7 +52,7 @@ Once copied, please press **Next** to go to further screen.
 
 CCP will create for each cluster following network topology in AWS:
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-vpc-topology.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-eks-vpc-topology.png">
 
 Click Next to enter the summary page, and just confirm all data are valid according to google sheet. Once confirmed please click `Finish`.
 
