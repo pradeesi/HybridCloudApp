@@ -67,12 +67,12 @@ In the new window click *Create Tag*, and then add following tag (it must be exa
   **Key:** transitvpc:spoke
   **Value:** true
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vpn-pending.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vgw-add-tag.png">
 
 Once completed, select *Site-to-Site VPN connections* in the left menu.
 Watch for new VPN connections  created between your new Virtual Private Gateway and CSR1000v virtual routers in Transit VPC.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vgw-add-tag.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vpn-pending.png">
 
 Wait until status will change to *available*
 
