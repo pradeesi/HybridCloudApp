@@ -156,21 +156,23 @@ A **Kubernetes LoadBalancer Service** is provides external access to your applic
 
 Following yaml definition would be used to create the LoadBalancer Service for MariaDB -
 
-	---
-	apiVersion: v1
-	kind: Service
-	metadata:
-	name: mariadb-service
-	labels:
-		app: iot-backend
-	spec:
-	ports:
-		- protocol: TCP
-		port: 3306
-	selector:
-		app: iot-backend
-		tier: mariadb
-	type: "LoadBalancer"
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-service
+  labels:
+    app: iot-backend
+spec:
+  ports:
+    - protocol: TCP
+      port: 3306
+  selector:
+    app: iot-backend
+    tier: mariadb
+  type: "LoadBalancer"
+```
 
 * **1.4.1: Expose MariaDB to other Pods -** Create a new kubernetes service using the following command -
 
