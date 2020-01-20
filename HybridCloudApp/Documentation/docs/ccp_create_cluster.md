@@ -20,9 +20,15 @@ studentXX - XX is your unique student ID.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-instance-type.png">
 
-  - **Machine Image:** select *Filter Option* hover mouse on the *"i"* icon and select **1.14** image.
+  - **Machine Image:** select image 
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-image-version.png">
+you may need to click on *Show filtered options* first
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-ami-filtered.png">
+
+Select image (you should see only one)
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-ami.png">
 
   - **Worker Count:** *Please decrease to* **1**
 
@@ -39,7 +45,7 @@ During creation of EKS Cluster, this role is associated with Kubernets System:Ma
 
     ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJeLi4z9dYE+6tqTXzsELMch2RjR6R+rl57UEJzMuPkO
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-sshkey.png">
 
 -- **Step 3:** VPC configuration - here specify your VPC subnets. CCP will request VPC creation in AWS, with subnets, internet gateway, nat gateways. It is creating 3 private and 3 public subnets. Please modify default subnet's second octet only to match your username ID (ie. for studnet17 it will be 10.17.0.0/16 in the Subnet CIDR, and following Public and Private subnets must fall behind main VPC subnet, 10.17.0.0/24, 10.17.1.0/24 etc.)
 
@@ -49,7 +55,7 @@ CCP will create for each cluster following network topology in AWS:
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-eks-vpc-topology.png">
 
-Click Next to enter the summary page, and just confirm all data are valid according to google sheet. Once confirmed please click `Finish`.
+Click Next to enter the summary page, and just confirm all data. Once confirmed please click `Finish`.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-summary.png">
 
