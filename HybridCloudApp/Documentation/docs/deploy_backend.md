@@ -392,8 +392,8 @@ spec:
   ports:
     - name: sql
       protocol: TCP
-	  port: 3306
-	  targetPort: 3306
+      port: 3306
+      targetPort: 3306
 ---
 apiVersion: v1
 kind: Endpoints
