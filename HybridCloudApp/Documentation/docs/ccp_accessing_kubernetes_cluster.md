@@ -90,12 +90,18 @@ List updated contexts:
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/linux-kubectl-set-namespaces.png">
 
-If you would like to change context to aws EKS Kubernete Cluster, please use following command:
+If you would like to change context to aws EKS Kubernetes Cluster, please use following command:
 
         kubectl config use-context aws
         kubectl config get-contexts
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/kubectl-use-aws.png">
+
+Validate your access and list Kubernetes nodes in AWS EKS Cluster
+
+        kubectl get nodes
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/kubectl-get-nodes-aws.png">
 
 To change context to on-premise Kuberenetes Cluster use follwing command:
         
@@ -103,3 +109,9 @@ To change context to on-premise Kuberenetes Cluster use follwing command:
         kubectl config get-contexts
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/kubectl-use-on-prem.png">
+
+Validate your access and list Kubernetes nodes in on-premise Cluster
+
+        kubectl get nodes
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/kubectl-get-nodes-on-prem.png">
