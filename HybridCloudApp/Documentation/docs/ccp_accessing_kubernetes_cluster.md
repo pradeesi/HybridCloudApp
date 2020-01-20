@@ -19,20 +19,20 @@ Once connectivity to your new EKS Kubernetes Cluster is confirmed, go back to Ci
 Copy kubeconfig file into your home directory (this is the directory opened after successful login)
 
 - **Step 3:** Merge EKS kubeconfig file with existing kubeconfig file for on-premise Kubernetes.
-SSH to Linux machine using PuTTY, confirm that your kubeconfig.yaml file has been copied to home directory, 
+SSH to Linux machine using PuTTY, confirm that your kubeconfig.yaml file has been copied to home directory
 
-        ls -la
+        ls -l
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/linux-kubeconfig-in-home.png">
 
 change directory to *.kube* and list files, you should notice file *on-prem.yaml*.
 
         cd .kube
-        ls -la
+        ls -l
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/linux-on-prem-in-kube.png">
 
-Merge kubeconfig files let you switch between contexts using kubectl tool, rather specifying full path to your kubeconfig file in every command.
+Merging kubeconfig files let you switch between contexts using kubectl tool, rather specifying full path to your kubeconfig file in every command.
 This command will merge kubeconfig files and create new file in `~/.kube/config`. This is the default location for kubectl to find access information to particular Kubernetes Cluster.
 
         KUBECONFIG=~/.kube/on-prem.yaml:~/kubeconfig.yaml kubectl config view --flatten > ~/.kube/config
@@ -43,23 +43,25 @@ List files again in `~/.kube/config` directory to make sure that new `config` fi
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/linux-kubeconfig-merge.png">
 
-- **Step 4:** Kubeconfig file usually contains private certificate that is uathorized by kubernetes directly. In case of EKS, AWS IAM authenthentication is involved. Instead of certiciate, we will use your AWS access keypair to authenticate. On the linux jumphost, aws cli tool is installed. Similarily to kubectl this tool provides management access to your AWS account. Using this tool you can spawn new VM or create new networking infrastructure like VPC, subnets etc. In this lab, aws cli is leveraged by IAM-Authenticator module to sign-up kubectl requests towards EKS. 
+- **Step 4:** Kubeconfig file usually contains private certificate that is uathorized by kubernetes directly. In case of EKS, AWS IAM authenthentication is involved. Instead of certiciate, we will use your AWS access keypair to authenticate. On the linux jumphost, aws cli tool is installed. Similarily to kubectl this tool provides management access to your AWS account. Using this tool you can spawn new VM or create new networking infrastructure like VPC, subnets etc. In this lab, aws cli is leveraged by IAM-Authenticator module to sign kubectl requests towards EKS using Secure Token Service (STS) in AWS.
 
-Obtain login access keypair from AWS webpage first:
+- **Step 5 :** Obtain login access keypair from AWS webpage first
 
 Login back to AWS Dashboard, click on your username in the top right corner and select *My Security Credentials*.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-access-key-enter.png">
 
-- **Step 5:** Create new Access Key
+- **Step 6:** Create new Access Key
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-access-key-create-new.png">
 
 in the new window obtain access key ID and secret by copying it to clipboard.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-iam-access-key-show.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-access-cred.png">
 
-- **Step 6:** Configure aws cli with your access key.
+**IMPORTANT NOTE** Secret key is only shown during creating key. If you close window with sectet, you cannot view it anymore. Make sure to not close this window during copy-pasting credential information to terminal in Step 6.
+
+- **Step 7:** Configure aws cli with your access key.
 
 In Linux jumphost console, type:
 
@@ -77,7 +79,7 @@ Validate if your kubeconfigs has been correctly imported:
 
 The star in front of cluster means which Kubernete Cluster context is used. 
 
-- **Step 7:** For EKS Cluster, you will have full admin rights, however on-premise Kubernetes Cluster is shared with with other students, therefore you will have access only to your namespace. To avoid typing namespace in every `kubectl` command, configure default namespaces in your contexts using followng commands
+- **Step 8:** For EKS Cluster, you will have full admin rights, however on-premise Kubernetes Cluster is shared with with other students, therefore you will have access only to your namespace. To avoid typing namespace in every `kubectl` command, configure default namespaces in your contexts using followng commands
 
         kubectl config set-context aws --namespace default
         kubectl config set-context on-prem-1 --namespace studentXX
