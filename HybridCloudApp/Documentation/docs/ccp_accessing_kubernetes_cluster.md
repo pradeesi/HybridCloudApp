@@ -1,4 +1,4 @@
-## Accessing Kubernetes Cluster
+# Accessing Kubernetes Cluster
 
 ## Kubectl - Kubernetes Command Line Interface
 
