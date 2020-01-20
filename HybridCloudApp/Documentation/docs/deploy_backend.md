@@ -56,20 +56,21 @@ To keep the sensor data safe during Pod restarts, you would create a new Persist
 
 The following yaml definition would be used to create the 'PersistentVolumeClaim' - 
 
-	---
-	apiVersion: v1
-	kind: PersistentVolumeClaim
-	metadata:
-	  name: mariadb-pv-claim
-	  labels:
-	    app: iot-backend
-	spec:
-	  accessModes:
-	    - ReadWriteOnce
-	  resources:
-	    requests:
-	      storage: 2Gi
-
+```yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-pv-claim
+  labels:
+    app: iot-backend
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+```
 * **1.2.1: Create Persistent Volume Claim -** Use the following command to create a new Persistent Volume Claim for MariaDB Pod -
 
 		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Mariadb/mariadb_persistent_volume.yaml
@@ -90,46 +91,47 @@ The following yaml definition would be used to create the 'PersistentVolumeClaim
 
 The following yaml definition will be used to deploy MariaDB pod -
 
-	---
-	apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-	kind: Deployment
-	metadata:
-	  name: iot-backend-mariadb
-	  labels:
-	    app: iot-backend
-	spec:
-	  selector:
-	    matchLabels:
-	      app: iot-backend
-	      tier: mariadb
-	  strategy:
-	    type: Recreate
-	  template:
-	    metadata:
-	      labels:
-	        app: iot-backend
-	        tier: mariadb
-	    spec:
-	      containers:
-	      - image: mariadb:10.3
-	        name: mariadb
-	        env:
-	        - name: MYSQL_ROOT_PASSWORD
-	          valueFrom:
-	            secretKeyRef:
-	              name: mariadb-root-pass
-	              key: password
-	        ports:
-	        - containerPort: 3306
-	          name: mariadb
-	        volumeMounts:
-	        - name: mariadb-persistent-storage
-	          mountPath: /var/lib/mysql
-	      volumes:
-	      - name: mariadb-persistent-storage
-	        persistentVolumeClaim:
-	          claimName: mariadb-pv-claim
-
+```yaml
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: iot-backend-mariadb
+  labels:
+    app: iot-backend
+spec:
+  selector:
+    matchLabels:
+      app: iot-backend
+      tier: mariadb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: iot-backend
+        tier: mariadb
+    spec:
+      containers:
+      - image: mariadb:10.3
+        name: mariadb
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-root-pass
+              key: password
+        ports:
+        - containerPort: 3306
+          name: mariadb
+        volumeMounts:
+        - name: mariadb-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mariadb-persistent-storage
+        persistentVolumeClaim:
+          claimName: mariadb-pv-claim
+```
 * **1.3.1: Deploy MariaDB -** Use the following command to create a MariaDB kubernetes deployment -
 
 		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/Mariadb/mariadb_deployment.yaml
@@ -196,37 +198,38 @@ The 'REST API Agent' would act as the gateway to the backend application. It wil
 
 The following yaml definition will be used to create REST API Agent pods -
 
-		---
-		apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-		kind: Deployment
-		metadata:
-		  name: iot-backend-rest-api-agent
-		  labels:
-		    app: iot-backend-rest-api-agent
-		spec:
-		  replicas: 1
-		  selector:
-		    matchLabels:
-		      app: iot-backend-rest-api-agent
-		      tier: rest-api-agent
-		  strategy:
-		    type: Recreate
-		  template:
-		    metadata:
-		      labels:
-		        app: iot-backend-rest-api-agent
-		        tier: rest-api-agent
-		    spec:
-		      containers:
-		      - image: pradeesi/rest_api_agent:v1
-		        name: rest-api-agent
-		        env:
-		        - name: DB_PASSWORD
-		          valueFrom:
-		            secretKeyRef:
-		              name: mariadb-root-pass
-		              key: password
-
+```yaml
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: iot-backend-rest-api-agent
+  labels:
+    app: iot-backend-rest-api-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iot-backend-rest-api-agent
+      tier: rest-api-agent
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: iot-backend-rest-api-agent
+        tier: rest-api-agent
+    spec:
+      containers:
+      - image: pradeesi/rest_api_agent:v1
+        name: rest-api-agent
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-root-pass
+              key: password
+```
 
 * **2.1.1: Deploy REST API Agent -** Use the following command to create the rest-api-agent kubernetes deployment -
 
@@ -253,23 +256,24 @@ Since the frontend app from Google Cloud would access the REST APIs exposed by t
 
 The following yaml definition would be used for to create a NodePort Service for the REST API Agent -
 
-		---
-		apiVersion: v1
-		kind: Service
-		metadata:
-		  name: rest-api-agent-service
-		  labels:
-		    app: iot-backend
-		spec:
-		  ports:
-		    - protocol: TCP
-		      port: 5050
-		      nodePort: 30500
-		  selector:
-		    app: iot-backend-rest-api-agent
-		    tier: rest-api-agent
-		  type: "NodePort"
-
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-api-agent-service
+  labels:
+    app: iot-backend
+spec:
+  ports:
+    - protocol: TCP
+      port: 5050
+      nodePort: 30500
+  selector:
+    app: iot-backend-rest-api-agent
+    tier: rest-api-agent
+  type: "NodePort"
+```
 
 * **2.2.1: Create REST API Agent NodePort Service -** You can create a new kubernetes service using the following command -
 
@@ -309,36 +313,36 @@ You need to find the NodePort and Kubernetes Node external IP to access the 'res
 
 The following yaml definition will be used to create the MQTT to DB Agent pods -
 
-	---
-	apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-	kind: Deployment
-	metadata:
-	  name: iot-backend-mqtt-db-agent
-	  labels:
-	    app: iot-backend
-	    tier: mqtt-db-agent
-	spec:
-	  selector:
-	    matchLabels:
-	      app: iot-backend-mqtt-db-agent
-	  strategy:
-	    type: Recreate
-	  template:
-	    metadata:
-	      labels:
-	        app: iot-backend-mqtt-db-agent
-	    spec:
-	      containers:
-	      - image: pradeesi/mqtt_db_plugin:v2
-	        name: mqtt-db-agent
-	        env:
-	        - name: DB_PASSWORD
-	          valueFrom:
-	            secretKeyRef:
-	              name: mariadb-root-pass
-	              key: password
-
-
+```yaml
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: iot-backend-mqtt-db-agent
+  labels:
+    app: iot-backend
+    tier: mqtt-db-agent
+spec:
+  selector:
+    matchLabels:
+      app: iot-backend-mqtt-db-agent
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: iot-backend-mqtt-db-agent
+    spec:
+      containers:
+      - image: pradeesi/mqtt_db_plugin:v2
+        name: mqtt-db-agent
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-root-pass
+              key: password
+```
 * **3.1: Switch context to AWS EKS Kubernetes Cluster -** Change context of `kubectl` command to access on-premise Kubernetes Cluster.
 
 		kubectl config use-context aws
@@ -378,29 +382,30 @@ The following yaml definition will be used to create the MQTT to DB Agent pods -
 
 * **3.5: Create external service -** MQTT needs to send data to database that is deployed in different Kubernetes Cluster. MQTT application is configured to contact with MariaDB using following internal DNS name: `mariadb-service`. We need to configure Kubernetes to resolve this name to a particular LoadBalancer IP that has been allocated to your `mariadb-service` in on-premise Kubernetes Cluster. For this we will define service and manually add endpoint that this service will resolve to. In the Endpoint definition you have to specify your LoadBalancer IP address from on-premise Kubernetes Cluster allocated to `mariadb-service`.
 
-	---
-	apiVersion: v1
-	kind: Service
-	metadata:
-	name: mariadb-service
-	spec:
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+name: mariadb-service
+spec:
+ports:
+- name: sql
+	protocol: TCP
+	port: 3306
+	targetPort: 3306
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+name: mariadb-service
+subsets:
+- addresses:
+	- ip: LoadBalancerIP
 	ports:
-	- name: sql
-		protocol: TCP
-		port: 3306
-		targetPort: 3306
-	---
-	apiVersion: v1
-	kind: Endpoints
-	metadata:
-	name: mariadb-service
-	subsets:
-	- addresses:
-		- ip: LoadBalancerIP
-		ports:
-		- port: 3306
-			name: sql
-
+	- port: 3306
+		name: sql
+```
 Download following definition file:
 
 		wget https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mariadb-ext-service-eks.yaml
