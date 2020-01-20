@@ -387,13 +387,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-name: mariadb-service
+  name: mariadb-service
 spec:
-ports:
-- name: sql
-	protocol: TCP
-	port: 3306
-	targetPort: 3306
+  ports:
+    - name: sql
+      protocol: TCP
+	  port: 3306
+	  targetPort: 3306
 ---
 apiVersion: v1
 kind: Endpoints
@@ -401,10 +401,10 @@ metadata:
 name: mariadb-service
 subsets:
 - addresses:
-	- ip: LoadBalancerIP
-	ports:
-	- port: 3306
-		name: sql
+  - ip: LoadBalancerIP
+    ports:
+    - port: 3306
+      name: sql
 ```
 Download following definition file:
 
