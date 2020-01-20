@@ -2,7 +2,7 @@
 
 After login to Cisco Container Platform, got to AWS tab and click `New Cluster` button. You will be redirected to the new page where you will provide details of your new Kubernetes EKS cluster.
 
-- Step 1 - Basic Information - select infrastructure provider, AWS Region and Kubernetes cluster version and name. Please use following parameters.
+- **Step 1:** Basic Information - select infrastructure provider, AWS Region and Kubernetes cluster version and name. Please use following parameters.
 
   - **Infrastructure Provider:** *aws*
   - **AWS Region:** *eu-central-1*
@@ -13,7 +13,7 @@ studentXX - XX is your unique student ID.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-basic-info.png">
 
-- Step 2 - Node Contfiguration - here you will configure how EKS nodes will be setup. You will specify EC2 instance type, AMI image, number of worker nodes, IAM Role and SSH public key, so you could ssh into the node for troubleshooting purposes. 
+- **Step 2:** Node Contfiguration - here you will configure how EKS nodes will be setup. You will specify EC2 instance type, AMI image, number of worker nodes, IAM Role and SSH public key, so you could ssh into the node for troubleshooting purposes. 
 **Please use exact paramaters as instruction says.**
 
   - **Instance Type:** *t2.small*
@@ -35,18 +35,13 @@ studentXX - XX is your unique student ID.
 Your AWS user is configured with IAM policy that allows to assume this specific role. For this CCP leverages IAM-Authenticator add-on, that is installed in Linux jumphost. Later on the Linux machine You will login to your aws cli with your associated aws credentials and then you will be able to manage you new EKS Kubernetes Cluster. Instead of using username and password or private certificates, IAM Authenticator leverages AWS STS (Secure Token Service) to tokenize and sign URL requests towards your EKS Cluster. AWS IAM is responsible to authorize request and pass commands to your Kubernetes Cluster.
 During creation of EKS Cluster, this role is associated with Kubernets System:Masters group which provides full access to your cluster.
 
-  - **SSH Public Key:** login to Linux jumphost, and generate SSH keypair with type ed25519. 
-  Type in the Linux command line:
+  - **SSH Public Key:** Paste following ssh key into the CCP
 
-        ssh-keygen -t ed25519
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJeLi4z9dYE+6tqTXzsELMch2RjR6R+rl57UEJzMuPkO
 
-    Press just press enter to accept default answer for following quesitons. Once key is generated, copy public key without, username at the end, to the CCP GUI.
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-.png">
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/linux-ssh-key.png">
-
-Once copied, please press **Next** to go to further screen.
-
-- Step 3 - VPC configuration - here specify your VPC subnets. CCP will request VPC creation in AWS, with subnets, internet gateway, nat gateways. It is creating 3 private and 3 public subnets. Please modify default subnet's second octet only to match your username ID (ie. for studnet17 it will be 10.17.0.0/16 in the Subnet CIDR, and following Public and Private subnets must fall behind main VPC subnet, 10.17.0.0/24, 10.17.1.0/24 etc.)
+-- **Step 3:** VPC configuration - here specify your VPC subnets. CCP will request VPC creation in AWS, with subnets, internet gateway, nat gateways. It is creating 3 private and 3 public subnets. Please modify default subnet's second octet only to match your username ID (ie. for studnet17 it will be 10.17.0.0/16 in the Subnet CIDR, and following Public and Private subnets must fall behind main VPC subnet, 10.17.0.0/24, 10.17.1.0/24 etc.)
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/ccp5-eks-vpc.png">
 
