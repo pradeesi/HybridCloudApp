@@ -59,7 +59,7 @@ in the new window obtain access key ID and secret by copying it to clipboard.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-access-cred.png">
 
-**IMPORTANT NOTE** Secret key is only shown during creating key. If you close window with sectet, you cannot view it anymore. Make sure to not close this window during copy-pasting credential information to terminal in Step 6.
+> **IMPORTANT NOTE** Secret key is only shown during creating key. If you close window with sectet, you cannot view it anymore. Make sure to not close this window during copy-pasting credential information to terminal in Step 6.
 
 - **Step 7:** Configure aws cli with your access key.
 

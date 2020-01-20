@@ -1,17 +1,13 @@
 # Deploy the Backend Application Components on CCP Kubernetes Cluster (CCP Tenant Cluster)
 
 
-In this section you would deploy the backend components of the IoT Application on the Kubernetes cluster deployed on your CCP instance. Following diagram shows the high-level architecture of these backend application containers -
+In this section you would deploy the backend components of the IoT Application on the Kubernetes cluster deployed on your CCP instance. Following diagram shows the high-level architecture of these backend application containers
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/backend_app_architecture.png)
 
 ## Login to Kubernetes Master CLI Shell:
 
-SSH into the master node of the Kubernetes Cluster you deployed on top of CCP (Tenant Cluster) and start deploying the App's backend components by following the instruction on this page.
-
-The steps for logging into the Kubernetes Cluster (Tenant Cluster) CLI Shell are available at this link -  [Kubectl - Kubernetes Command Line Interface
-](/ccp_accessing_kubernetes_cluster/#kubectl-kubernetes-command-line-interface)
-
+SSH into Linux Jumphost using Putty (172.18.0.50) - use your credentials. From here you will deploy two microservices in on-premise Kubernetes Cluster and one microservice in AWS EKS Kubernetes cluster. You will see how microservices talks to each other and how to establish necessary communication.
 
 ## 1. Deploy MariaDB Databse:
 
@@ -32,11 +28,18 @@ A **Kubernetes Secret** is an object that contains a small amount of sensitive d
 
 The MariaDB container image uses an environment variable named as 'MYSQL\_ROOT\_PASSWORD', it hold the root password required to access the database. So you would create a new secret with 'password' key (value as 'cisco123') which would later be used in mariaDB deployment yaml file.
 
-* **1.1.1: Create DB Password Secret -** Use the following command to create a new secret on your kubernetes cluster -
+* **1.1.1: Switch context to on-premise Kubernetes Cluster -** Change context of `kubectl` command to access on-premise Kubernetes Cluster.
+
+		kubectl config use-context on-prem-1
+		kubectl config get-contexts
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/kubectl-use-on-prem.png">
+
+* **1.1.2: Create DB Password Secret -** Use the following command to create a new secret on your kubernetes cluster -
 
 		kubectl create secret generic mariadb-root-pass --from-literal=password=cisco123
 
-* **1.1.2: Verify DB Password Secret -** Check if the secret was created successfully or not -
+* **1.1.3: Verify DB Password Secret -** Check if the secret was created successfully or not -
 
 		kubectl get secret mariadb-root-pass
 		
@@ -145,32 +148,29 @@ The following yaml definition will be used to deploy MariaDB pod -
 
 > **Note:** Kubernetes may take some time to deploy the MariaDB. Do Not proceed further till the time DB Pod is up.	
 		
-### 1.4 Create Kubernetes ClusterIP Service for MariaDB:
+### 1.4 Create Kubernetes LoadBalancer Service for MariaDB:
 
 Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and 'REST API Agent'; you need to expose it internally withing the kubernetes cluster using a Service using a Kubernetes 'ClusterIP' Service.
 
-A **Kubernetes ClusterIP Service** is the default Kubernetes service. It gives you a service inside your cluster that other apps inside your cluster can access. There is no external access (For testing you could access ClusterIP service via Kubernetes Proxy Service, though it is not recommended).
+A **Kubernetes LoadBalancer Service** is provides external access to your application from systems outside of Kubernetes. LoadBalancer service is exposed under dedicated VIP address, routable in external network. Traffic directed to this IP address is load balanced by Kubernetes CNI across Kubernetes nodes.
 
-Following yaml definition would be used to create the ClusterIP Service for MariaDB -
+Following yaml definition would be used to create the LoadBalancer Service for MariaDB -
 
 	---
 	apiVersion: v1
 	kind: Service
 	metadata:
-	  name: mariadb-service
-	  labels:
-	    app: iot-backend
+	name: mariadb-service
+	labels:
+		app: iot-backend
 	spec:
-	  ports:
-	    - protocol: TCP
-	      port: 3306
-	      targetPort: 3306
-	  selector:
-	    app: iot-backend
-	    tier: mariadb
-	  clusterIP: None
-
-
+	ports:
+		- protocol: TCP
+		port: 3306
+	selector:
+		app: iot-backend
+		tier: mariadb
+	type: "LoadBalancer"
 
 * **1.4.1: Expose MariaDB to other Pods -** Create a new kubernetes service using the following command -
 
@@ -181,11 +181,125 @@ Following yaml definition would be used to create the ClusterIP Service for Mari
 		kubectl get service mariadb-service
 		
 	You should have the output similar to the following screenshot -
-		
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_service.png)
-	
 
-## 2. Deploy MQTT to DB Agent on Kubernetes:
+<<PASTE THE PICTURE HERE>>
+
+## 2. Deploy REST API Agent on Kubernetes:
+
+The 'REST API Agent' would act as the gateway to the backend application. It will listen to the incoming HTTP requests from the frontend application that you will deploy on Google Cloud.
+
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_deployment.png)
+
+### 2.1 Deploy REST API Agent:
+
+The following yaml definition will be used to create REST API Agent pods -
+
+		---
+		apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+		kind: Deployment
+		metadata:
+		  name: iot-backend-rest-api-agent
+		  labels:
+		    app: iot-backend-rest-api-agent
+		spec:
+		  replicas: 1
+		  selector:
+		    matchLabels:
+		      app: iot-backend-rest-api-agent
+		      tier: rest-api-agent
+		  strategy:
+		    type: Recreate
+		  template:
+		    metadata:
+		      labels:
+		        app: iot-backend-rest-api-agent
+		        tier: rest-api-agent
+		    spec:
+		      containers:
+		      - image: pradeesi/rest_api_agent:v1
+		        name: rest-api-agent
+		        env:
+		        - name: DB_PASSWORD
+		          valueFrom:
+		            secretKeyRef:
+		              name: mariadb-root-pass
+		              key: password
+
+
+* **2.1.1: Deploy REST API Agent -** Use the following command to create the rest-api-agent kubernetes deployment -
+
+		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent.yaml
+
+* **2.1.2: Check Deployment Status -** Use the following command to check if the kubernetes deployment was created successfully or not -
+
+		kubectl get deployment iot-backend-rest-api-agent
+		
+	You should have the output similar to the following screenshot -
+	
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent.png)
+	
+* **2.1.3: Check Pod Status -** Use the following command to check if the 'iot-backend-rest-api-agent' pod is in '**Running**' state -
+
+		kubectl get pods
+
+	> **Note:** You may check the Pod **Logs** using the command '**kubectl logs \<pod_name\>**'	
+
+
+### 2.2 Create Kubernetes NodePort Service for REST API Agent:
+
+Since the frontend app from Google Cloud would access the REST APIs exposed by the 'REST API Agent', you need to create a new kubernetes service for it.
+
+The following yaml definition would be used for to create a NodePort Service for the REST API Agent -
+
+		---
+		apiVersion: v1
+		kind: Service
+		metadata:
+		  name: rest-api-agent-service
+		  labels:
+		    app: iot-backend
+		spec:
+		  ports:
+		    - protocol: TCP
+		      port: 5050
+		      nodePort: 30500
+		  selector:
+		    app: iot-backend-rest-api-agent
+		    tier: rest-api-agent
+		  type: "NodePort"
+
+
+* **2.2.1: Create REST API Agent NodePort Service -** You can create a new kubernetes service using the following command -
+
+		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent_service_node_port.yaml
+
+* **2.2.2: Check REST API Agent Service Status -** You can use the following command to check if the kubernetes service was created successfully or not -
+
+		kubectl get service rest-api-agent-service
+		
+	You should have the output similar to the following screenshot -
+		
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_service.png)
+	
+### 2.3 Locate the IP and Port to Access Node-Port Service for REST API Agent:
+
+You need to find the NodePort and Kubernetes Node external IP to access the 'rest-api-agent.
+
+* Use the following command to display the port exposed by 'rest-api-agent-service' -
+
+		kubectl get service rest-api-agent-service
+
+* Use the following command to display the 'External-IP' of you kubernetes nodes -
+
+		kubectl get nodes -o wide
+
+	Following screenshot highlights the Port and Node IPs in the command outputs -
+
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/node_port_service.png)
+
+>**Important:** Note down the Node External IP Address and NodePort Service Port Number. These values would be used in next section for deploying the frontend app as the environment variables values ('**BACKEND\_HOST**' and '**BACKEND\_PORT**').
+
+## 3. Deploy MQTT to DB Agent on Kubernetes:
 
 'MQTT to DB Agent' will subscribe to the MQTT Topic and listen to the incoming sensor data from AWS IoT platform. It will then parse the sensor data and insert it into the MariaDB.
 
@@ -223,12 +337,32 @@ The following yaml definition will be used to create the MQTT to DB Agent pods -
 	              key: password
 
 
-* **2.1: Deploy MQTT to DB Agent -** Use the following command to create mqtt-to-db-agent kubernetes deployment -
+* **3.1: Switch context to AWS EKS Kubernetes Cluster -** Change context of `kubectl` command to access on-premise Kubernetes Cluster.
+
+		kubectl config use-context aws
+		kubectl config get-contexts
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/kubectl-use-aws.png">
+
+* **3.2: Create DB Password Secret -** Use the following command to create a new secret on your kubernetes cluster -
+
+		kubectl create secret generic mariadb-root-pass --from-literal=password=cisco123
+
+* **3.3: Verify DB Password Secret -** Check if the secret was created successfully or not -
+
+		kubectl get secret mariadb-root-pass
+		
+	You should have the output similar to the following screenshot -
+	
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_root_pass.png)
+	
+
+* **3.4: Deploy MQTT to DB Agent -** Use the following command to create mqtt-to-db-agent kubernetes deployment -
 
 		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mqtt_db_agent_deployment.yaml
 
 
-* **2.2: Check Deployment Status -** Use the following command to check if the kubernetes deployment was created successfully or not -
+* **3.4: Check Deployment Status -** Use the following command to check if the kubernetes deployment was created successfully or not -
 
 		kubectl get deployment iot-backend-mqtt-db-agent
 		
@@ -236,126 +370,41 @@ The following yaml definition will be used to create the MQTT to DB Agent pods -
 		
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt_db_agent.png)
 	
-* **2.3: Check Pod Status -** Use the following command to check if the 'iot-backend-mqtt-db-agent' pod is in '**Running**' state -
+* **3.5: Check Pod Status -** Use the following command to check if the 'iot-backend-mqtt-db-agent' pod is in '**Running**' state -
 
-		kubectl get pods
+		kubectl get pods	
 
-	> **Note:** You may check the Pod **Logs** using the command '**kubectl logs \<pod_name\>**'		
+* **3.5: Create external service -** MQTT needs to send data to database that is deployed in different Kubernetes Cluster. MQTT application is configured to contact with MariaDB using following internal DNS name: `mariadb-service`. We need to configure Kubernetes to resolve this name to a particular LoadBalancer IP that has been allocated to your `mariadb-service` in on-premise Kubernetes Cluster. For this we will define service and manually add endpoint that this service will resolve to. In the Endpoint definition you have to specify your LoadBalancer IP address from on-premise Kubernetes Cluster allocated to `mariadb-service`.
 
-## 3. Deploy REST API Agent on Kubernetes:
+	---
+	apiVersion: v1
+	kind: Service
+	metadata:
+	name: mariadb-service
+	spec:
+	ports:
+	- name: sql
+		protocol: TCP
+		port: 3306
+		targetPort: 3306
+	---
+	apiVersion: v1
+	kind: Endpoints
+	metadata:
+	name: mariadb-service
+	subsets:
+	- addresses:
+		- ip: LoadBalancerIP
+		ports:
+		- port: 3306
+			name: sql
 
-The 'REST API Agent' would act as the gateway to the backend application. It will listen to the incoming HTTP requests from the frontend application that you will deploy on Google Cloud.
+Download following definition file:
 
-![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_deployment.png)
+		wget https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mariadb-ext-service-eks.yaml
 
-### 3.1 Deploy REST API Agent:
+Change IP string LoadBalancerIP to real IP address.
 
-The following yaml definition will be used to create REST API Agent pods -
-
-		---
-		apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-		kind: Deployment
-		metadata:
-		  name: iot-backend-rest-api-agent
-		  labels:
-		    app: iot-backend-rest-api-agent
-		spec:
-		  replicas: 1
-		  selector:
-		    matchLabels:
-		      app: iot-backend-rest-api-agent
-		      tier: rest-api-agent
-		  strategy:
-		    type: Recreate
-		  template:
-		    metadata:
-		      labels:
-		        app: iot-backend-rest-api-agent
-		        tier: rest-api-agent
-		    spec:
-		      containers:
-		      - image: pradeesi/rest_api_agent:v1
-		        name: rest-api-agent
-		        env:
-		        - name: DB_PASSWORD
-		          valueFrom:
-		            secretKeyRef:
-		              name: mariadb-root-pass
-		              key: password
-
-
-* **3.1.1: Deploy REST API Agent -** Use the following command to create the rest-api-agent kubernetes deployment -
-
-		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent.yaml
-
-* **3.1.2: Check Deployment Status -** Use the following command to check if the kubernetes deployment was created successfully or not -
-
-		kubectl get deployment iot-backend-rest-api-agent
-		
-	You should have the output similar to the following screenshot -
-	
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent.png)
-	
-* **3.1.3: Check Pod Status -** Use the following command to check if the 'iot-backend-rest-api-agent' pod is in '**Running**' state -
-
-		kubectl get pods
-
-	> **Note:** You may check the Pod **Logs** using the command '**kubectl logs \<pod_name\>**'	
-
-
-### 3.2 Create Kubernetes NodePort Service for REST API Agent:
-
-Since the frontend app from Google Cloud would access the REST APIs exposed by the 'REST API Agent', you need to create a new kubernetes service for it.
-
-The following yaml definition would be used for to create a NodePort Service for the REST API Agent -
-
-		---
-		apiVersion: v1
-		kind: Service
-		metadata:
-		  name: rest-api-agent-service
-		  labels:
-		    app: iot-backend
-		spec:
-		  ports:
-		    - protocol: TCP
-		      port: 5050
-		      nodePort: 30500
-		  selector:
-		    app: iot-backend-rest-api-agent
-		    tier: rest-api-agent
-		  type: "NodePort"
-
-
-* **3.2.1: Create REST API Agent NodePort Service -** You can create a new kubernetes service using the following command -
-
-		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/REST_API_Agent/rest_api_agent_service_node_port.yaml
-
-* **3.2.2: Check REST API Agent Service Status -** You can use the following command to check if the kubernetes service was created successfully or not -
-
-		kubectl get service rest-api-agent-service
-		
-	You should have the output similar to the following screenshot -
-		
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_service.png)
-	
-### 3.3 Locate the IP and Port to Access Node-Port Service for REST API Agent:
-
-You need to find the NodePort and Kubernetes Node external IP to access the 'rest-api-agent.
-
-* Use the following command to display the port exposed by 'rest-api-agent-service' -
-
-		kubectl get service rest-api-agent-service
-
-* Use the following command to display the 'External-IP' of you kubernetes nodes -
-
-		kubectl get nodes -o wide
-
-	Following screenshot highlights the Port and Node IPs in the command outputs -
-
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/node_port_service.png)
-
->**Important:** Note down the Node External IP Address and NodePort Service Port Number. These values would be used in next section for deploying the frontend app as the environment variables values ('**BACKEND\_HOST**' and '**BACKEND\_PORT**').
 
 ## 4 Test the REST APIs Exposed by REST API Agent Service:
 
@@ -377,8 +426,6 @@ Following are the other urls that you could test -
 	
 	http://<kubernetes node's external ip>:30500/sensor_data/city
 	
-
-
 
 
 
