@@ -75,7 +75,7 @@ Validate if your kubeconfigs has been correctly imported:
 
         kubectl config get-contexts
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/linux-kubectl-get-contexts-wo-ns.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/kubectl-get-contexts-wo-ns.png">
 
 The star in front of cluster means which Kubernete Cluster context is used. 
 
@@ -88,7 +88,7 @@ List updated contexts:
 
         kubectl config get-contexts
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/kubectl-set-namespaces.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/linux-kubectl-set-namespaces.png">
 
 If you would like to change context to aws EKS Kubernete Cluster, please use following command:
 
