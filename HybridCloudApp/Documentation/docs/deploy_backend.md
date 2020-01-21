@@ -268,7 +268,6 @@ spec:
   ports:
     - protocol: TCP
       port: 5050
-      nodePort: 30500
   selector:
     app: iot-backend-rest-api-agent
     tier: rest-api-agent
@@ -401,23 +400,26 @@ metadata:
 name: mariadb-service
 subsets:
 - addresses:
-  - ip: LoadBalancerIP
+  - ip: LoadBalancerIP ## Specify mariadb-service LoadBalancer IP from step 1.4
     ports:
     - port: 3306
       name: sql
 ```
 Download following definition file:
 
-		wget https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mariadb-ext-service-eks.yaml
+
+	wget https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mariadb-ext-service-eks.yaml
 
 Change IP string LoadBalancerIP to real IP address.
+
+
 
 
 ## 4 Test the REST APIs Exposed by REST API Agent Service:
 
 To test the REST API service try to access following url from your web browser (use the node's external ip and service port from the previous section # 3.3)-
 
-	http://<kubernetes node's external ip>:30500/
+	http://<kubernetes node's external ip>:<nodePort>/
 	
 If your REST API Agent is working properly, you should see 'Welcome to the API Service...!' message on your browser as shown in the following screenshot -
 
@@ -425,13 +427,13 @@ If your REST API Agent is working properly, you should see 'Welcome to the API S
 
 Following are the other urls that you could test -
 
-	http://<kubernetes node's external ip>:30500/cities
+	http://<kubernetes node's external ip>:<nodePort>/cities
 	
-	http://<kubernetes node's external ip>:30500/temperature
+	http://<kubernetes node's external ip>:<nodePort>/temperature
 	
-	http://<kubernetes node's external ip>:30500/humidity
+	http://<kubernetes node's external ip>:<nodePort>/humidity
 	
-	http://<kubernetes node's external ip>:30500/sensor_data/city
+	http://<kubernetes node's external ip>:<nodePort>/sensor_data/city
 	
 
 

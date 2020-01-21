@@ -67,7 +67,12 @@ In Linux jumphost console, type:
 
         aws configure
 
-paste access key ID and secret that you obtained from AWS webpage.
+paste access key ID and secret that you obtained from AWS webpage:
+
+- **AWS Access Key ID [None]:**
+- **AWS Secret Access Key [None]:**
+- **Default region name [None]:** eu-central-1
+- **Default output format [None]:** Text
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-cli-configure.png">
 
