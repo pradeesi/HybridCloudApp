@@ -105,4 +105,10 @@ You should see screen with warning about no sufficient rights to see the GKE Clu
 
 From Chrome web browser on your desktop, please open URL [https://fwardzic.signin.aws.amazon.com/console](https://fwardzic.signin.aws.amazon.com/console)
 
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-login-screen.png">
+
 Enter your credentials that you can find on the paper sheet.
+
+Once logged in, make sure you will use Frankfurt region (eu-central-1). This is important since VPN is established to that particular region.
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-region-set.png">
