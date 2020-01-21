@@ -45,7 +45,7 @@ The MariaDB container image uses an environment variable named as 'MYSQL\_ROOT\_
 		
 	You should have the output similar to the following screenshot -
 	
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_root_pass.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb-secret-onprem.png)
 	
 
 ### 1.2 Create Kubernetes Persistent Volume Claim for MariaDB:
@@ -81,7 +81,7 @@ spec:
 	
 	You should have the output similar to the following screenshot -
 	
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb-secret-onprem.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/pvc-on-prem.png)
 	
 >**Important:** It can take up to a few minutes for the PVs to be provisioned. DO NOT procced futher till the PVC deployment gets completed.
 	
@@ -142,19 +142,19 @@ spec:
 		
 	You should have the output similar to the following screenshot -
 	
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/iot_backend_mariadb.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb-deployment-status.png)
 	
 * **1.3.2: Check Pod Status -** Use the following command to check if the 'iot-backend-mariadb' pod is in '**Running**' state -
 
 		kubectl get pods
 
-> **Note:** Kubernetes may take some time to deploy the MariaDB. Do Not proceed further till the time DB Pod is up.	
+> **Note:** Kubernetes may take some time to deploy the MariaDB. **DO NOT** proceed further till the time DB Pod is up.	
 		
 ### 1.4 Create Kubernetes LoadBalancer Service for MariaDB:
 
-Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and 'REST API Agent'; you need to expose it internally withing the kubernetes cluster using a Service using a Kubernetes 'ClusterIP' Service.
+Since the MariaDB will be accessed by other services like 'MQTT to DB Agent' and 'REST API Agent'; you need to expose it externally, since 'MQTT to DB Agent' will be running on another Kubernetes Cluster
 
-A **Kubernetes LoadBalancer Service** is provides external access to your application from systems outside of Kubernetes. LoadBalancer service is exposed under dedicated VIP address, routable in external network. Traffic directed to this IP address is load balanced by Kubernetes CNI across Kubernetes nodes.
+A **Kubernetes LoadBalancer Service** is provides external access to your application from systems outside of Kubernetes. LoadBalancer service is exposed under dedicated VIP address, routable in external network. Traffic directed to this IP address is load balanced by Kubernetes across Kubernetes nodes.
 
 Following yaml definition would be used to create the LoadBalancer Service for MariaDB -
 
@@ -186,7 +186,7 @@ spec:
 		
 	You should have the output similar to the following screenshot -
 
-<<PASTE THE PICTURE HERE>>
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb-service-lb.png)
 
 ## 2. Deploy REST API Agent on Kubernetes:
 
@@ -241,7 +241,7 @@ spec:
 		
 	You should have the output similar to the following screenshot -
 	
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/restapi-deployment.png)
 	
 * **2.1.3: Check Pod Status -** Use the following command to check if the 'iot-backend-rest-api-agent' pod is in '**Running**' state -
 
@@ -284,7 +284,7 @@ spec:
 		
 	You should have the output similar to the following screenshot -
 		
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_service.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/restapi-service.png)
 	
 ### 2.3 Locate the IP and Port to Access Node-Port Service for REST API Agent:
 
@@ -300,7 +300,7 @@ You need to find the NodePort and Kubernetes Node external IP to access the 'res
 
 	Following screenshot highlights the Port and Node IPs in the command outputs -
 
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/node_port_service.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/restapi-service-ip.png)
 
 >**Important:** Note down the Node External IP Address and NodePort Service Port Number. These values would be used in next section for deploying the frontend app as the environment variables values ('**BACKEND\_HOST**' and '**BACKEND\_PORT**').
 
@@ -359,7 +359,7 @@ spec:
 		
 	You should have the output similar to the following screenshot -
 	
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_root_pass.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb-secret-onprem.png)
 	
 * **3.4: Create external service -** MQTT needs to send data to database that is deployed in different Kubernetes Cluster. MQTT application is configured to contact with MariaDB using following internal DNS name: `mariadb-service`. We need to configure Kubernetes to resolve this name to a particular LoadBalancer IP that has been allocated to your `mariadb-service` in on-premise Kubernetes Cluster. For this we will define service and manually add endpoint that this service will resolve to. In the Endpoint definition you have to specify your LoadBalancer IP address from on-premise Kubernetes Cluster allocated to `mariadb-service`.
 
@@ -430,14 +430,11 @@ Check services and associated endpoints:
 		
 	You should have the output similar to the following screenshot -
 		
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt_db_agent.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt-deployment.png)
 	
 * **3.5: Check Pod Status -** Use the following command to check if the 'iot-backend-mqtt-db-agent' pod is in '**Running**' state -
 
 		kubectl get pods	
-
-
-
 
 ## 4 Test the REST APIs Exposed by REST API Agent Service:
 
