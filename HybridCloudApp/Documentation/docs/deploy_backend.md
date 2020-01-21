@@ -455,7 +455,3 @@ Following are the other urls that you could test -
 	http://<kubernetes node's external ip>:<nodePort>/humidity
 	
 	http://<kubernetes node's external ip>:<nodePort>/sensor_data/city
-	
-
-
-
