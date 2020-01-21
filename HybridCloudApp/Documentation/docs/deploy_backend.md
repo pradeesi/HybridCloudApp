@@ -81,7 +81,7 @@ spec:
 	
 	You should have the output similar to the following screenshot -
 	
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/pv_claim.png)
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb-secret-onprem.png)
 	
 >**Important:** It can take up to a few minutes for the PVs to be provisioned. DO NOT procced futher till the PVC deployment gets completed.
 	
@@ -361,25 +361,7 @@ spec:
 	
 	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb_root_pass.png)
 	
-
-* **3.4: Deploy MQTT to DB Agent -** Use the following command to create mqtt-to-db-agent kubernetes deployment -
-
-		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mqtt_db_agent_deployment.yaml
-
-
-* **3.4: Check Deployment Status -** Use the following command to check if the kubernetes deployment was created successfully or not -
-
-		kubectl get deployment iot-backend-mqtt-db-agent
-		
-	You should have the output similar to the following screenshot -
-		
-	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt_db_agent.png)
-	
-* **3.5: Check Pod Status -** Use the following command to check if the 'iot-backend-mqtt-db-agent' pod is in '**Running**' state -
-
-		kubectl get pods	
-
-* **3.5: Create external service -** MQTT needs to send data to database that is deployed in different Kubernetes Cluster. MQTT application is configured to contact with MariaDB using following internal DNS name: `mariadb-service`. We need to configure Kubernetes to resolve this name to a particular LoadBalancer IP that has been allocated to your `mariadb-service` in on-premise Kubernetes Cluster. For this we will define service and manually add endpoint that this service will resolve to. In the Endpoint definition you have to specify your LoadBalancer IP address from on-premise Kubernetes Cluster allocated to `mariadb-service`.
+* **3.4: Create external service -** MQTT needs to send data to database that is deployed in different Kubernetes Cluster. MQTT application is configured to contact with MariaDB using following internal DNS name: `mariadb-service`. We need to configure Kubernetes to resolve this name to a particular LoadBalancer IP that has been allocated to your `mariadb-service` in on-premise Kubernetes Cluster. For this we will define service and manually add endpoint that this service will resolve to. In the Endpoint definition you have to specify your LoadBalancer IP address from on-premise Kubernetes Cluster allocated to `mariadb-service`.
 
 ```yaml
 ---
@@ -407,10 +389,52 @@ subsets:
 ```
 Download following definition file:
 
-
 	wget https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mariadb-ext-service-eks.yaml
 
-Change IP string LoadBalancerIP to real IP address.
+Check string to be replaced by LoadBalancerIP allocated to mariadb-service from Step 1.4.2
+
+```bash
+	cat mariadb-ext-service-eks.yaml
+```
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/cat-mariadb-template.png">
+
+Change `<mariadb-service_LoadBalancer_IP>` with IP address of your load balancer IP.
+
+```bash
+	cat mariadb-ext-service-eks.yaml
+	sed -i 's/<mariadb-service_LoadBalancer_IP>/172.18.0.XXX/g' mariadb-ext-service-eks.yaml  ## replace 172.18.0.XXX with the IP address of LoadBalancer IP allocated to mariadb-service in on-premise Kubernetes Cluster.
+```
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb-change-ip.png">
+
+> IMPORTANT! Make sure the address you specified is correct !
+
+Apply updated manifest to create external service access:
+
+	kubectl apply -f mariadb-ext-service-eks.yaml
+
+Check services and associated endpoints:
+
+	kubectl get svc,endpoints
+
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/eks-get-svc-endpoints.png">
+
+* **3.5: Deploy MQTT to DB Agent -** Use the following command to create mqtt-to-db-agent kubernetes deployment -
+
+		kubectl create -f https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Kubernetes/Backend/MQTT_DB_Agent/mqtt_db_agent_deployment.yaml
+
+
+* **3.6: Check Deployment Status -** Use the following command to check if the kubernetes deployment was created successfully or not -
+
+		kubectl get deployment iot-backend-mqtt-db-agent
+		
+	You should have the output similar to the following screenshot -
+		
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt_db_agent.png)
+	
+* **3.5: Check Pod Status -** Use the following command to check if the 'iot-backend-mqtt-db-agent' pod is in '**Running**' state -
+
+		kubectl get pods	
 
 
 
