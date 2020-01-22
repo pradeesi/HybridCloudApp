@@ -49,8 +49,6 @@ Your are connected to infrastructure on-prem.
 
 Open PuTTY client (icon available on the desktop). If there is no icon for PuTTY, click start, and type `putty`
 
-
-
 Enter following IP address, make sure SSH is the selected protocol.
 
     Computer: 172.18.0.50
@@ -63,8 +61,28 @@ You can find password in the paper sheet.
 
 Cisco Container Platform manages Kuberenetes clusters in the private infrasturcture. You will have access to dedicated instance of Cisco Container Platform, from which you will manage you own Kuberenetes Clusters used later on to deploy application.
 
-Please look at the URL on the paper sheet to access your Cisco Container Platform (CCP) instance. In this lab Single CCP is shared with multiple users. 
-**You can explore CCP through the GUI, but please respect other participants and follow only steps from instruction for changes.**
+Please find your username in below table and corresponding CCP URL. Please access only that particular Cisco Container Platform GUI
+
+| Student ID |        CCP URL            |    
+|------------|:--------------------------|
+| student1   | https://172.18.0.60/      |
+| student2   | https://172.18.0.60/      |
+| student3   | https://172.18.0.60/      |
+| student4   | https://172.18.0.60/      |
+| student5   | https://172.18.0.130/     |
+| student6   | https://172.18.0.130/     |
+| student7   | https://172.18.0.130/     |
+| student8   | https://172.18.0.130/     |
+| student9   | https://172.18.0.171/     |
+| student10  | https://172.18.0.171/     |
+| student11  | https://172.18.0.171/     |
+| student12  | https://172.18.0.171/     |
+| student13  | https://172.18.0.210/     |
+| student14  | https://172.18.0.210/     |
+| student15  | https://172.18.0.210/     |
+| student16  | https://172.18.0.210/     |
+
+> **You can explore CCP through the GUI, but please respect other participants and follow only steps from instruction for changes.**
 
 ## 5. Google Cloud access
 
