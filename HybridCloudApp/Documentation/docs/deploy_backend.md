@@ -438,10 +438,33 @@ Check services and associated endpoints:
 
 ## 4 Test the REST APIs Exposed by REST API Agent Service:
 
-To test the REST API service try to access following url from your web browser (use the node's external ip and service port from the previous section # 3.3)-
+To test the REST API service try to access following url from your web browser (use the node's external ip and service port from the previous section # 2.3) -
+If you haven't note the IP and port information earlier, please follow these steps - 
 
-	http://<kubernetes node's external ip>:<nodePort>/
+Change `kubectl` context to `on-prem-1`
+
+    kubectl config use-context on-prem-1
+    kubectl config get-contexts
+
+> Make sure stat is no in front of `on-prem-1` Kubernetes Cluster.
+
+* Use the following command to display the port exposed by 'rest-api-agent-service' -
+
+		kubectl get service rest-api-agent-service
+
+* Use the following command to display the 'External-IP' of you kubernetes nodes -
+
+		kubectl get nodes -o wide
+
+	Following screenshot highlights the Port and Node IPs in the command outputs -
+
+	![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/restapi-service-ip.png)
 	
+Now you have open Chrome browser and specify URL based on pattern - 
+
+	http://<kubernetes node's external ip>:<nodePort>
+  i.e. http://172.18.0.169:30423
+
 If your REST API Agent is working properly, you should see 'Welcome to the API Service...!' message on your browser as shown in the following screenshot -
 
 ![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_url_test.png)

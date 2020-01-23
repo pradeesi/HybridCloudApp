@@ -124,9 +124,9 @@ Wait until status will change to *available*
 
 - **Step 3.** Update EC2 security group.
 
-Select your EC2 instance. on the left side in the same row where your instance is, select Security Group. 
+Select your EC2 instance, on the bottom details area please click on link to edit Security Groups associated to this VM instance.
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-ec2-find-sg.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-ec2-sg-find.png">
 
 you will be redirected to Security Groups dashboard where you should select *Inbound* and then click on *Edit rules* button.
 

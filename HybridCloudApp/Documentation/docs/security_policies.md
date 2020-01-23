@@ -14,7 +14,6 @@ Following Kubernetes Network Policy yaml definition would block all the traffic 
 	kind: NetworkPolicy
 	metadata:
 	  name: deny-all-rest-api-agent
-	  namespace: default
 	spec:
 	  podSelector:
 	    matchLabels:
@@ -22,6 +21,15 @@ Following Kubernetes Network Policy yaml definition would block all the traffic 
 	      tier: rest-api-agent
 	  policyTypes:
 	  - Ingress
+
+* 1.0: Prerequisite - set `kubectl` context to `on-prem-1` and make sure that your default namespace is set to your student ID.
+
+		kubectl config use-context on-prem-1
+		kubectl config get-contexts
+
+> Note: if you notice that the `Namespace` column contains wrong or none Namespace please update it using folloowing command 
+
+		kubectl config set-context on-prem-1 --namespace studentXX ## where XX is your student ID.
 
 * 1.1: Execute the following command on Kubernetes master node to apply this Network Policy on your REST API Agent -
 
@@ -38,7 +46,6 @@ Following Kubernetes Network Policy yaml definition would allow the traffic on p
 	kind: NetworkPolicy
 	metadata:
 	  name: permit-port-5111-rest-api-agent
-	  namespace: default
 	spec:
 	  podSelector:
 	    matchLabels:
@@ -68,7 +75,6 @@ Following Kubernetes Network Policy yaml definition would allow the traffic on p
 	kind: NetworkPolicy
 	metadata:
 	  name: permit-port-5050-rest-api-agent
-	  namespace: default
 	spec:
 	  podSelector:
 	    matchLabels:

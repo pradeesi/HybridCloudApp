@@ -43,7 +43,7 @@ List files again in `~/.kube/config` directory to make sure that new `config` fi
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/linux-kubeconfig-merge.png">
 
-- **Step 4:** Kubeconfig file usually contains private certificate that is uathorized by kubernetes directly. In case of EKS, AWS IAM authenthentication is involved. Instead of certiciate, we will use your AWS access keypair to authenticate. On the linux jumphost, aws cli tool is installed. Similarily to kubectl this tool provides management access to your AWS account. Using this tool you can spawn new VM or create new networking infrastructure like VPC, subnets etc. In this lab, aws cli is leveraged by IAM-Authenticator module to sign kubectl requests towards EKS using Secure Token Service (STS) in AWS.
+- **Step 4:** Kubeconfig file usually contains private certificate that is uathorized by kubernetes directly. In case of EKS, AWS IAM authenthentication is involved. Instead of certificate, we will use your AWS access keypair to authenticate. On the linux jumphost, aws cli tool is installed. Similarily to kubectl this tool provides management access to your AWS account. Using this tool you can spawn new VM or create new networking infrastructure like VPC, subnets etc. In this lab, aws cli is leveraged by IAM-Authenticator module to sign kubectl requests towards EKS using Secure Token Service (STS) in AWS.
 
 - **Step 5 :** Obtain login access keypair from AWS webpage first
 
@@ -59,7 +59,7 @@ in the new window obtain access key ID and secret by copying it to clipboard.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-access-cred.png">
 
-> **IMPORTANT NOTE** Secret key is only shown during creating key. If you close window with sectet, you cannot view it anymore. Make sure to not close this window during copy-pasting credential information to terminal in Step 6.
+> **IMPORTANT NOTE** Secret key is only shown during creating key. If you close window with secret, you cannot view it anymore. Make sure to not close this window during copy-pasting credential information to terminal in Step 6.
 
 - **Step 7:** Configure aws cli with your access key.
 
