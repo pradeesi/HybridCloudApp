@@ -6,14 +6,13 @@ nav:
     - Accessing the Lab Environment: 'LAB_access.md'
   - Cisco Container Platform (CCP):
     - Explore Cisco Container Platform (CCP): 'ccp_exploring.md'
-    - Create Kubernetes Cluster on CCP (Tenant Cluster): 'ccp_create_cluster.md'
+    - Create Kubernetes Cluster on CCP (AWS Tenant Cluster): 'ccp_create_cluster.md'
+    - Connect Kubernetes Cluster in AWS to Hybrid Network: 'ccp_connect_eks_to_hybrid_network.md'
     - Access Kubernetes Cluster (Tenant Cluster): 'ccp_accessing_kubernetes_cluster.md'
   - Hybrid Cloud IoT Application:
     - Deploy Backend App on Kubernetes Cluster (Tenant Cluster): 'deploy_backend.md'
     - Explore Backend Application: 'backend_exercise.md'
     - Deploy Frontend App on Google Kubernetes Engine (GKE): 'deploy_frontend.md'
-    - Explore Grafana and Kibana Modules on CCP: ccp_grafana_kibana.md
-    - Kubernetes Exercise: 'ccp_modify_numer_of_nodes.md'
   - Kubernetes Network Policies:
     - Apply Security Policy to REST API Agent: security_policies.md
   - Appendices (Optional - Read Only):
