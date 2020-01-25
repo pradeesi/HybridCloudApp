@@ -92,21 +92,21 @@ Wait until status will change to *available*
 
 - **Step 4.** Add route to On-Premise data center. Enter following parameters:
 
-  - **Prefix:** 172.18.0.0/24
-  - **Target:** type *vgw-* and you will find your Virtual Private Gateway created earlier.
+    - **Prefix:** 172.18.0.0/24
+    - **Target:** type *vgw-* and you will find your Virtual Private Gateway created earlier.
 
   Click *Save routes*
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vpc-subnet-add-route.png">
 
-- **Step 5.** Add the same return route under *subnets*. From the panel above select *studentXX-private-route-table1** only and add the same subnet as in Step 4.
+- **Step 5.** Add the same return route under *subnets*. From the panel above select *studentXX-private-route-table1* only and add the same subnet as in Step 4.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-vpc-rt-subnet-edit.png">
 
 - **Step 6.** Add route to On-Premise data center. Enter following parameters:
 
-  - **Prefix:** 172.18.0.0/24
-  - **Target:** type *vgw-* and you will find your Virtual Private Gateway created earlier.
+    - **Prefix:** 172.18.0.0/24
+    - **Target:** type *vgw-* and you will find your Virtual Private Gateway created earlier.
 
   Click *Save routes*
 
@@ -116,7 +116,7 @@ Wait until status will change to *available*
 
 - **Step 1.** Select EC2 service
 
-<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-ec2-enter.png">
+<img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-ec2-enter2.png">
 
 - **Step 2.** Find your EC2 instance (worker node), using your username in the search bar.
 
