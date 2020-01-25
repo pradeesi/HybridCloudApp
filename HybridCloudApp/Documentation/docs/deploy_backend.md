@@ -3,7 +3,7 @@
 
 In this section you would deploy the backend components of the IoT Application on the Kubernetes cluster deployed on your CCP instance. Following diagram shows the high-level architecture of these backend application containers
 
-![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/backend_app_architecture.png)
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/diagram-backend-all.png)
 
 ## Login to Kubernetes Master CLI Shell:
 
@@ -192,7 +192,7 @@ spec:
 
 The 'REST API Agent' would act as the gateway to the backend application. It will listen to the incoming HTTP requests from the frontend application that you will deploy on Google Cloud.
 
-![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/rest_api_agent_deployment.png)
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/diagram-restapi.png)
 
 ### 2.1 Deploy REST API Agent:
 
@@ -308,7 +308,7 @@ You need to find the NodePort and Kubernetes Node external IP to access the 'res
 
 'MQTT to DB Agent' will subscribe to the MQTT Topic and listen to the incoming sensor data from AWS IoT platform. It will then parse the sensor data and insert it into the MariaDB.
 
-![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mqtt_db_agent_deployment.png)
+![Rapi](https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/diagram-mqtt.png)
 
 The following yaml definition will be used to create the MQTT to DB Agent pods -
 

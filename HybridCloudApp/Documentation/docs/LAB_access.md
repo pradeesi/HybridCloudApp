@@ -8,16 +8,16 @@ The lab has been built leveraging multiple cloud environments as following:
 - Google Cloud
 - Private intrastructure on-prem
 
-You will have access to Cisco Container Platform GUI, where you will setup new Kubernetes Cluster deployed in AWS. You will have access to existing Kubernetes cluster on-premise (in Cisco Lab Data Center) and in addtion you will deploy some microservices in Google Kubernetes Engine. In total you will manage your application that will be deployed in 3 different environments. In this lab you will see how to connect microservices together to make whole application work.
+You will have access to Cisco Container Platform GUI, where you will setup new Kubernetes Cluster deployed in AWS. You will have access to existing Kubernetes cluster on-premise (in Cisco Lab Data Center) and in addtion you will deploy some microservices in Amazon Web Services and Google Cloud. In total you will manage your application that will be deployed in 3 different environments. In this lab you will see how to connect microservices together to make whole application work.
 Most of the tasks you will do from Linux Management Station that is running on-premise. From there you will deploy components of your application in Kubernetes Cluster in AWS and on-premise.
 
 ## 1. On-prem private infrastructure access (VPN)
 
-In order to get access to private network, please first find credentials for your POD in the paper sheet.
+In order to get access to private network, speaker will assign username to you. Please then open credentials.html icon from your desktop, and select you username.
 
 ### 2 Cisco Anyconnect Mobility Client
 
-Run Cisco Anyconnect VPN client available on your desktop.
+Run Cisco Anyconnect VPN client available on your desktop. Check credentials and URL in the local page on your desktop.
 
 You’ll need to review and configure the AnyConnect options. After Anyconnect launches, you’ll need to click on the “Configuration” button on the main panel. See image below.
 
@@ -29,7 +29,7 @@ In case of the issues with certificate, you will need to uncheck the option that
 
 Close the Configuration window.
 
-**Enter VPN IP Address as provided in the paper sheet on your desk or on below screenshot. Then choose “Connect”.**
+**Enter VPN IP Address as provided in credentials page on your desk or on below screenshot. Then choose “Connect”.**
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_with_IP.png" width = 500>
 
@@ -37,7 +37,7 @@ After a few seconds, you’ll see a new window notifying you of an “Untrusted 
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_accept_cert.png" width = 500>
 
-You’ll see a new window prompting you to provide your Lab’s network credentials. Enter the Username and Password as provided in the paper sheet. Choose “OK”.
+You’ll see a new window prompting you to provide your Lab’s network credentials. Enter the Username and Password as provided in credentials page. Choose “OK”.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/anyconnect_login2.png" width = 500>
 
@@ -55,32 +55,13 @@ Enter following IP address, make sure SSH is the selected protocol.
     User name: student<XX>
     _where XX is your lab ID_ ie. student7 or student12
 
-You can find password in the paper sheet.
+You can find password in credentials page on your desktop.
 
 ## 4 Accessing Cisco Container Platform
 
 Cisco Container Platform manages Kuberenetes clusters in the private infrasturcture. You will have access to dedicated instance of Cisco Container Platform, from which you will manage you own Kuberenetes Clusters used later on to deploy application.
 
-Please find your username in below table and corresponding CCP URL. Please access only that particular Cisco Container Platform GUI
-
-| Student ID |        CCP URL            |    
-|------------|:--------------------------|
-| student1   | https://172.18.0.60/      |
-| student2   | https://172.18.0.60/      |
-| student3   | https://172.18.0.60/      |
-| student4   | https://172.18.0.60/      |
-| student5   | https://172.18.0.130/     |
-| student6   | https://172.18.0.130/     |
-| student7   | https://172.18.0.130/     |
-| student8   | https://172.18.0.130/     |
-| student9   | https://172.18.0.171/     |
-| student10  | https://172.18.0.171/     |
-| student11  | https://172.18.0.171/     |
-| student12  | https://172.18.0.171/     |
-| student13  | https://172.18.0.210/     |
-| student14  | https://172.18.0.210/     |
-| student15  | https://172.18.0.210/     |
-| student16  | https://172.18.0.210/     |
+Please find login credentials and URL to your CCP instance in credentials page.
 
 > **You can explore CCP through the GUI, but please respect other participants and follow only steps from instruction for changes.**
 
@@ -91,7 +72,7 @@ Go to [http://cloud.google.com](https://cloud.google.com), click on sign-in in t
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-sign-in.png">
 
-Enter username for your lab pod which you can find in the paper sheet. You can change language to your preferred.
+Enter username for your lab pod which you can find in the credentials page. You can change language to your preferred.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-login1.png" width = 500>
 
@@ -107,7 +88,7 @@ Next, you will have to select project - click on the `Select a project`
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-select-project1.png">
 
-In the new window, select project `fwardz-001
+In the new window, select project `fwardz001`
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/gcp-select-project1-2.png" width=500>
 
@@ -125,7 +106,7 @@ From Chrome web browser on your desktop, please open URL [https://fwardzic.signi
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-login-screen.png">
 
-Enter your credentials that you can find on the paper sheet.
+Enter your credentials that you can find in credentials page.
 
 Once logged in, make sure you will use Frankfurt region (eu-central-1). This is important since VPN is established to that particular region.
 
