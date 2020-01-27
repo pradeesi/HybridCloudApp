@@ -207,7 +207,7 @@ metadata:
   labels:
     app: iot-backend-rest-api-agent
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: iot-backend-rest-api-agent

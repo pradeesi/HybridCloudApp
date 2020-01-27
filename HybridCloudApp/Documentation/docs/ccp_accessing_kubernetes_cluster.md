@@ -86,8 +86,8 @@ The star in front of cluster means which Kubernete Cluster context is used.
 
 - **Step 8:** For EKS Cluster, you will have full admin rights, however on-premise Kubernetes Cluster is shared with with other students, therefore you will have access only to your namespace. To avoid typing namespace in every `kubectl` command, configure default namespaces in your contexts using followng commands
 
-        kubectl config set-context aws \--namespace default
-        kubectl config set-context on-prem-1 \--namespace studentXX    ## XX - use your username ID.
+        kubectl config set-context aws --namespace default
+        kubectl config set-context on-prem-1 --namespace studentXX    ## XX - use your username ID.
 
 List updated contexts:
 
