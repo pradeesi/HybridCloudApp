@@ -9,7 +9,7 @@ The lab has been built leveraging multiple cloud environments as following:
 - Private intrastructure on-prem
 
 You will have access to Cisco Container Platform GUI, where you will setup new Kubernetes Cluster deployed in AWS. You will have access to existing Kubernetes cluster on-premise (in Cisco Lab Data Center) and in addtion you will deploy some microservices in Amazon Web Services and Google Cloud. In total you will manage your application that will be deployed in 3 different environments. In this lab you will see how to connect microservices together to make whole application work.
-Most of the tasks you will do from Linux Management Station that is running on-premise. From there you will deploy components of your application in Kubernetes Cluster in AWS and on-premise.
+Most of the tasks you will do from Linux Jumphost that is running on-premise. From there you will deploy components of your application in Kubernetes Cluster in AWS and on-premise.
 
 ## 1. On-prem private infrastructure access (VPN)
 
@@ -45,7 +45,7 @@ Next you’ll see the main AnyConnect window go through several connection state
 
 Your are connected to infrastructure on-prem. 
 
-## 3 Accessing Management Station
+## 3 Accessing Linux Jumphost
 
 Open PuTTY client (icon available on the desktop). If there is no icon for PuTTY, click start, and type `putty`
 

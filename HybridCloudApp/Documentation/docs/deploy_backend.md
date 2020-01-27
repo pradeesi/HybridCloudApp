@@ -207,7 +207,7 @@ metadata:
   labels:
     app: iot-backend-rest-api-agent
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: iot-backend-rest-api-agent
@@ -393,17 +393,14 @@ Download following definition file:
 
 Check string to be replaced by LoadBalancerIP allocated to mariadb-service from Step 1.4.2
 
-```bash
 	cat mariadb-ext-service-eks.yaml
-```
+  
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/cat-mariadb-template.png">
 
 Change `<mariadb-service_LoadBalancer_IP>` with IP address of your load balancer IP.
 
-```bash
 	cat mariadb-ext-service-eks.yaml
 	sed -i 's/<mariadb-service_LoadBalancer_IP>/172.18.0.XXX/g' mariadb-ext-service-eks.yaml  ## replace 172.18.0.XXX with the IP address of LoadBalancer IP allocated to mariadb-service in on-premise Kubernetes Cluster.
-```
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/mariadb-change-ip.png">
 
