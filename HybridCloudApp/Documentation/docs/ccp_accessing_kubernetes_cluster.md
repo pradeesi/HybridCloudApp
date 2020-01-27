@@ -19,7 +19,7 @@ Once connectivity to your new EKS Kubernetes Cluster is confirmed, go back to Ci
 Copy kubeconfig file into your home directory (this is the directory opened after successful login)
 
 - **Step 3:** Merge EKS kubeconfig file with existing kubeconfig file for on-premise Kubernetes.
-SSH to Linux machine using PuTTY, confirm that your kubeconfig.yaml file has been copied to home directory
+SSH to Linux jumphost using PuTTY, confirm that your kubeconfig.yaml file has been copied to home directory
 
         ls -l
 
@@ -45,13 +45,19 @@ List files again in `~/.kube/config` directory to make sure that new `config` fi
 
 - **Step 4:** Kubeconfig file usually contains private certificate that is uathorized by kubernetes directly. In case of EKS, AWS IAM authenthentication is involved. Instead of certificate, we will use your AWS access keypair to authenticate. On the linux jumphost, aws cli tool is installed. Similarily to kubectl this tool provides management access to your AWS account. Using this tool you can spawn new VM or create new networking infrastructure like VPC, subnets etc. In this lab, aws cli is leveraged by IAM-Authenticator module to sign kubectl requests towards EKS using Secure Token Service (STS) in AWS.
 
-- **Step 5 :** Obtain login access keypair from AWS webpage first
+- **Step 5:** Configure aws cli with your access key.
+
+In Linux jumphost console, type:
+
+        aws configure
+
+- **Step 6 :** Obtain login access keypair from AWS webpage.
 
 Login back to AWS Dashboard, click on your username in the top right corner and select *My Security Credentials*.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-access-key-enter.png">
 
-- **Step 6:** Create new Access Key
+- **Step 7:** Create new Access Key
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-access-key-create-new.png">
 
@@ -59,20 +65,14 @@ in the new window obtain access key ID and secret by copying it to clipboard.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-access-cred.png">
 
-> **IMPORTANT NOTE** Secret key is only shown during creating key. If you close window with secret, you cannot view it anymore. Make sure to not close this window during copy-pasting credential information to terminal in Step 6.
+> **IMPORTANT NOTE** Secret key is only shown during creating key. If you close window with secret, you cannot view it anymore. Make sure to not close this window during copy-pasting credential information to linux jumphost terminal:
 
-- **Step 7:** Configure aws cli with your access key.
+        AWS Access Key ID [None]:
+        AWS Secret Access Key [None]:
+        Default region name [None]: **eu-central-1**
+        Default output format [None]: **Text**
 
-In Linux jumphost console, type:
-
-        aws configure
-
-paste access key ID and secret that you obtained from AWS webpage:
-
-- **AWS Access Key ID [None]:**
-- **AWS Secret Access Key [None]:**
-- **Default region name [None]:** eu-central-1
-- **Default output format [None]:** Text
+> Make sure to enter exact name of region: **eu-central-1** and **Text** as a default output.
 
 <img src="https://raw.githubusercontent.com/pradeesi/HybridCloudApp/master/HybridCloudApp/Documentation/images/aws-cli-configure.png">
 
