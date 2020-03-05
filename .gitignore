@@ -2,3 +2,4 @@
 *.pem.crt
 *.pem.key
 *.pyc
+.vscode
