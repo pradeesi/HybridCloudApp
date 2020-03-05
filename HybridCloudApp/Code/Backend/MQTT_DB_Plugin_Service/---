@@ -1,0 +1,70 @@
+---
+
+kvm_vms:
+  - name: test_vm2
+    action: create
+    kvm_host: 3.3.11.140
+    vcpu: 4
+    memory: 8192
+    root_password: pradeep
+    state: running
+    autostart: yes
+    # Define boot devices in order of preference
+    boot_devices:
+      - network
+      - hd
+    # Define disks in GB
+    disks:
+      - name: test_vm2_disk1
+        qcow2_image_source: /var/lib/libvirt/images/CentOS-7-x86_64-GenericCloud-1503.qcow2
+        disk_driver: virtio
+        # Disk Size should not be less than the qcow2 template size.
+        size: 15
+        # Use 'extend_named_partion' (value should be the name of the named partition such as '/dev/sda1') if you want to extend the root partition. Otherwise commentout this setting (in this case a new partition would be created with extra disk space)
+        extend_named_partion: /dev/sda1
+        # used for resetting the Root password
+        os_disk: yes
+      - name: test_vm2_disk2
+        size: 2
+        disk_driver: virtio
+    network_interfaces:
+      - source: default
+        network_driver: virtio
+        #portgroup: vlan-102
+        type: network
+        ip_address: 192.168.122.125    #Optional
+        # Define mac address if you need to create and delete the VM frequently for testing. To avoid the issue with DHCP lease.
+        mac_address: '52:54:00:f1:f1:96'  #Optional
+#      - source: nat
+#        network_driver: virtio
+#        #portgroup: vlan-102
+#        type: network
+#        ip_address: 192.168.101.50    #Optional
+#        # Define mac address if you need to create and delete the VM frequently for testing. To avoid the issue with DHCP lease.
+#        mac_address: '52:54:00:f1:f2:94'  #Optional
+
+  # - name: test_vm3
+  #   vcpu: 4
+  #   memory: 8192
+  #   root_password: pradeep
+  #   state: running
+  #   autostart: yes
+  #   # Define boot devices in order of preference
+  #   boot_devices:
+  #     - network
+  #     - hd
+  #   # Define disks in GB
+  #   disks:
+  #     - name: test_vm3_disk1
+  #       qcow2_image_source: /var/lib/libvirt/images/CentOS-7-x86_64-GenericCloud-1503.qcow2
+  #       disk_driver: virtio
+  #       # Disk Size should not be less than the qcow2 template size.
+  #       size: 15
+  #       # Use 'extend_named_partion' (value should be the name of the named partition such as '/dev/sda1') if you want to extend the root partition. Otherwise commentout this setting (in this case a new partition would be created with extra disk space)
+  #       extend_named_partion: /dev/sda1
+  #       os_disk: yes
+  #   network_interfaces:
+  #     - source: default
+  #       network_driver: virtio
+  #       #portgroup: vlan-102
+  #       type: network
